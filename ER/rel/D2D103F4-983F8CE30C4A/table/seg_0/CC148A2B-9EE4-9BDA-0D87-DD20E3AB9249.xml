@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CC148A2B-9EE4-9BDA-0D87-DD20E3AB9249" name="Usuario">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:46:56 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_usuario" id="AF60081A-76C9-70B0-64EC-46CCB2702939">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="BA79E823-3CAA-3377-864E-CB3E10DED2B0">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="apellido" id="229B6F52-0607-375D-1E7E-8B88D0E11423">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_nacimiento" id="7916C7F2-4733-CBC0-00E7-6B0244F2A36E">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="correo_electronico" id="767A7AA1-DCB4-632E-9351-E576148B3A2C">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>75</dataTypeSize>
+<ownDataTypeParameters>75,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sexo" id="B083A195-CF0A-75BF-724C-328007377658">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:48:26 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tarjeta_credito" id="6D8C980E-4548-0B80-2BD7-FF484523DBF5">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:03:03 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password" id="E5AE6915-7AF5-6DA4-6342-8B23745C8927">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:14:49 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Tipo_usuario_id_tipo" id="8F522C88-F4DF-4EC7-9D52-558E0B9F266B">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:50:00 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1AE9FFA4-9790-BD70-2EA3-0F2E049F9D7A" referredColumn="BAA77645-87D2-831B-2A65-3328963282A0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4A2F4816-F993-4BD5-280F-DE3A16A2FCA1" name="Usuario_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:10 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AF60081A-76C9-70B0-64EC-46CCB2702939"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1F4FC704-081E-54C5-86C7-2769296A0F17" name="Usuario_Tipo_usuario_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:50:00 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F522C88-F4DF-4EC7-9D52-558E0B9F266B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

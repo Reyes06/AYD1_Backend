@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2171CB42-B0FA-A77A-C164-D1653C750C25" name="Producto_categoria">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:26:47 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Producto_id_producto" id="C83AA74B-67D7-719D-FF2A-2D2213B7B671">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:27:15 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50D5214F-4084-87BD-7F11-669CD2D0AD73" referredColumn="50113680-AF89-E845-69BB-385C19E4C407"/>
+</associations>
+</Column>
+<Column name="Categoria_id_categoria" id="A5217705-0B8E-0FE3-012E-CA1A7370BCE6">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:27:29 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C420462F-328B-7A5C-37FF-74ECDA6282DD" referredColumn="63C00911-D770-031A-4C33-79CE856DD122"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="06E9C5A0-1192-B3DA-973D-7EE929556432" name="Producto_categoria_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:27:38 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C83AA74B-67D7-719D-FF2A-2D2213B7B671"/>
+<colUsage columnID="A5217705-0B8E-0FE3-012E-CA1A7370BCE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8B6EC6C0-55CF-08B6-BF60-5F98E9FF4601" name="Producto_categoria_Producto_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:27:15 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C83AA74B-67D7-719D-FF2A-2D2213B7B671"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1FA6D36B-8429-20BA-9AE1-B99D84716D72" name="Producto_categoria_Categoria_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:27:29 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5217705-0B8E-0FE3-012E-CA1A7370BCE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

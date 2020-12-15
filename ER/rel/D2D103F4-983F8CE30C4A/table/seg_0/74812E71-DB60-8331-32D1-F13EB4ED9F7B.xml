@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="74812E71-DB60-8331-32D1-F13EB4ED9F7B" name="Tipo_usuario">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:15 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_tipo" id="BAA77645-87D2-831B-2A65-3328963282A0">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:28 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="6F17420A-9492-7F0E-07CE-CAD81D3FFC1D">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:46 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="2E986ED1-8899-6595-1854-5EA71C18E28F">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:46 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>250</dataTypeSize>
+<ownDataTypeParameters>250,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DEFD11A4-2475-B550-238F-31C0E79C5CA2" name="Tipo_usuario_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 22:49:53 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BAA77645-87D2-831B-2A65-3328963282A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
