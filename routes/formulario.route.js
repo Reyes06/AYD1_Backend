@@ -15,13 +15,14 @@ router.post('/nuevo', function(req, res, next) {
     let query;
     if(logo != null){
         query = `INSERT INTO formulario (nombre, logo, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', ${logo}, '${direccion}', ${id_usuario}, ${id_sector}, ${id_municipio}, 'PENDIENTE')`;
+                       VALUES ('${nombre}', ${logo}, '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     } else {
         query = `INSERT INTO formulario (nombre, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', '${direccion}', ${id_usuario}, ${id_sector}, ${id_municipio}, 'PENDIENTE')`;
+                       VALUES ('${nombre}', '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     }
     
     con.query(query, function (err, result, fields) {
+
         if (err) throw err;
         con.query("SELECT id_formulario FROM formulario ORDER BY id_formulario DESC LIMIT 1", function (err, result, fields) {
             if (err) throw err;
