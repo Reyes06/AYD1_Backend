@@ -4,8 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//================ Conexion a la BD
+
+var con = require('./dbcontroller/dbconnection');
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+//=================================
+
+var loginRouter = require('./routes/usuario.route');
+var direccionRouter = require('./routes/direccion.route');
+var tiendaRouter = require('./routes/formulario.route');
+var sectorRouter = require('./routes/sector.route');
 
 var app = express();
 
@@ -19,8 +32,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/usuario', loginRouter);
+app.use('/direccion', direccionRouter);
+app.use('/formulario', tiendaRouter);
+app.use('/sector', sectorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
