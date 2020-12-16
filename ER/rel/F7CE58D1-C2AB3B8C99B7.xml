@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="F7CE58D1-DB98-2037-55DF-C2AB3B8C99B7" mainViewID="7DA6177D-5476-721F-4C2F-7E363EF4DC2D">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-15 23:58:24 UTC</createdTime>
+<ownerDesignName>Prueba</ownerDesignName>
+<shouldBeOpen>true</shouldBeOpen>
+<selectedRDBMSSite>D9582E4E-79E2-319F-387A-2ED963CB9D32</selectedRDBMSSite>
+<importDDLFileStamps>
+<importDDLFileStamp class="oracle.dbtools.crest.imports.DDLFileStamp">
+<fileName>ER.sql</fileName>
+<pathName>C:\Users\eddya\OneDrive\Escritorio\AYD1_Proyecto\AYD1_Backend</pathName>
+<dbType>8</dbType>
+</importDDLFileStamp>
+</importDDLFileStamps>
+</relationalModel>
