@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableProxyOraclev10g" name="tienda" directorySegmentName="seg_0" id="5BA0AD41-C6D3-A8CD-FC11-994908F36679">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="municipio_id_municipio" id="2350A32E-3C59-F608-FD67-4E926C3F3E29">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="sector_id_sector" id="25904B7F-DB97-E745-CB45-FE4A6A9F0EAE">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="nombre" id="85997EDA-7121-8251-DAB3-D9776934F809">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="direccion" id="B1B5C805-39FA-A04A-5347-5D13E95F53CD">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="logo" id="DADC3853-7825-C3B3-D5C2-6D3617B46872">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="usuario_id_usuario" id="F51B3047-09BA-8ECF-F572-1E50D821FE98">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id_tienda" id="FB55D497-ED54-CD0A-E060-0FED7821A3B3">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="tienda_municipio_fk" id="8A3B5E72-509F-38FC-3127-221D47AA7769">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="tienda_sector_fk" id="9895B8EF-5375-3697-74FC-68669CCBCB20">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="tienda_usuario_fk" id="FAB020C0-FCB1-C1AF-2EF7-ED15C60EC27A">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="tienda_pk" id="90237EBC-FFB5-C82C-058A-4B1F747C5B1F">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev10g>

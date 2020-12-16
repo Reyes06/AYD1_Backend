@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5CD30FE0-FA53-2188-80E7-42E14AB5BB2E" name="sector">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>44CAF9E2-529F-CF83-6788-1721B802BCEE</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_sector" id="217E6245-290E-F400-86E4-D4E2E1973F8C">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>6925898F-49CE-159B-2E17-D1E8B4C2A3D2</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="01461667-1701-03E2-ECA5-1F090BEDEEDB">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>36CE6D8A-A235-F4F0-7F5B-3FB9BEA50069</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>51384C49-FF58-29C6-3D3E-FDF0A6094D69</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7F81C2E0-E912-EAFC-8B80-580DF02776E0" name="sector_pk">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>94A6C0B0-9991-6D48-E8FA-4F8A311EC5C0</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="217E6245-290E-F400-86E4-D4E2E1973F8C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

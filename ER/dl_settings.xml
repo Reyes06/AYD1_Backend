@@ -391,7 +391,7 @@
 	<model_compare_storage_props_filter>
 	</model_compare_storage_props_filter>
 	<naming_options>
-		<model_options objectid="D2D103F4-0CD9-ECC4-B057-983F8CE30C4A">
+		<model_options objectid="F7CE58D1-DB98-2037-55DF-C2AB3B8C99B7">
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Column" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.TableView" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
@@ -399,7 +399,7 @@
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
 		</model_options>
-		<model_options objectid="8E367D86-6DC4-4C8C-5AD6-8427E8706078">
+		<model_options objectid="96901906-B8CC-BB95-AA4B-B97F6E29ED8F">
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.EntityView" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
@@ -430,6 +430,36 @@
 				<schemas value="70"/>
 				<subviews value="70"/>
 				<arcs value="70"/>
+				<physical_models_estimates>
+							<physical_model_F7CE58D1-DB98-2037-55DF-C2AB3B8C99B7_Oracle_Database_10g>
+								<physical_model_name value="Oracle Database 10g"/>
+								<clusters value="70"/>
+								<contexts value="70"/>
+								<dBs value="70"/>
+								<dimensions value="70"/>
+								<directories value="70"/>
+								<diskGroups value="70"/>
+								<externalTables value="70"/>
+								<snapshots value="70"/>
+								<roles value="70"/>
+								<rollbackSegments value="70"/>
+								<segments value="70"/>
+								<sequences value="70"/>
+								<storedProcedures value="70"/>
+								<functions value="70"/>
+								<packages value="70"/>
+								<collectionTypes value="70"/>
+								<structuredTypes value="70"/>
+								<synonyms value="70"/>
+								<tables value="70"/>
+								<tableSpaces value="70"/>
+								<temporaryTableSpaces value="70"/>
+								<undoTableSpaces value="70"/>
+								<users value="70"/>
+								<views value="70"/>
+								<triggers value="70"/>
+							</physical_model_F7CE58D1-DB98-2037-55DF-C2AB3B8C99B7_Oracle_Database_10g>
+				</physical_models_estimates>
 			</relational_model_0_estimates>
 		</relational_model_estimates>
 	</design_estimates>

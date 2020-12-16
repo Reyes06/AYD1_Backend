@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B155243F-594B-BFC2-51EA-0514D10D5020" name="departamento">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>C8482B57-61EC-7649-2F05-2665BA3FC795</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_depto" id="CC5210D6-ACAB-DE95-34C3-78A4A6D12361">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>7425C5D2-EC82-21EF-0029-9EB0C5690607</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="8C52C4AF-CA26-5CC8-30FD-BABD5C405A44">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>17FD2971-BF95-F669-54DB-6D38FFEBC817</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>51384C49-FF58-29C6-3D3E-FDF0A6094D69</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pais_id_pais" id="BF25C7AC-7BC3-79C2-3AFE-A6E0BD098FED">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>B5FFB9AB-CE3C-040C-5CA8-48EB4235170D</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E21DBA72-6A48-8983-2A5B-1EDE4BCA49C8" referredColumn="B436F285-DAA2-9A2F-6635-EBFD0CB025C1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2BF3786B-50E6-6B9C-E727-04FA7FCB4FC4" name="departamento_pk">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>BD22E130-0895-9F51-EF7F-14FB77316227</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC5210D6-ACAB-DE95-34C3-78A4A6D12361"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ABAD6A6B-27B2-C4F7-CFB1-A61F85F09ABD" name="departamento_pais_fk">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF25C7AC-7BC3-79C2-3AFE-A6E0BD098FED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
