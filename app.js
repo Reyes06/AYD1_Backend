@@ -15,7 +15,7 @@ con.connect(function(err) {
 
 //=================================
 
-var loginRouter = require('./routes/login.route');
+var loginRouter = require('./routes/usuario.route');
 var direccionRouter = require('./routes/direccion.route');
 var tiendaRouter = require('./routes/tienda.route');
 var sectorRouter = require('./routes/sector.route');
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/login', loginRouter);
+app.use('/usuario', loginRouter);
 app.use('/direccion', direccionRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/sector', sectorRouter);
