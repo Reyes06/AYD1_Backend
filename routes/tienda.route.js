@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/new', function(req, res, next) {
+router.post('/nuevo', function(req, res, next) {
     const {nombre, logo, direccion, id_usuario, id_sector, id_municipio } = req.body;
 
     let query;

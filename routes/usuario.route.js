@@ -2,19 +2,27 @@ var express = require('express');
 var router = express.Router();
 var con = require('../dbcontroller/dbconnection');
 
-router.get('/validate/admin', function(req, res, next) {
-    const {usuario, password} = req.body;
-    let response;
-    if(usuario === 'admin' && password === '123'){
-    //Es el usuario administrador
-        response = true;
-    } else {
-        response = false;
-    }
-    res.send({ "Verify": response });
+router.get('/validar', function(req, res, next) {
+    const {correo_electronico, password} = req.body;
+    let query = `SELECT id_usuario FROM usuario WHERE correo_electronico = '${correo_electronico} AND password = '${password}''`;
+
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+
+        if(result.length > 0){
+            res.send({
+                result
+            });
+        } else {
+            res.send({
+                "error": "No se ha encontrado el usuario"
+            });
+        }
+    })
+    
 });
 
-router.post('/new', async function(req, res, next) {
+router.post('/nuevo', async function(req, res, next) {
     const {nombre, apellido, fecha_nacimiento, correo_electronico, sexo, tarjeta_credito, password, id_tipo_usuario} = req.body;
     let query;
 
