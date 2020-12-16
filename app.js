@@ -17,7 +17,7 @@ con.connect(function(err) {
 
 var loginRouter = require('./routes/usuario.route');
 var direccionRouter = require('./routes/direccion.route');
-var tiendaRouter = require('./routes/tienda.route');
+var tiendaRouter = require('./routes/formulario.route');
 var sectorRouter = require('./routes/sector.route');
 
 var app = express();
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/usuario', loginRouter);
 app.use('/direccion', direccionRouter);
-app.use('/tienda', tiendaRouter);
+app.use('/formulario', tiendaRouter);
 app.use('/sector', sectorRouter);
 
 // catch 404 and forward to error handler

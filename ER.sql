@@ -31,6 +31,7 @@ CREATE TABLE formulario (
     nombre                  VARCHAR(75) NOT NULL,
     logo                    BLOB,
     direccion               VARCHAR(100) NOT NULL,
+    estado					VARCHAR(15) NOT NULL,
     usuario_id_usuario      INTEGER NOT NULL,
     municipio_id_municipio  INTEGER NOT NULL,
     sector_id_sector        INTEGER NOT NULL,
@@ -60,9 +61,9 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE tienda (
-	formulario_id_tienda	INTEGER NOT NULL,
-    fecha_aprovacion		DATE NOT NULL,
-    CONSTRAINT tienda_pk	PRIMARY KEY (formulario_id_tienda)
+	formulario_id_formulario	INTEGER NOT NULL,
+    fecha_aprovacion			DATE NOT NULL,
+    CONSTRAINT tienda_pk		PRIMARY KEY (formulario_id_formulario)
 );
 
 
