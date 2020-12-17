@@ -1,15 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5BA0AD41-C6D3-A8CD-FC11-994908F36679" name="tienda">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5BA0AD41-C6D3-A8CD-FC11-994908F36679" name="formulario">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-16 00:10:36 UTC</createdTime>
 <ownerDesignName>ER</ownerDesignName>
 <importedID>FEEDDA05-FC36-76AD-07E7-C2AB0F2A71FF</importedID>
+<ordsAlias>tienda</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id_tienda" id="FB55D497-ED54-CD0A-E060-0FED7821A3B3">
+<Column name="id_formulario" id="FB55D497-ED54-CD0A-E060-0FED7821A3B3">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-16 00:10:36 UTC</createdTime>
