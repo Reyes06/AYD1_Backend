@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3F3875C8-3F35-9851-7170-C37DE5C270DF" containerWithKeyObject="687C12B1-11AA-EB3F-1153-52F9D1B376C4" localFKIndex="ACBEFCC7-97C8-0FF9-4203-083448FBFD10" name="tienda_formulario_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:38 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<referredTableLongName>formulario</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>5BA0AD41-C6D3-A8CD-FC11-994908F36679</referredTableID>
+<keyObject>90237EBC-FFB5-C82C-058A-4B1F747C5B1F</keyObject>
+<referredKeyID>90237EBC-FFB5-C82C-058A-4B1F747C5B1F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_formulario</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
