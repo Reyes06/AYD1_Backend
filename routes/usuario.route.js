@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var con = require('../dbcontroller/dbconnection');
 
-router.get('/validar', function(req, res, next) {
+router.all('/validar', function(req, res, next) {
     const {correo_electronico, password} = req.body;
     let query = `SELECT id_usuario FROM usuario WHERE correo_electronico = '${correo_electronico}' AND password = '${password}'`;
 
