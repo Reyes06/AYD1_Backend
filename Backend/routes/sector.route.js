@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var con = require('../dbcontroller/dbconnection');
+var objectConnection = require('../dbcontroller/dbconnection');
+var mysql = require('mysql');
 
-router.get('/', function(req, res, next) {
-    con.connect(function(err) {
+router.get('/', async function(req, res, next) {
+    con = await mysql.createConnection(objectConnection);
+
+    await con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
     const query = "SELECT * FROM sector";
     console.log(query);
-    con.query("SELECT * FROM sector", function (err, result, fields) {
+    await con.query("SELECT * FROM sector", function (err, result, fields) {
         if (err) throw err;
         res.send( result);
     })

@@ -1,16 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var con = require('../dbcontroller/dbconnection');
+var objectConnection = require('../dbcontroller/dbconnection');
+var mysql = require('mysql');
 
 router.post('/validar', function(req, res, next) {
     const {correo_electronico, password} = req.body;
-    con.connect(function(err) {
+
+    con = await mysql.createConnection(objectConnection);
+
+    await con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
     let query = `SELECT id_usuario, tipo_usuario_id_tipo FROM usuario WHERE correo_electronico = '${correo_electronico}' AND password = '${password}'`;
     console.log(query);
-    con.query(query, function (err, result, fields) {
+    await con.query(query, function (err, result, fields) {
         if (err) throw err;
 
         if(result.length > 0){
@@ -36,7 +40,9 @@ router.post('/nuevo', async function(req, res, next) {
     const {nombre, apellido, fecha_nacimiento, correo_electronico, sexo, tarjeta_credito, password, id_tipo_usuario} = req.body;
     let query;
 
-    con.connect(function(err) {
+    con = await mysql.createConnection(objectConnection);
+
+    await con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
@@ -44,7 +50,7 @@ router.post('/nuevo', async function(req, res, next) {
     //1. Validar que el usuario no se encuentre registrado
     query = `SELECT * FROM usuario WHERE correo_electronico = '${correo_electronico}'`;
     console.log(query);
-    con.query(query, function(err, result, fields) {
+    await con.query(query, function(err, result, fields) {
         if (result.length > 0) {
             res.send( 
                 {
@@ -84,14 +90,16 @@ router.post('/nuevo', async function(req, res, next) {
 router.post('/tarjeta', async function(req, res, next) {
     const {tarjeta_credito, id_usuario, fecha_expiracion, cvv} = req.body;
 
-    con.connect(function(err) {
+    con = await mysql.createConnection(objectConnection);
+
+    await con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
 
     let query = `SELECT * FROM usuario WHERE id_usuario = ${id_usuario};`;
     console.log(query);
-    con.query(query , function (err, result, fields) {
+    await con.query(query , function (err, result, fields) {
         if (err) throw err;
         if(result.length > 0){
             query = `UPDATE usuario SET tarjeta_credito = ${tarjeta_credito},fecha_expiracion = '${fecha_expiracion}', cvv = ${cvv} WHERE id_usuario = ${id_usuario}`;
