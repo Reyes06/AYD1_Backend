@@ -3,7 +3,7 @@ var router = express.Router();
 var objectConnection = require('../dbcontroller/dbconnection');
 var mysql = require('mysql');
 
-router.post('/validar', function(req, res, next) {
+router.post('/validar', async function(req, res, next) {
     const {correo_electronico, password} = req.body;
 
     con = await mysql.createConnection(objectConnection);
