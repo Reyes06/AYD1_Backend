@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FBD82DB4-0820-04EC-4D0D-E25393EA7554" name="categoria">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:21 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_categoria" id="AAF6C537-B8A6-A7A1-E948-BB6781431E31">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:52 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="97DF4F36-68F6-A581-0763-5812477206EA">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:52 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A23818C6-E9F4-4F70-BF71-D5A6A7957268" name="categoria_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:52 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAF6C537-B8A6-A7A1-E948-BB6781431E31"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

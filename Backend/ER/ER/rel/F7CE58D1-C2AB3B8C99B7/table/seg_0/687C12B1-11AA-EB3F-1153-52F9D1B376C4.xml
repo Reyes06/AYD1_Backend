@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="687C12B1-11AA-EB3F-1153-52F9D1B376C4" name="tienda">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:01 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_tienda" id="C9F0E244-0185-E178-391F-60F688599CC3">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:38 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3F3875C8-3F35-9851-7170-C37DE5C270DF" referredColumn="FB55D497-ED54-CD0A-E060-0FED7821A3B3"/>
+</associations>
+</Column>
+<Column name="fecha_aprobacion" id="EE142EF5-CC45-28C1-99B4-590F2394F30B">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:33 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_id_usuario" id="E1118267-3C7E-6E01-6A23-83ACD60A36DE">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:51:46 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4F132C74-08C7-C70A-F44C-2034BBC73036" referredColumn="0B88A38C-4114-DAB0-5C87-7D6584769E0A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6E286340-A642-11EA-40CE-B4622DEB5B2E" name="tienda_pk">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:49 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C9F0E244-0185-E178-391F-60F688599CC3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ACBEFCC7-97C8-0FF9-4203-083448FBFD10" name="tienda_formulario_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-17 04:14:38 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C9F0E244-0185-E178-391F-60F688599CC3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="11DB9E61-77E9-CF73-E92D-DE5B17F56346" name="tienda_usuario_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:51:46 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E1118267-3C7E-6E01-6A23-83ACD60A36DE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
