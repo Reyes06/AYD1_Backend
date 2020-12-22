@@ -5,16 +5,30 @@ const sendMail = require('../utils/mail-manager');
 
 
 router.get('/', function(req, res, next) {
-    con.query("SELECT * FROM formulario WHERE estado = 'PENDIENTE'", function (err, result, fields) {
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("DB Connection OK")
+    });
+    const query = "SELECT * FROM formulario WHERE estado = 'PENDIENTE'";
+    console.log(query);
+    con.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send( result);
-    })
+    });
+    con.end(function(err) {
+        if (err) throw err;
+        console.log("DB Connection FINISH")
+    });
 })
 
 router.post('/nuevo', function(req, res, next) {
     const {nombre, logo, direccion, id_usuario, id_sector, id_municipio } = req.body;
 
     let query;
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("DB Connection OK")
+      });
     if(logo != null){
         query = `INSERT INTO formulario (nombre, logo, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
                        VALUES ('${nombre}', ${logo}, '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
@@ -22,34 +36,58 @@ router.post('/nuevo', function(req, res, next) {
         query = `INSERT INTO formulario (nombre, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
                        VALUES ('${nombre}', '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     }
-    
+    console.log(query);
     con.query(query, function (err, result, fields) {
-
         if (err) throw err;
-        con.query("SELECT id_formulario FROM formulario ORDER BY id_formulario DESC LIMIT 1", function (err, result, fields) {
+        query = "SELECT id_formulario FROM formulario ORDER BY id_formulario DESC LIMIT 1";
+        console.log(query);
+        con.query(query, function (err, result, fields) {
             if (err) throw err;
             res.send( result);
         })
     })
+    con.end(function(err) {
+        if (err) throw err;
+        console.log("DB Connection FINISH")
+    });
 })
 
 router.post('/denegar/:id_formulario', function(req, res, next) {
     const {id_formulario} = req.params;
-    con.query(`UPDATE formulario SET estado = 'DENEGADO' WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("DB Connection OK")
+    });
+    const query = `UPDATE formulario SET estado = 'DENEGADO' WHERE id_formulario = ${id_formulario}`;
+    console.log(query);
+    con.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send( {"state": "ok"});
     })
+    con.end(function(err) {
+        if (err) throw err;
+        console.log("DB Connection FINISH")
+    });
 })
 
 router.post('/aprobar/:id_formulario', function(req, res, next) {
     const {id_formulario} = req.params;
-    con.query(`UPDATE formulario SET estado = 'APROBADO' WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
+    con.connect(function(err) {
         if (err) throw err;
-
-        con.query(`INSERT INTO tienda (formulario_id_formulario, fecha_aprovacion) VALUES (${id_formulario}, CURDATE())`, function (err, result, fields) {
+        console.log("DB Connection OK")
+    });
+    const query = `UPDATE formulario SET estado = 'APROBADO' WHERE id_formulario = ${id_formulario}`;
+    console.log(query);
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        const query = `INSERT INTO tienda (formulario_id_formulario, fecha_aprovacion) VALUES (${id_formulario}, CURDATE())`;
+        console.log(query);
+        con.query(query, function (err, result, fields) {
             if (err) throw err;
 
-            con.query(`SELECT correo_electronico, password FROM usuario INNER JOIN formulario ON formulario.usuario_id_usuario = usuario.id_usuario WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
+            const query = `SELECT correo_electronico, password FROM usuario INNER JOIN formulario ON formulario.usuario_id_usuario = usuario.id_usuario WHERE id_formulario = ${id_formulario}`;
+            console.log(query);
+            con.query(query, function (err, result, fields) {
                 if (err) throw err;
 
                 const {correo_electronico, password} = result[0];
@@ -58,7 +96,11 @@ router.post('/aprobar/:id_formulario', function(req, res, next) {
             })
             
         })
-    })
+    });
+    con.end(function(err) {
+        if (err) throw err;
+        console.log("DB Connection FINISH")
+    });
 })
 
 

@@ -5,17 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
-//================ Conexion a la BD
-
-var con = require('./dbcontroller/dbconnection');
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
-//=================================
-
 var loginRouter = require('./routes/usuario.route');
 var direccionRouter = require('./routes/direccion.route');
 var tiendaRouter = require('./routes/formulario.route');
