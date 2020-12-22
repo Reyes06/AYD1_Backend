@@ -1,10 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="36266B5E-0CBC-D5CA-7621-AF2261470028" containerWithKeyObject="52C3D86D-8F40-B966-58E5-EA68D45E0506" localFKIndex="F6634172-9130-3386-61F8-D08885BA623A" name="usuario_tipo_usuario_fk">
-<sourceDDLFile>ER.sql</sourceDDLFile>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="16055CA8-15CB-ABDC-F1BB-A672F349900B" containerWithKeyObject="52C3D86D-8F40-B966-58E5-EA68D45E0506" localFKIndex="28C9CFE7-E0C3-E124-4504-EACD3A40EFDF" name="usuario_tipo_usuario_FK">
 <createdBy>eddy</createdBy>
-<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<createdTime>2020-12-22 18:23:08 UTC</createdTime>
 <ownerDesignName>ER</ownerDesignName>
-<importedID>B1ADC6CD-4009-3B78-617F-6C981D999AA4</importedID>
 <referredTableLongName>tipo_usuario</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>
 <referredTableID>55C9086B-FEB2-245B-12AE-203FCFC70058</referredTableID>

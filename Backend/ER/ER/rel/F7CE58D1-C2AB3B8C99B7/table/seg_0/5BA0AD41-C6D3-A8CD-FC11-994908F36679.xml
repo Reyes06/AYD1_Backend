@@ -22,7 +22,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="nombre" id="85997EDA-7121-8251-DAB3-D9776934F809">
+<Column name="nombre_tienda" id="85997EDA-7121-8251-DAB3-D9776934F809">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-16 00:10:36 UTC</createdTime>
@@ -41,9 +41,9 @@
 <ownerDesignName>ER</ownerDesignName>
 <importedID>6BF84E85-2155-2DB6-5C5F-D9FD56AFB47F</importedID>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT029</logicalDatatype>
-<domain>37D82584-090B-A6E5-AFF9-4189818E9D35</domain>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

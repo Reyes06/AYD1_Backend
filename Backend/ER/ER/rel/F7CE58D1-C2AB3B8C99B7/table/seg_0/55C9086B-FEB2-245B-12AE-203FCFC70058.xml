@@ -33,20 +33,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="usuario_id_usuario" id="8DA9538E-0A2D-0572-CA59-59DC45F53967">
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-21 02:21:20 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="36801AEB-33F3-180C-C54F-A298F083EAFD" referredColumn="0B88A38C-4114-DAB0-5C87-7D6584769E0A"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="D6FE6AE9-6657-550A-F480-1FA79071F548" name="tipo_usuario_pk">
@@ -60,16 +46,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="A2C76DB8-D8F9-D364-BF85-6951BE180F35"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="5E4B88EA-DA5C-2942-2DD0-6048C0E58815" name="comercial_usuario_FK">
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-21 02:21:20 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="8DA9538E-0A2D-0572-CA59-59DC45F53967"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

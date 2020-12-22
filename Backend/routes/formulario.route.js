@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var con = require('../dbcontroller/dbconnection');
+var objectConnection = require('../dbcontroller/dbconnection');
 const sendMail = require('../utils/mail-manager');
+var mysql = require('mysql');
 
 
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+    con = await mysql.createConnection(objectConnection);
+
     con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
@@ -21,8 +24,10 @@ router.get('/', function(req, res, next) {
     });
 })
 
-router.post('/nuevo', function(req, res, next) {
-    const {nombre, logo, direccion, id_usuario, id_sector, id_municipio } = req.body;
+router.post('/nuevo', async function(req, res, next) {
+    const {nombre, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, id_sector, id_municipio } = req.body;
+
+    con = await mysql.createConnection(objectConnection);
 
     let query;
     con.connect(function(err) {
@@ -30,11 +35,11 @@ router.post('/nuevo', function(req, res, next) {
         console.log("DB Connection OK")
       });
     if(logo != null){
-        query = `INSERT INTO formulario (nombre, logo, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', ${logo}, '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        query = `INSERT INTO formulario (nombre, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, municipio_id_municipio, sector_id_sector, estado)
+                       VALUES ('${nombre}', ${logo}, '${direccion}', ${usuario_nombre}, ${usuario_apellido}, ${usuario_fecha_nacimiento}, ${usuario_correo_electronico}, ${usuario_sexo}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     } else {
-        query = `INSERT INTO formulario (nombre, direccion, usuario_id_usuario, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', '${direccion}', ${id_usuario}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        query = `INSERT INTO formulario (nombre, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, municipio_id_municipio, sector_id_sector, estado)
+                       VALUES ('${nombre}', '${direccion}', ${usuario_nombre}, ${usuario_apellido}, ${usuario_fecha_nacimiento}, ${usuario_correo_electronico}, ${usuario_sexo}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     }
     console.log(query);
     con.query(query, function (err, result, fields) {
@@ -52,8 +57,9 @@ router.post('/nuevo', function(req, res, next) {
     });
 })
 
-router.post('/denegar/:id_formulario', function(req, res, next) {
+router.post('/denegar/:id_formulario', async function(req, res, next) {
     const {id_formulario} = req.params;
+    con = await mysql.createConnection(objectConnection);
     con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
@@ -70,8 +76,9 @@ router.post('/denegar/:id_formulario', function(req, res, next) {
     });
 })
 
-router.post('/aprobar/:id_formulario', function(req, res, next) {
+router.post('/aprobar/:id_formulario', async function(req, res, next) {
     const {id_formulario} = req.params;
+    con = await mysql.createConnection(objectConnection);
     con.connect(function(err) {
         if (err) throw err;
         console.log("DB Connection OK")
