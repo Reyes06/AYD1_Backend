@@ -1,0 +1,52 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+        <!--Card-->
+        <mdb-card cascade="true" narrower="true" class="mt-5">
+            <!--Card image-->
+            <div class="view gradient-card-header blue darken-2">
+                <h4 class="h4-responsive text-white">Solicitudes </h4>
+            </div>
+            <!--/Card image-->
+            <!--Card content-->
+            <mdb-card-body>
+
+                <h3 class="mt-5 text-left"><strong>Otorgar Acceso</strong></h3>
+
+                <!--Table-->
+                <table class="table" id="users">
+
+                    <!--Table head-->
+                    <thead class="mdb-color darken-3">
+                    <tr class="text-white">
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Estado</th>
+                        <th>Usuario</th>
+                        <th>Decision</th>
+                    </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                    <tr *ngFor="let item of users">
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.direccion}}</td>
+                        <td>{{item.estado}}</td>
+                        <td>{{item.usuario_id_usuario}}</td>
+                        <td *ngIf="item.estado=='PENDIENTE'">
+                            <button type="button" class="btn btn-success" (click)="aprobar(item.id_formulario)">Aceptar</button>
+                            <button type="button" class="btn btn-danger" (click)="rechazar(item.id_formulario)">Rechazar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+
+            </mdb-card-body>
+            <!--/.Card content-->
+        </mdb-card>
+        <!--/.Card-->
+    </div>
+</div>

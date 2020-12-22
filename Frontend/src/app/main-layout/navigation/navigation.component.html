@@ -1,0 +1,103 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed">
+
+        <a class="logo-wrapper waves-effect">
+            <img src="../../../../assets/img/angular-mdb.png" class="img-fluid" alt="">
+        </a>
+
+        <div class="list-group list-group-flush" *ngIf="!isLoggedIn">
+
+            <a routerLink="login/login1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="sign-in-alt" class="mr-3"></mdb-icon>Iniciar Sesion
+            </a>
+            <a routerLink="register/register1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="plus-square" class="mr-3"></mdb-icon>Registrarse</a>
+
+        </div>
+
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_de_usuario') == '1'">
+
+            <a routerLink="dashboards/v1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
+            </a>
+            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Solicitudes</a>
+            <a routerLink="maps/map1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon far icon="map" class="mr-3"></mdb-icon>Maps</a>
+            <a routerLink="nonExistingPath" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="exclamation" class="mr-3"></mdb-icon>404</a>
+
+        </div>
+
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_de_usuario') == '3'">
+
+            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Registrar Tienda</a>
+
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+    <!--Navbar-->
+    <mdb-navbar [containerInside]="false" SideClass="navbar navbar-expand-lg navbar-light white">
+
+        <!-- Navbar brand -->
+        <logo class="ml-3">
+            <a class="navbar-brand">
+                <strong class="blue-text">CCV</strong>
+            </a>
+        </logo>
+
+        <!-- Collapsible content -->
+        <links>
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" mdbWavesEffect>Centro Comercial Virtual</a>
+                </li>
+            </ul>
+            <!-- Links -->
+
+            <!-- Search form -->
+            <ul class="navbar-nav nav-flex-icons">
+
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="facebook-f"></mdb-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="twitter"></mdb-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/Reyes06/AYD1_Backend" class="nav-link border border-light"
+                            target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>Repositorio Backend
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/Reyes06/AYD1_Frontend" class="nav-link border border-light"
+                            target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>Repositorio Frontend
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngIf="isLoggedIn">
+                        <a (click)="cerrar()" class="ml-1 nav-link border border-light rounded" mdbWavesEffect>
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
+                    </li>
+                </ul>
+        </links>
+        <!-- Collapsible content -->
+
+    </mdb-navbar>
+    <!--/.Navbar-->
+
+</header>
+<!--Main Navigation-->

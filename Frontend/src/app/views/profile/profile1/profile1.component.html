@@ -1,0 +1,122 @@
+<div class="row">
+
+    <div class="col-md-9">
+
+        <!--Projects section v.2-->
+        <section class="section text-justify pb-3">
+
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center">
+
+                              
+                <!--Grid column-->
+                <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+
+                    <!--Card-->
+                    <mdb-card>
+
+                        <!--Header-->
+                        <div class="header blue-gradient">
+                    
+                          <div class="row d-flex justify-content-center">
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Registro de Comercio</h3>
+                          </div>
+                    
+                        </div>
+                        <!--Header-->
+                    
+                        <mdb-card-body class="mx-4">
+                    
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form204" class="form-control" mdbInput>
+                            <label for="form204">Nombre</label>
+                          </div>
+
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form205" class="form-control" mdbInput>
+                            <label for="form205">aqui va logo</label>
+                          </div>
+                    
+                          <div class="col-md-6 my-3">
+                            <select id="form206" class="mdb-select md-form" multiple searchable="Search here.." >
+                              <option value="" disabled selected>Sector</option>
+                              <option *ngFor="let itemS of sectores" value="{{itemS.id_sector}}">{{itemS.nombre}}</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6 my-3">
+                            <select id="form207" class="mdb-select md-form" multiple searchable="Search here.." >
+                              <option value="" disabled selected>Municipio</option>
+                              <option *ngFor="let itemM of municipios" value="{{itemM.id_municipio}}">{{itemM.nombre}}</option>
+                            </select>
+                          </div>
+                    
+                          <div class="md-form">
+                            <mdb-icon fas icon="map-marker-alt" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form208" class="form-control" mdbInput>
+                            <label for="form208">Direccion</label>
+                          </div>
+
+                          <!-- Default unchecked -->
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="form209" >
+                            <label class="form-check-label" for="form209">He leido y acepto los terminos y condiciones</label>
+                          </div>
+                          <!--Grid row-->
+                          <div class="row d-flex align-items-center mb-3 mt-4">
+                    
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                              <div class="text-center">
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="RegistrarComercio()">Solicitar Acceso</button>
+                              </div>
+                            </div>
+                            <!--Grid column-->
+                    
+                          </div>
+                          <!--Grid row-->
+                        </mdb-card-body>
+                    
+                      </mdb-card>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+
+                    <!--Card-->
+                    <mdb-card>
+
+                        <!--Header-->
+                        <div class="header blue-gradient">
+                    
+                          <div class="row d-flex justify-content-center">
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Terminos y Condiciones</h3>
+                          </div>
+                    
+                        </div>
+                        <!--Header-->
+                    
+                        <mdb-card-body class="mx-4">                        
+                            <!-- Text -->
+                            <p >Bienvenido a CCV. Tal como se utiliza en estos términos y condiciones, "nosotros" o "CCV" significa CCV Services LLC y "tú" significa la persona o entidad que compra los productos personalizados en CCV.com. Cualquier persona o entidad que desee adquirir productos personalizados en CCV.com debe aceptar estos términos y condiciones sin cambio alguno. AL DAR CLIC EN EL BOTÓN "AÑADIR AL CARRITO" Y HACER TU PEDIDO DE PRODUCTOS PERSONALIZADOS, ACEPTAS ESTAR COMPROMETIDO CON LOS TÉRMINOS Y CONDICIONES, EL AVISO DE PRIVACIDAD DE CCV.COM, LAS CONDICIONES DE USO Y TODAS SUS PAUTAS.</p>
+                        </mdb-card-body>
+                    
+                      </mdb-card>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+
+        </section>
+        <!--/Projects section v.2-->
+    </div>
+
+
+</div>
