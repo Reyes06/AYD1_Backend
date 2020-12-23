@@ -66,26 +66,26 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE categoria (
-    id_categoria  INTEGER NOT NULL,
+    id_categoria  INTEGER NOT NULL AUTO_INCREMENT,
     nombre        VARCHAR(50) NOT NULL,
     CONSTRAINT categoria_pk PRIMARY KEY ( id_categoria )
 );
 
 CREATE TABLE depto_tienda (
-    id_depto          INTEGER NOT NULL,
+    id_depto          INTEGER NOT NULL AUTO_INCREMENT,
     nombre            VARCHAR(50) NOT NULL,
     tienda_id_tienda  INTEGER NOT NULL,
     CONSTRAINT depto_tienda_pk PRIMARY KEY ( id_depto )
 );
 
 CREATE TABLE inventario (
-    producto_id_producto  INTEGER NOT NULL,
+    producto_id_producto  INTEGER NOT NULL AUTO_INCREMENT,
     cantidad              INTEGER NOT NULL,
     CONSTRAINT inventario_pk PRIMARY KEY ( producto_id_producto )
 );
 
 CREATE TABLE producto (
-    id_producto            INTEGER NOT NULL,
+    id_producto            INTEGER NOT NULL AUTO_INCREMENT,
     nombre                 VARCHAR(50) NOT NULL,
     descripcion            VARCHAR(75) NOT NULL,
     depto_tienda_id_depto  INTEGER NOT NULL,
@@ -93,13 +93,13 @@ CREATE TABLE producto (
 );
 
 CREATE TABLE producto_categoria (
-    producto_id_producto    INTEGER NOT NULL,
+    producto_id_producto    INTEGER NOT NULL AUTO_INCREMENT,
     categoria_id_categoria  INTEGER NOT NULL,
     CONSTRAINT producto_categoria_pk PRIMARY KEY ( producto_id_producto, categoria_id_categoria )
 );
 
 CREATE TABLE tienda (
-    id_tienda           INTEGER NOT NULL,
+    id_tienda           INTEGER NOT NULL AUTO_INCREMENT,
     fecha_aprobacion    DATE NOT NULL,
     usuario_id_usuario  INTEGER NOT NULL,
     CONSTRAINT tienda_pk PRIMARY KEY ( id_tienda )
@@ -161,6 +161,14 @@ DROP TABLE usuario;
 DROP TABLE tipo_usuario;
 DROP TABLE municipio;
 DROP TABLE departamento;
-DROP TABLE pais;   
+DROP TABLE pais;  
+
+DROP TABLE producto_categoria;
+DROP TABLE categoria;
+DROP TABLE inventario;
+DROP TABLE producto;
+DROP TABLE depto_tienda; 
+DROP TABLE tienda;
+
 */
 
