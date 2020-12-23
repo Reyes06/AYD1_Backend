@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
-    const query = "SELECT * FROM sector";
+    const query = "SELECT * FROM categoria";
     console.log(query);
     await con.query(query, function (err, result, fields) {
         if (err) throw err;
