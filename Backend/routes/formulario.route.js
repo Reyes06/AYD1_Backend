@@ -25,88 +25,122 @@ router.get('/', async function(req, res, next) {
 })
 
 router.post('/nuevo', async function(req, res, next) {
-    const {nombre, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, id_sector, id_municipio } = req.body;
-
-    con = await mysql.createConnection(objectConnection);
+    const {nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, id_sector, id_municipio } = req.body;
+    const con = mysql.createConnection(objectConnection);
+    con.connect();
 
     let query;
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("DB Connection OK")
-      });
-    if(logo != null){
-        query = `INSERT INTO formulario (nombre, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', ${logo}, '${direccion}', ${usuario_nombre}, ${usuario_apellido}, ${usuario_fecha_nacimiento}, ${usuario_correo_electronico}, ${usuario_sexo}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
-    } else {
-        query = `INSERT INTO formulario (nombre, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre}', '${direccion}', ${usuario_nombre}, ${usuario_apellido}, ${usuario_fecha_nacimiento}, ${usuario_correo_electronico}, ${usuario_sexo}, ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
-    }
-    console.log(query);
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
+    
+
+    let promesa = new Promise(function(resolve, reject) {
+        if(logo != null){
+            query = `INSERT INTO formulario (nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
+                           VALUES ('${nombre_tienda}', ${logo}, '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        } else {
+            query = `INSERT INTO formulario (nombre_tienda, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
+                           VALUES ('${nombre_tienda}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        }
+        console.log(query);
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+                      
+        })
+        resolve("OK");
+    }).then(function(){
         query = "SELECT id_formulario FROM formulario ORDER BY id_formulario DESC LIMIT 1";
         console.log(query);
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             res.send( result);
         })
-    })
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
+    }).then(function(){
+        con.end();
     });
+    
 })
 
 router.post('/denegar/:id_formulario', async function(req, res, next) {
     const {id_formulario} = req.params;
     con = await mysql.createConnection(objectConnection);
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("DB Connection OK")
-    });
+    con.connect();
     const query = `UPDATE formulario SET estado = 'DENEGADO' WHERE id_formulario = ${id_formulario}`;
     console.log(query);
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send( {"state": "ok"});
     })
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
-    });
+    con.end();
 })
 
 router.post('/aprobar/:id_formulario', async function(req, res, next) {
     const {id_formulario} = req.params;
     con = await mysql.createConnection(objectConnection);
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("DB Connection OK")
-    });
-    const query = `UPDATE formulario SET estado = 'APROBADO' WHERE id_formulario = ${id_formulario}`;
-    console.log(query);
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        const query = `INSERT INTO tienda (formulario_id_formulario, fecha_aprovacion) VALUES (${id_formulario}, CURDATE())`;
+    con.connect();
+
+    let id_usuario, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password;
+    
+    let promesa = new Promise(function(resolve, reject){
+        const query = `UPDATE formulario SET estado = 'APROBADO' WHERE id_formulario = ${id_formulario}`;
         console.log(query);
         con.query(query, function (err, result, fields) {
             if (err) throw err;
+        });
+        resolve("OK");
+    }).then(function(onResolve){
+        const query = `SELECT usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password FROM formulario WHERE id_formulario = ${id_formulario}`;
+        console.log(query);
+        con.query(query, function (err, result, fields) {
+            if (err) throw err; 
+            usuario_nombre = result[0].usuario_nombre;
+            usuario_apellido = result[0].usuario_apellido;
+            usuario_fecha_nacimiento = result[0].usuario_fecha_nacimiento;
+            usuario_correo_electronico = result[0].usuario_correo_electronico;
+            usuario_sexo = result[0].usuario_sexo;
+            usuario_password = result[0].usuario_password;
 
-            const query = `SELECT correo_electronico, password FROM usuario INNER JOIN formulario ON formulario.usuario_id_usuario = usuario.id_usuario WHERE id_formulario = ${id_formulario}`;
+
+
+            const query = `INSERT INTO usuario (nombre, apellido, fecha_nacimiento, correo_electronico, sexo, password, tipo_usuario_id_tipo) VALUES ('${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', 2)`;
             console.log(query);
             con.query(query, function (err, result, fields) {
-                if (err) throw err;
-
-                const {correo_electronico, password} = result[0];
-                sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Aprobacion de tienda virtual`, `¡Felicidades! Se ha aprobado tu solicitud y ahora posees un espacio para vender tus productos en el sistema de tienda virtual CCV. Podrás ingresar al sistema utilizando las sisguientes credenciales:\n\nUsuario: ${correo_electronico}\nPassword: ${password}`);
-                res.send( {"state": "ok"});
+                if (err) throw err;  
             })
-            
+        });
+    }).then(function(onResolve){
+        const query = "SELECT id_usuario FROM usuario ORDER BY id_usuario DESC LIMIT 1";
+        console.log(query);
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            id_usuario = result[0].id_usuario;
+
+
+            const query = `INSERT INTO tienda (id_tienda, fecha_aprobacion, usuario_id_usuario ) VALUES (${id_formulario}, CURDATE(), ${id_usuario})`;
+            console.log(query);
+            con.query(query, function (err, result, fields) {
+                if (err) throw err;  
+            })
         })
-    });
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
+    }).then(function(onResolve){
+
+    setTimeout(function(){ console.log("Se va a enviar correo"); 
+    
+        const query = "SELECT correo_electronico, password FROM usuario ORDER BY id_usuario DESC LIMIT 1";
+        console.log(query);
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            const { correo_electronico, password }= result[0];
+
+            sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Aprobacion de tienda virtual`, `¡Felicidades! Se ha aprobado tu solicitud y ahora posees un espacio para vender tus productos en el sistema de tienda virtual CCV. Podrás ingresar al sistema utilizando las sisguientes credenciales:\n\nUsuario: ${correo_electronico}\nPassword: ${password}`);
+            res.send( {"state": "ok"});
+            
+            con.end();
+        });
+
+        
+    }, 1000);
+
+        
+        
     });
 })
 

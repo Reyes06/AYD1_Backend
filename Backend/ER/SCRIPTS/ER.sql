@@ -37,6 +37,7 @@ CREATE TABLE formulario (
     usuario_fecha_nacimiento	VARCHAR(50) NOT NULL,
     usuario_correo_electronico 	VARCHAR(75) NOT NULL,
     usuario_sexo 				CHAR(1) NOT NULL,
+    usuario_password			VARCHAR(50) NOT NULL,
     municipio_id_municipio  	INTEGER NOT NULL,
     sector_id_sector        	INTEGER NOT NULL,
     CONSTRAINT formulario_pk PRIMARY KEY ( id_formulario )

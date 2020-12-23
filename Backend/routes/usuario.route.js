@@ -37,7 +37,7 @@ router.post('/validar', async function(req, res, next) {
 });
 
 router.post('/nuevo', async function(req, res, next) {
-    const {nombre, apellido, fecha_nacimiento, correo_electronico, sexo, tarjeta_credito, password, id_tipo_usuario} = req.body;
+    const {nombre, apellido, fecha_nacimiento, correo_electronico, sexo, password} = req.body;
     let query;
 
     con = await mysql.createConnection(objectConnection);
@@ -59,13 +59,8 @@ router.post('/nuevo', async function(req, res, next) {
                 });
         } else {
             //2. Registrar usuario
-            if(tarjeta_credito != null){
-                query = `INSERT INTO usuario (nombre, apellido, fecha_nacimiento, correo_electronico, sexo, tarjeta_credito, password, tipo_usuario_id_tipo)
-                        VALUES ('${nombre}', '${apellido}', '${fecha_nacimiento}', '${correo_electronico}', '${sexo}', '${tarjeta_credito}', '${password}', '${id_tipo_usuario}')`;
-            } else {
-                query = `INSERT INTO usuario (nombre, apellido, fecha_nacimiento, correo_electronico, sexo, password, tipo_usuario_id_tipo)
-                        VALUES ('${nombre}', '${apellido}', '${fecha_nacimiento}', '${correo_electronico}', '${sexo}', '${password}', ${id_tipo_usuario})`;
-            }
+            query = `INSERT INTO usuario (nombre, apellido, fecha_nacimiento, correo_electronico, sexo, password, tipo_usuario_id_tipo)
+                    VALUES ('${nombre}', '${apellido}', '${fecha_nacimiento}', '${correo_electronico}', '${sexo}', '${password}', 3)`;
             console.log(query);
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
@@ -75,55 +70,15 @@ router.post('/nuevo', async function(req, res, next) {
                         "estado": "ok",
                         result
                     });
+                    con.end(function(err) {
+                        if (err) throw err;
+                        console.log("DB Connection FINISH")
+                    });
                 })
             })
         }
     });
-    
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
-    });
 });
-
-
-router.post('/tarjeta', async function(req, res, next) {
-    const {tarjeta_credito, id_usuario, fecha_expiracion, cvv} = req.body;
-
-    con = await mysql.createConnection(objectConnection);
-
-    await con.connect(function(err) {
-        if (err) throw err;
-        console.log("DB Connection OK")
-    });
-
-    let query = `SELECT * FROM usuario WHERE id_usuario = ${id_usuario};`;
-    console.log(query);
-    await con.query(query , function (err, result, fields) {
-        if (err) throw err;
-        if(result.length > 0){
-            query = `UPDATE usuario SET tarjeta_credito = ${tarjeta_credito},fecha_expiracion = '${fecha_expiracion}', cvv = ${cvv} WHERE id_usuario = ${id_usuario}`;
-            console.log(query);
-            con.query(query , function (err, result, fields) {
-                if (err) throw err;
-                res.send( {
-                    "estado": "ok"
-                });
-            });
-       } else {
-            res.send( {
-                "estado": "error",
-                "descripcion": "usuario no encontrado"
-            });
-       }
-    });
-
-
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
-    });
-})
 
 
 module.exports = router;
