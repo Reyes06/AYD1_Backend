@@ -1,0 +1,124 @@
+<div class="row">
+
+    <div class="col-md-9">
+
+        <!--Projects section v.2-->
+        <section class="section text-justify pb-3">
+
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center">
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+
+                    <!--Card-->
+                    <mdb-card>
+
+                        <!--Header-->
+                        <div class="header blue-gradient">
+                    
+                          <div class="row d-flex justify-content-center">
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Registrar Tienda</h3>
+                          </div>
+                    
+                        </div>
+                        <!--Header-->
+                    
+                        <mdb-card-body class="mx-4">
+
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_nombre" class="form-control" mdbInput>
+                            <label for="form104">Nombre</label>
+                          </div>
+                          
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_apellido" class="form-control" mdbInput>
+                            <label for="form105">Apellido</label>
+                          </div>
+
+                          <div class="md-form md-outline input-with-post-icon datepicker">
+                            <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
+                            <input placeholder="Selecciona Fecha" type="date" id="form_fecha_de_nacimiento" class="form-control">
+                            <label for="form106">Fecha de Nacimiento</label>
+                          </div>
+
+                          <div class="md-form">
+                            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_correo_electronico" class="form-control" mdbInput>
+                            <label for="form107">Correo electronico</label>
+                          </div>
+
+                          <div>
+                            <label>Sexo</label> 
+                          </div>
+
+                          <!-- Group of material radios - option 1 -->
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="form_sexo_femenino" name="groupOfMaterialRadios" ><i class="fas fa-venus"></i>
+                            <label class="form-check-label; prefix grey-text" for="form108">&nbsp;&nbsp;Mujer</label>
+                          </div>
+
+                          <!-- Group of material radios - option 2 -->
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="form_sexo_masculino" name="groupOfMaterialRadios" ><i class="fas fa-mars"></i>
+                            <label class="form-check-label; prefix grey-text" for="form109">&nbsp;Hombre</label>
+                          </div>
+                          
+                          <label></label>
+                          <div>
+                            <label>Sector Tienda</label> 
+                          </div>
+
+                          <select name="sector" id="id_sector">
+                            <option value=0>Alimentos</option>
+                            <option value=1>Bebida</option>
+                            <option value=2>Textil</option>
+                            <option value=3>Calzado</option>
+                          </select>
+
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_nombre_tienda" class="form-control" mdbInput>
+                            <label for="form104">Nombre de la Tienda</label>
+                          </div>
+
+                          <div>
+                          <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Logo Tienda</label>
+                          <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                          <img [src]="photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="photoInput.click()">
+                          </div>
+
+                          <input type="checkbox" id="TerminosyCondiciones"><label>&nbsp;He leído y acepto los <a href="https://www.google.com" target="_blank">términos y condiciones</a></label>
+                        
+                          <!--Grid row-->
+                          <div class="row d-flex align-items-center mb-3 mt-4">
+                    
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                              <div class="text-center">
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="RegistrarTienda()">Registrar</button>
+                              </div>
+                            </div>
+                            <!--Grid column-->
+                    
+                          </div>
+                          <!--Grid row-->
+                        </mdb-card-body>
+                    
+                      </mdb-card>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+                
+            </div>
+            <!--Grid row-->
+
+        </section>
+        <!--/Projects section v.2-->
+    </div>
+
+
+</div>

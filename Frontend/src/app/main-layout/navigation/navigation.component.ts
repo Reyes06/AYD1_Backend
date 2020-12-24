@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ConstantesService } from '../../services/constantes.service';
 import { VerificarCredencialesService } from '../../services/verificar-credenciales.service';
 import { ClaseVerificarCredenciales } from '../../models/clases';
 
@@ -19,7 +18,7 @@ export class NavigationComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private router: Router, private constantes: ConstantesService, private VerificarCredencialesService: VerificarCredencialesService) {
+  constructor(private router: Router, private VerificarCredencialesService: VerificarCredencialesService) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
@@ -36,30 +35,19 @@ export class NavigationComponent implements OnInit {
 
   CargarDatosPagina = async () => {//void
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
-    if(ClaseVerificarCredenciales.CredencialesExisten==true && ClaseVerificarCredenciales.CredencialesVerificadasconelServidor==true)
+    if(ClaseVerificarCredenciales.CredencialesExisten==true)
     { this.isLoggedIn=true; }
     else if(ClaseVerificarCredenciales.CredencialesExisten==false)
-    { this.isLoggedIn=false; 
-      this.router.navigate(['login/login1']);}
-    else if(ClaseVerificarCredenciales.CredencialesVerificadasconelServidor==false)
-    { /*this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000);*/ 
-      this.isLoggedIn=true; 
-    }
-    else
-    { this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000); }
-    
+    { this.isLoggedIn=false; }
   }
 
 
   cerrar=() => {
-    localStorage.removeItem('sesion');
-    localStorage.removeItem('id_sesion');
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('tipo_de_usuario');
-    localStorage.removeItem('contrasena');
+    localStorage.removeItem('id_usuario');
+    localStorage.removeItem('correo_usuario');
+    localStorage.removeItem('tipo_usuario');
     this.isLoggedIn=false;
-    this.router.navigate(['login/login1']);
-    window.location.reload();
+    this.router.navigate(['login']);
   }
 
 
@@ -71,4 +59,6 @@ export class NavigationComponent implements OnInit {
   readLocalStorageValue(key: string) {
     return localStorage.getItem(key);
   }
+
+
 }

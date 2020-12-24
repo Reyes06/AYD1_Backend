@@ -1,11 +1,9 @@
 export class ClaseVerificarCredenciales {
 
 CredencialesExisten: boolean = false;
-CredencialesVerificadasconelServidor: boolean = false; 
 
-constructor(CredencialesExisten: boolean, CredencialesVerificadasconelServidor: boolean){
+constructor(CredencialesExisten: boolean){
     this.CredencialesExisten= CredencialesExisten;
-    this.CredencialesVerificadasconelServidor = CredencialesVerificadasconelServidor;
 }
 
 }

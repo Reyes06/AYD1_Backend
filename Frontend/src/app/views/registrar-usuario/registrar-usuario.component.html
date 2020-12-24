@@ -18,7 +18,7 @@
                         <div class="header blue-gradient">
                     
                           <div class="row d-flex justify-content-center">
-                            <h3 class="white-text mb-0 py-5 font-weight-bold">Registro</h3>
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Registrar Usuario</h3>
                           </div>
                     
                         </div>
@@ -28,72 +28,51 @@
                     
                           <div class="md-form">
                             <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form104" class="form-control" mdbInput>
+                            <input type="text" id="form_nombre" class="form-control" mdbInput>
                             <label for="form104">Nombre</label>
                           </div>
                           
                           <div class="md-form">
                             <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form105" class="form-control" mdbInput>
+                            <input type="text" id="form_apellido" class="form-control" mdbInput>
                             <label for="form105">Apellido</label>
                           </div>
 
                           <div class="md-form md-outline input-with-post-icon datepicker">
                             <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
-                            <input placeholder="Selecciona Fecha" type="date" id="form106" class="form-control">
+                            <input placeholder="Selecciona Fecha" type="date" id="form_fecha_de_nacimiento" class="form-control">
                             <label for="form106">Fecha de Nacimiento</label>
                           </div>
 
                           <div class="md-form">
                             <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form107" class="form-control" mdbInput>
+                            <input type="text" id="form_correo_electronico" class="form-control" mdbInput>
                             <label for="form107">Correo electronico</label>
                           </div>
 
+                          <div>
+                            <label>Sexo</label> 
+                          </div>
+                        
                           <!-- Group of material radios - option 1 -->
                           <div class="form-check">
-                            <input type="radio" class="form-check-input" id="form108" name="groupOfMaterialRadios" ><i class="fas fa-venus"></i>
+                            <input type="radio" class="form-check-input" id="form_sexo_femenino" name="groupOfMaterialRadios" ><i class="fas fa-venus"></i>
                             <label class="form-check-label; prefix grey-text" for="form108">&nbsp;&nbsp;Mujer</label>
                           </div>
 
                           <!-- Group of material radios - option 2 -->
                           <div class="form-check">
-                            <input type="radio" class="form-check-input" id="form109" name="groupOfMaterialRadios" ><i class="fas fa-mars"></i>
+                            <input type="radio" class="form-check-input" id="form_sexo_masculino" name="groupOfMaterialRadios" ><i class="fas fa-mars"></i>
                             <label class="form-check-label; prefix grey-text" for="form109">&nbsp;Hombre</label>
                           </div>
 
                           <div class="md-form">
                             <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
-                            <input type="password" id="form110" class="form-control" mdbInput>
+                            <input type="password" id="form_contrasena" class="form-control" mdbInput>
                             <label for="form110">Password</label>
                           </div>
-                    
-                          <div class="md-form">
-                            <mdb-icon fas icon="credit-card" class="prefix grey-text"></mdb-icon>
-                            <input type="number" id="form111" class="form-control" mdbInput>
-                            <label for="form111">Tarjeta de Credito</label>
-                          </div>
 
-                          <div class="md-form">
-                            <mdb-icon fas icon="credit-card" class="prefix grey-text"></mdb-icon>
-                            <input type="number" id="form112" class="form-control" mdbInput>
-                            <label for="form112">CCV</label>
-                          </div>
-
-                          <div class="md-form md-outline input-with-post-icon datepicker">
-                            <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
-                            <input placeholder="Selecciona Fecha" type="date" id="form113" class="form-control">
-                            <label for="form113">Fecha de Vencimiento</label>
-                          </div>
-
-                          <div class="col-md-6 my-3">
-                            <select id="form114" class="mdb-select md-form" multiple searchable="Search here..">
-                              <option value="" disabled selected>Tipo de Usuario</option>
-                              <option value="1">Administrador</option>
-                              <option value="2">Cliente</option>
-                              <option value="3">Propietario</option>
-                            </select>
-                          </div>
+                          <input type="checkbox" id="TerminosyCondiciones"><label>&nbsp;He leído y acepto los <a href="https://www.google.com" target="_blank">términos y condiciones</a></label>
 
                           <!--Grid row-->
                           <div class="row d-flex align-items-center mb-3 mt-4">
@@ -101,7 +80,7 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                               <div class="text-center">
-                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="Registrar()">Registrar</button>
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="RegistrarUsuario()">Registrar</button>
                               </div>
                             </div>
                             <!--Grid column-->
