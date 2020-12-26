@@ -10,7 +10,7 @@ router.get('/:id_depto', async function(req, res, next) {
     con = await mysql.createConnection(objectConnection);
 
     await con.connect();
-    const query = `SELECT id_producto, nombre, descripcion FROM producto WHERE depto_tienda_id_depto = ${id_depto}`;
+    const query = `SELECT id_producto, nombre, descripcion, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`;
     console.log(query);
     await con.query(query, function (err, result, fields) {
         if (err) throw err;
@@ -21,11 +21,11 @@ router.get('/:id_depto', async function(req, res, next) {
 
 /*CREATE*/
 router.post('/nuevo', function(req, res, next) {
-    const {nombre, descripcion, id_depto} = req.body;
+    const {nombre, descripcion, imagen, id_depto} = req.body;
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    const query = `INSERT INTO producto (nombre, descripcion, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}',${id_depto})`;
+    const query = `INSERT INTO producto (nombre, descripcion, imagen, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}', '${imagen}',${id_depto})`;
     console.log(query);
     con.query(query, function (err, result, fields) {
         if (err) throw err;
@@ -105,4 +105,30 @@ router.post('/inventario', async function(req, res, next) {
     });
 });
 
+router.get('/', async function(req, res, next) {
+    con = await mysql.createConnection(objectConnection);
+
+    await con.connect(function(err) {
+        if (err) throw err;
+        console.log("DB Connection OK")
+    });
+    const query = "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto";
+    console.log(query);
+    await con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.send( result);
+    })
+    con.end(function(err) {
+        if (err) throw err;
+        console.log("DB Connection FINISH")
+    });
+})
+
 module.exports = router;
+
+/*
+select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, c.nombre as categoria
+from producto_categoria pc, categoria c, producto pr
+where pc.categoria_id_categoria = c.id_categoria
+and pc.producto_id_producto = pr.id_producto
+*/
