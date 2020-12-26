@@ -59,8 +59,8 @@ router.post('/nuevo', async function(req, res, next) {
     
 })
 
-router.post('/denegar/:id_formulario', async function(req, res, next) {
-    const {id_formulario} = req.params;
+router.post('/denegar', async function(req, res, next) {
+    const {id_formulario} = req.body;
     con = await mysql.createConnection(objectConnection);
     con.connect();
     const query = `UPDATE formulario SET estado = 'DENEGADO' WHERE id_formulario = ${id_formulario}`;
@@ -72,8 +72,8 @@ router.post('/denegar/:id_formulario', async function(req, res, next) {
     con.end();
 })
 
-router.post('/aprobar/:id_formulario', async function(req, res, next) {
-    const {id_formulario} = req.params;
+router.post('/aprobar', async function(req, res, next) {
+    const {id_formulario} = req.body;
     con = await mysql.createConnection(objectConnection);
     con.connect();
 
