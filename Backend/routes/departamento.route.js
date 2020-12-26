@@ -13,7 +13,7 @@ router.get('/:id_tienda', async function(req, res, next) {
     console.log(query);
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        res.send( result);
+        res.send( { "departamentos": result });
         con.end();
     })
 })
