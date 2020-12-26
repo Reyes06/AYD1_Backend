@@ -19,7 +19,11 @@ import { Dashboard1Component } from './dashboards/dashboard1/dashboard1.componen
 import { Profile1Component } from './profile/profile1/profile1.component';
 import { HelpComponent } from './help/help.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { PerfilTiendaComponent } from './perfil-tienda/perfil-tienda.component';
+import { RegistrarTiendaComponent } from './registrar-tienda/registrar-tienda.component';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
 
 @NgModule({
@@ -47,7 +51,11 @@ import { RegisterComponent } from './register/register.component';
     Profile1Component,
     HelpComponent,
     LoginComponent,
-    RegisterComponent,
+    PerfilAdministradorComponent,
+    PerfilUsuarioComponent,
+    PerfilTiendaComponent,
+    RegistrarTiendaComponent,
+    RegistrarUsuarioComponent,
 
   ],
   exports: [

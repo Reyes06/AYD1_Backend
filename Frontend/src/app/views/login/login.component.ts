@@ -30,9 +30,19 @@ export class LoginComponent implements OnInit {
 
   CargarDatosPagina = async () => {//void
 
-    /*var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
+    var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
     if(ClaseVerificarCredenciales.CredencialesExisten==true)
-    { await this.router.navigate(['dashboards/v1']); } */
+    {
+      var tipo_usuario = localStorage.getItem('tipo_usuario')
+
+      if(tipo_usuario==="0")//Administrador
+      { await this.router.navigate(['perfil-administrador']);  }
+      else if(tipo_usuario==="1")//Tienda
+      { await this.router.navigate(['perfil-tienda']);  }
+      else if(tipo_usuario==="2")//Usuario
+      { await this.router.navigate(['perfil-usuario']);  }
+  
+    }
     
   }
 
@@ -44,52 +54,45 @@ export class LoginComponent implements OnInit {
     { await this.constantes.DesplegarMensajeTemporaldeError("Sesión ya Iniciada", 2000); }
     else 
     {
-      var usuario = <HTMLInputElement>document.getElementById("form104");
-      var contrasenia = <HTMLInputElement>document.getElementById("form105");
-      /*if(usuario.validity.valid==false)
-      { await this.constantes.DesplegarMensajeTemporaldeError("Correo no valido", 2000); }
-      else
-      {*/
-        await this.http.post(this.constantes.URL_BASE + "usuario/validar",
-        { correo_electronico: usuario.value, password: contrasenia.value }
-        ).subscribe( data => this.ExitoalEntrar(data, usuario.value, contrasenia.value), err => this.ErroralEntrar(err) );
+      var correo = <HTMLInputElement>document.getElementById("form104");
+      var contrasena = <HTMLInputElement>document.getElementById("form105");
+        
+      await this.http.post(this.constantes.URL_BASE + "usuario/validar",
+      { correo_electronico: correo.value, password: contrasena.value }
+        ).subscribe( data => this.ExitoalEntrar(data, correo.value), err => this.ErroralEntrar(err) );
       /*}*/
     }
     return false;
     /*1. Usuario encontrado:
-    { "estado": "ok", "result": [ { "id_usuario": 1 } ] }
+    { "estado": "ok", "result": [ { "id_usuario": 1, "tipo_usuario": 1 } ] }
     2. Usuario no encontrado:
     { "estado": "error", "descripcion": "el usuario no se ha encontrado" }*/  
   }  
 
 
-  ExitoalEntrar = async (Exito: any, usuario: string, contrasena: string) => {//void 
+  ExitoalEntrar = async (Exito: any, correo: string) => {//void 
   if(Exito.estado=="ok")
   {
-    await localStorage.setItem('sesion','true');
-    await localStorage.setItem('id_sesion',Exito.result[0].id_usuario);
-    await localStorage.setItem('usuario',usuario);
-    await localStorage.setItem('tipo_de_usuario',Exito.result[0].tipo_usuario_id_tipo);
-    await localStorage.setItem('contrasena',contrasena);
+    await localStorage.setItem('id_usuario',Exito.result[0].id_usuario);
+    await localStorage.setItem('correo_usuario',correo);
+    await localStorage.setItem('tipo_usuario',Exito.result[0].tipo_usuario);
 
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
  
     if(ClaseVerificarCredenciales.CredencialesExisten==false)
     { await this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
-    /*else if(ClaseVerificarCredenciales.CredencialesExisten==true && ClaseVerificarCredenciales.CredencialesVerificadasconelServidor==false)
-    { await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000); }*/
-    else
+    else /*if(ClaseVerificarCredenciales.CredencialesExisten==true)*/
     { 
-      var tipo_de_usuario = localStorage.getItem('tipo_de_usuario')
+      var tipo_usuario = localStorage.getItem('tipo_usuario')
       
-      if(tipo_de_usuario == "1")
-      { await this.router.navigate(['dashboards/v1']); }
-      else if(tipo_de_usuario == "2")
-      { await this.router.navigate(['perfiltienda']); }
-      else if(tipo_de_usuario == "3")
-      { await this.router.navigate(['profiles/profile1']); }
+      if(tipo_usuario==="0")//Administrador
+      { await this.router.navigate(['perfil-administrador']);  }
+      else if(tipo_usuario==="1")//Tienda
+      { await this.router.navigate(['perfil-tienda']);  }
+      else if(tipo_usuario==="2")//Usuario
+      { await this.router.navigate(['perfil-usuario']);  }
       else
-      { await /*this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000);*/ await this.router.navigate(['dashboards/v1']); }
+      { this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
     
       window.location.reload();
     }

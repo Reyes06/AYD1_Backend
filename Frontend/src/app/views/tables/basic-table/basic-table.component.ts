@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { ConstantesService } from 'src/app/services/constantes.service';
-import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
+//import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
 import { formularios } from './formularios';
 
 @Component({
@@ -13,7 +13,7 @@ import { formularios } from './formularios';
 })
 export class BasicTableComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private constantes: ConstantesService, private VerificarCredencialesService: VerificarCredencialesService) 
+  constructor(/*private router: Router,*/ private http: HttpClient, private constantes: ConstantesService/*, private VerificarCredencialesService: VerificarCredencialesService*/) 
   { }
 
   ngOnInit() {

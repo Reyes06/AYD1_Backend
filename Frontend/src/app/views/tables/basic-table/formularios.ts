@@ -10,7 +10,7 @@ export class formularios
     sector_id_sector:string;
 
 
-    constructor(id_formulario, nombre, logo, direccion, estado, usuario_id_usuario, municipio_id_municipio, sector_id_sector){
+    constructor(id_formulario: any, nombre: any, logo: any, direccion: any, estado: any, usuario_id_usuario: any, municipio_id_municipio: any, sector_id_sector: any){
         this.id_formulario = id_formulario;
         this.nombre = nombre;
         this.logo = logo;
