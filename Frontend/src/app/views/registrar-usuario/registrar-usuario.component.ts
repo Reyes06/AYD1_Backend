@@ -6,7 +6,6 @@ import { ConstantesService } from 'src/app/services/constantes.service';
 import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
 import { ClaseVerificarCredenciales } from '../../models/clases';
 
-
 @Component({
   selector: 'app-registrar-usuario',
   templateUrl: './registrar-usuario.component.html',
@@ -28,7 +27,6 @@ export class RegistrarUsuarioComponent implements OnInit {
     await this.CargarDatosPagina();
   }
 
-
   CargarDatosPagina = async () => {//void
 
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
@@ -36,17 +34,19 @@ export class RegistrarUsuarioComponent implements OnInit {
     {
       var tipo_usuario = localStorage.getItem('tipo_usuario')
 
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
   
     }
     
   }
 
+
+  //Usuario----------------------------------------------------------------------------------------
 
   RegistrarUsuario = async () => {//void
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
@@ -57,11 +57,11 @@ export class RegistrarUsuarioComponent implements OnInit {
 
       var tipo_usuario = localStorage.getItem('tipo_usuario')
         
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
       else
       { this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
@@ -92,7 +92,7 @@ export class RegistrarUsuarioComponent implements OnInit {
         if(TerminosyCondiciones.checked == true)
         {
           await this.http.post(this.constantes.URL_BASE + "usuario/nuevo",
-          { nombre: nombre.value, apellido: apellido.value, fecha_nacimiento: fecha_de_nacimiento.value, correo_electronico: correo.value, sexo: sexo, password: contrasena.value, id_tipo_usuario: 2}
+          { nombre: nombre.value, apellido: apellido.value, fecha_nacimiento: fecha_de_nacimiento.value, correo_electronico: correo.value, sexo: sexo, password: contrasena.value}
           ).subscribe( data => this.ExitoalRegistrarUsuario(data), err => this.ErroralRegistrarUsuario(err) );
         }
         else
@@ -102,12 +102,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 2000); }
     }
     return false;
-    /*1. Ya existe un usuario con el correo indicado:
-    { "estado": "error", "descripcion": "El usuario ya existe" }
-    2. Usuario creado:
-    { "estado": "ok", "result": [ { "id_usuario": 7 } ] }*/ 
   }  
-
 
   ExitoalRegistrarUsuario = async (Exito: any) => {//void
     if(Exito.estado=="ok")
@@ -118,8 +113,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     else
     { await this.constantes.DesplegarMensajeTemporaldeError(Exito.descripcion, 2000); }  
   }
-  
-  
+    
   ErroralRegistrarUsuario = async (Error: any) => {//void
       console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000);
   }

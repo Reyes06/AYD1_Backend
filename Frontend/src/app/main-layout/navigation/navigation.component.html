@@ -8,42 +8,41 @@
             <img src="../../../../assets/img/angular-mdb.png" class="img-fluid" alt="">
         </a>
 
+        <!--No Logueado-->
         <div class="list-group list-group-flush" *ngIf="!isLoggedIn">
 
             <a routerLink="login" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="sign-in-alt" class="mr-3"></mdb-icon>Iniciar Sesión</a>
-            <a routerLink="registrarusuario" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="plus-square" class="mr-3"></mdb-icon>Registrar Usuario</a>
-            <a routerLink="registrartienda" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="plus-square" class="mr-3"></mdb-icon>Registrar Tienda</a>
+            <a routerLink="registrar/usuario" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user-plus" class="mr-3"></mdb-icon>Registrar Usuario</a>
+            <a routerLink="registrar/tienda" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="store-alt" class="mr-3"></mdb-icon>Registrar Tienda</a>
 
         </div>
 
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') == '0'">
+        <!--Administrador-->
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') === '1'">
 
-            <a routerLink="dashboards/v1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
-            </a>
-            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="perfil-administrador/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
+            <a routerLink="perfil-administrador/Solicitudes" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Solicitudes</a>
-            <a routerLink="maps/map1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon far icon="map" class="mr-3"></mdb-icon>Maps</a>
-            <a routerLink="nonExistingPath" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="exclamation" class="mr-3"></mdb-icon>404</a>
 
         </div>
 
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') == '1'">
+        <!--Tienda-->
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') === '2'">
 
-            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Registrar Tienda</a>
+            <a routerLink="perfil-tienda/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
 
         </div>
 
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') == '2'">
+        <!--Usuario-->
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') == '3'">
 
-            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Registrar Tienda</a>
+            <a routerLink="perfil-usuario/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
 
         </div>
 
@@ -87,13 +86,7 @@
                     <li class="nav-item">
                         <a href="https://github.com/Reyes06/AYD1_Backend" class="nav-link border border-light"
                             target="_blank" mdbWavesEffect>
-                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>Repositorio Backend
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://github.com/Reyes06/AYD1_Frontend" class="nav-link border border-light"
-                            target="_blank" mdbWavesEffect>
-                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>Repositorio Frontend
+                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>Repositorio
                         </a>
                     </li>
                     <li class="nav-item" *ngIf="isLoggedIn">

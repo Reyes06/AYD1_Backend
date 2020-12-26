@@ -35,7 +35,7 @@ router.post('/nuevo', async function(req, res, next) {
     let promesa = new Promise(function(resolve, reject) {
         if(logo != null){
             query = `INSERT INTO formulario (nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
-                           VALUES ('${nombre_tienda}', ${logo}, '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+                           VALUES ('${nombre_tienda}', '${logo}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
         } else {
             query = `INSERT INTO formulario (nombre_tienda, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
                            VALUES ('${nombre_tienda}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
