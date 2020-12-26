@@ -6,7 +6,6 @@ import { ConstantesService } from 'src/app/services/constantes.service';
 import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
 import { ClaseVerificarCredenciales } from '../../models/clases';
 
-
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
 }
@@ -37,7 +36,6 @@ export class RegistrarTiendaComponent implements OnInit {
     await this.CargarDatosPagina();
   }
 
-
   CargarDatosPagina = async () => {//void
 
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
@@ -45,17 +43,140 @@ export class RegistrarTiendaComponent implements OnInit {
     {
       var tipo_usuario = localStorage.getItem('tipo_usuario')
 
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
-  
     }
+    else
+    { await this.CargarPaises(); await this.CargarSectores(); }
     
   }
 
+
+  //Países-----------------------------------------------------------------------------------------
+
+  CargarPaises = async () => {//void
+    //Borro lista de paises actual
+    var id_pais = <HTMLInputElement>document.getElementById("id_pais");
+    id_pais.innerHTML = "";
+    //Borro lista de departamentos actual
+    var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+    id_departamento.innerHTML = "";
+    //Borro lista de municipios actual
+    var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+    id_municipio.innerHTML = "";
+    //Obtengo países y agrego la nueva lista de países
+    await this.http.get(this.constantes.URL_BASE + "direccion/pais"
+    ).subscribe( data => this.ExitoalCargarPaises(data), err => this.ErroralCargarPaises(err) );
+  }
+
+  ExitoalCargarPaises = async (Exito: any) => {//void
+    //Agrego la nueva lista de países
+    var Html_ = "";
+    for(var i=0; i<Exito.length; i++)
+    { Html_ += "<option value=" + Exito[i].id_pais + ">" + Exito[i].nombre + "</option> \n"; }
+    var id_pais = <HTMLInputElement>document.getElementById("id_pais");
+    id_pais.innerHTML = Html_;
+    //Cargamos Departamentos
+    await this.CargarDepartamentos(id_pais.value);
+  }
+  
+  ErroralCargarPaises = async (Error: any) => {//void
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Países no cargada", 3000);
+  }
+
+  on_id_pais = async () => {//void
+    var id_pais = <HTMLInputElement>document.getElementById("id_pais");
+    //Cargamos Departamentos
+    await this.CargarDepartamentos(id_pais.value);
+  }
+
+
+  //Departamentos----------------------------------------------------------------------------------
+
+  CargarDepartamentos = async (id_pais: any) => {//void
+    //Borro lista de departamentos actual
+    var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+    id_departamento.innerHTML = "";
+    //Borro lista de municipios actual
+    var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+    id_municipio.innerHTML = "";
+    //Obtengo departamentos y agrego la nueva lista de departamentos
+    await this.http.get(this.constantes.URL_BASE + "direccion/departamentos/" + id_pais
+    ).subscribe( data => this.ExitoalCargarDepartamentos(data), err => this.ErroralCargarDepartamentos(err) );
+  }
+
+  ExitoalCargarDepartamentos = async (Exito: any) => {//void
+    //Agrego la nueva lista de departamentos
+    var Html_ = "";
+    for(var i=0; i<Exito.length; i++)
+    { Html_ += "<option value=" + Exito[i].id_depto + ">" + Exito[i].nombre + "</option> \n"; }
+    var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+    id_departamento.innerHTML = Html_;
+    //Cargamos Municipios
+    await this.CargarMunicipios(id_departamento.value);
+  }
+  
+  ErroralCargarDepartamentos = async (Error: any) => {//void
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Departamentos no cargada", 3000);
+  }
+
+  on_id_departamento = async () => {//void
+    var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+    //Cargamos Municipios
+    await this.CargarMunicipios(id_departamento.value);
+  }
+
+
+  //Municipios-------------------------------------------------------------------------------------
+
+  CargarMunicipios = async (id_departamento: any) => {//void
+    //Borro lista de municipios actual
+    var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+    id_municipio.innerHTML = "";
+    //Obtengo municipios y agrego la nueva lista de municipio
+    await this.http.get(this.constantes.URL_BASE + "direccion/municipios/" + id_departamento
+    ).subscribe( data => this.ExitoalCargarMunicipios(data), err => this.ErroralCargarMunicipios(err) );
+  }
+
+  ExitoalCargarMunicipios = async (Exito: any) => {//void
+    //Agrego la nueva lista de municipios
+    var Html_ = "";
+    for(var i=0; i<Exito.length; i++)
+    { Html_ += "<option value=" + Exito[i].id_municipio + ">" + Exito[i].nombre + "</option> \n"; }
+    var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+    id_municipio.innerHTML = Html_;
+  }
+  
+  ErroralCargarMunicipios = async (Error: any) => {//void
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
+  }
+
+
+  //Sectores---------------------------------------------------------------------------------------
+
+  CargarSectores = async () => {//void
+    await this.http.get(this.constantes.URL_BASE + "sector"
+    ).subscribe( data => this.ExitoalCargarSectores(data), err => this.ErroralCargarSectores(err) );
+  }
+
+  ExitoalCargarSectores = async (Exito: any) => {//void
+    var Html_ = "";
+    for(var i=0; i<Exito.length; i++)
+    { Html_ += "<option value=" + Exito[i].id_sector + ">" + Exito[i].nombre + "</option> \n"; }
+    var id_municipio = <HTMLInputElement>document.getElementById("id_sector");
+    id_municipio.innerHTML = Html_;
+  }
+  
+  ErroralCargarSectores = async (Error: any) => {//void
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Sectores no cargada", 3000);
+  }
+
+
+  //Logo-------------------------------------------------------------------------------------------
 
   onPhotoSelected(event: HtmlInputEvent): void {
     if (event.target.files && event.target.files[0]) {
@@ -68,20 +189,22 @@ export class RegistrarTiendaComponent implements OnInit {
   }
 
 
+  //Registrar Tienda-------------------------------------------------------------------------------
+
   RegistrarTienda = async () => {//void
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
 
     if(ClaseVerificarCredenciales.CredencialesExisten==true)
     { 
-      await this.constantes.DesplegarMensajeTemporaldeError("Sesión ya Iniciada", 2000); await this.router.navigate(['dashboards/v1']); 
+      await this.constantes.DesplegarMensajeTemporaldeError("Sesión ya Iniciada", 2000);
 
       var tipo_usuario = localStorage.getItem('tipo_usuario')
         
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
       else
       { this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
@@ -101,20 +224,28 @@ export class RegistrarTiendaComponent implements OnInit {
       else if(sexoMasculino.checked){
         sexo = "M";
       }
+      var contrasena = <HTMLInputElement>document.getElementById("form_contrasena");
+      var nombre_tienda = <HTMLInputElement>document.getElementById("form_nombre_tienda");
+      var id_pais = <HTMLInputElement>document.getElementById("id_pais");
+      var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+      var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+      var direccion = <HTMLInputElement>document.getElementById("form_direccion");
       var id_sector = <HTMLInputElement>document.getElementById("id_sector");
-      var nombre_de_la_tienda = <HTMLInputElement>document.getElementById("form_nombre_de_la_tienda");
       var TerminosyCondiciones = <HTMLInputElement>document.getElementById("TerminosyCondiciones");
 
       if(nombre.value!=null && nombre.value!="" && apellido.value!=null && apellido.value!="" 
       && fecha_de_nacimiento.value!=null && fecha_de_nacimiento.value!=""
       && correo.value!=null && correo.value!="" && (sexoFemenino.checked!=true || sexoFemenino.checked==true) 
-      && sexo!=null && sexo!="" && id_sector.value!=null && id_sector.value!="" 
-      && nombre_de_la_tienda.value!=null && nombre_de_la_tienda.value!="" && this.photoSelected!=null)
+      && sexo!=null && sexo!="" && contrasena.value!=null && contrasena.value!="" 
+      && nombre_tienda.value!=null && nombre_tienda.value!="" && id_pais.value!=null && id_pais.value!="" 
+      && id_departamento.value!=null && id_departamento.value!="" 
+      && id_municipio.value!=null && id_municipio.value!="" && direccion.value!=null && direccion.value!="" 
+      && id_sector.value!=null && id_sector.value!="" && this.photoSelected!=null)
       {
         if(TerminosyCondiciones.checked == true)
         {
           await this.http.post(this.constantes.URL_BASE + "formulario/nuevo",
-          { nombre: nombre.value, apellido: apellido.value, fecha_nacimiento: fecha_de_nacimiento.value, correo_electronico: correo.value, sexo: sexo, id_tipo_usuario: 1, id_sector: id_sector.value, nombre_tienda: nombre_de_la_tienda.value, logo_tienda: this.photoSelected}
+          { usuario_nombre: nombre.value, usuario_apellido: apellido.value, usuario_fecha_nacimiento: fecha_de_nacimiento.value, usuario_correo_electronico: correo.value, usuario_sexo: sexo, usuario_password: contrasena.value, nombre_tienda: nombre_tienda.value, id_municipio: id_municipio.value, direccion: direccion.value, id_sector: id_sector.value, logo: this.photoSelected}
           ).subscribe( data => this.ExitoalRegistrarTienda(data), err => this.ErroralRegistrarTienda(err) );
         }
         else
@@ -124,24 +255,14 @@ export class RegistrarTiendaComponent implements OnInit {
       { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 2000); }
     }
     return false;
-    /*1. Formulario Recibido:
-    { "estado": "ok" }
-    2. Error Inesperado:
-    { "estado": "error" }*/ 
   }  
 
-
   ExitoalRegistrarTienda = async (Exito: any) => {//void
-    if(Exito.estado=="ok")
-    {
-      await this.constantes.DesplegarMensajePermantendeExito("Formulario Enviado con Éxito", "Te contactaremos lo más pronto posible");  
-      await this.router.navigate(['login']);
-    }  
-    else
-    { await this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }  
+    console.log(Exito);
+    await this.constantes.DesplegarMensajePermantendeExito("Formulario Enviado con Éxito", "Te contactaremos lo más pronto posible");  
+    await this.router.navigate(['login']);
   }
-  
-  
+    
   ErroralRegistrarTienda = async (Error: any) => {//void
       console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000);
   }

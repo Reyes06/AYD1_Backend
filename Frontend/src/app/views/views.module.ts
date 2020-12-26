@@ -24,6 +24,12 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
 import { PerfilTiendaComponent } from './perfil-tienda/perfil-tienda.component';
 import { RegistrarTiendaComponent } from './registrar-tienda/registrar-tienda.component';
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+import { PerfilAdministradorDashboardComponent } from './perfil-administrador-dashboard/perfil-administrador-dashboard.component';
+import { PerfilAdministradorSolicitudesComponent } from './perfil-administrador-solicitudes/perfil-administrador-solicitudes.component';
+import { PerfilTiendaDashboardComponent } from './perfil-tienda-dashboard/perfil-tienda-dashboard.component';
+import { PerfilUsuarioDashboardComponent } from './perfil-usuario-dashboard/perfil-usuario-dashboard.component';
+import { RegistrarTiendaTerminosyCondicionesComponent } from './registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
+import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 
 
 @NgModule({
@@ -56,6 +62,12 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     PerfilTiendaComponent,
     RegistrarTiendaComponent,
     RegistrarUsuarioComponent,
+    PerfilAdministradorDashboardComponent,
+    PerfilAdministradorSolicitudesComponent,
+    PerfilTiendaDashboardComponent,
+    PerfilUsuarioDashboardComponent,
+    RegistrarTiendaTerminosyCondicionesComponent,
+    RegistrarUsuarioTerminosyCondicionesComponent,
 
   ],
   exports: [
