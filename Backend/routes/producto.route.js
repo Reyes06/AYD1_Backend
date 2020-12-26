@@ -92,11 +92,11 @@ router.post('/categorias/add', async function(req, res, next) {
 
 /*UPDATE inventario de productos*/
 router.post('/inventario', async function(req, res, next) {
-    const {id_producto, cantidad} = req.body;
+    const {id_producto, nueva_cantidad} = req.body;
     con = await mysql.createConnection(objectConnection);
 
     await con.connect();
-    const query = `UPDATE inventario SET cantidad = ${cantidad} WHERE producto_id_producto = ${id_producto}`;
+    const query = `UPDATE inventario SET cantidad = ${nueva_cantidad} WHERE producto_id_producto = ${id_producto}`;
     console.log(query);
     await con.query(query, function (err, result, fields) {
         if (err) throw err;
