@@ -21,11 +21,11 @@ router.get('/:id_depto', async function(req, res, next) {
 
 /*CREATE*/
 router.post('/nuevo', function(req, res, next) {
-    const {nombre, descripcion, id_depto} = req.body;
+    const {nombre, descripcion, imagen, id_depto} = req.body;
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    const query = `INSERT INTO producto (nombre, descripcion, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}',${id_depto})`;
+    const query = `INSERT INTO producto (nombre, descripcion, imagen, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}', '${imagen}',${id_depto})`;
     console.log(query);
     con.query(query, function (err, result, fields) {
         if (err) throw err;

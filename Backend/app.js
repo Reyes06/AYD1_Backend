@@ -7,7 +7,7 @@ const cors = require('cors');
 
 var loginRouter = require('./routes/usuario.route');
 var direccionRouter = require('./routes/direccion.route');
-var tiendaRouter = require('./routes/formulario.route');
+var formularioRouter = require('./routes/formulario.route');
 var sectorRouter = require('./routes/sector.route');
 var categoriaRouter = require('./routes/categoria.route');
 var departamentoRouter = require('./routes/departamento.route');
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/usuario', loginRouter);
 app.use('/direccion', direccionRouter);
-app.use('/formulario', tiendaRouter);
+app.use('/formulario', formularioRouter);
 app.use('/sector', sectorRouter);
 app.use('/categoria', categoriaRouter);
 app.use('/departamento', departamentoRouter);
