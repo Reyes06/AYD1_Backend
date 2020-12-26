@@ -112,7 +112,7 @@ router.get('/', async function(req, res, next) {
         if (err) throw err;
         console.log("DB Connection OK")
     });
-    const query = "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto";
+    const query = "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto";
     console.log(query);
     await con.query(query, function (err, result, fields) {
         if (err) throw err;
