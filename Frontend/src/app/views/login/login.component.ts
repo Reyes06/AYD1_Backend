@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
     {
       var tipo_usuario = localStorage.getItem('tipo_usuario')
 
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
   
     }
@@ -63,10 +63,6 @@ export class LoginComponent implements OnInit {
       /*}*/
     }
     return false;
-    /*1. Usuario encontrado:
-    { "estado": "ok", "result": [ { "id_usuario": 1, "tipo_usuario": 1 } ] }
-    2. Usuario no encontrado:
-    { "estado": "error", "descripcion": "el usuario no se ha encontrado" }*/  
   }  
 
 
@@ -75,7 +71,7 @@ export class LoginComponent implements OnInit {
   {
     await localStorage.setItem('id_usuario',Exito.result[0].id_usuario);
     await localStorage.setItem('correo_usuario',correo);
-    await localStorage.setItem('tipo_usuario',Exito.result[0].tipo_usuario);
+    await localStorage.setItem('tipo_usuario',Exito.result[0].tipo_usuario_id_tipo);
 
     var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
  
@@ -85,11 +81,11 @@ export class LoginComponent implements OnInit {
     { 
       var tipo_usuario = localStorage.getItem('tipo_usuario')
       
-      if(tipo_usuario==="0")//Administrador
+      if(tipo_usuario==="1")//Administrador
       { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="1")//Tienda
+      else if(tipo_usuario==="2")//Tienda
       { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="2")//Usuario
+      else if(tipo_usuario==="3")//Usuario
       { await this.router.navigate(['perfil-usuario']);  }
       else
       { this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
