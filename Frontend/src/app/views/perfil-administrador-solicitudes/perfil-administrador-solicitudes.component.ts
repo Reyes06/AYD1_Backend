@@ -63,15 +63,15 @@ export class PerfilAdministradorSolicitudesComponent implements OnInit {
   }
 
   aprobar(id_formulario:any){
-    this.http.post(this.constantes.URL_BASE + "formulario/aprobar/" + id_formulario,
-    {  }
+    this.http.post(this.constantes.URL_BASE + "formulario/aprobar",
+    { id_formulario: id_formulario }
     ).subscribe( data => this.ExitoalAceptarComercio(data), err => this.MensajeError(err) );
     this.CargarDatosPaginaAux();
   }
 
   rechazar(id_formulario:any){
-    this.http.post(this.constantes.URL_BASE + "formulario/denegar/" + id_formulario,
-    {  }
+    this.http.post(this.constantes.URL_BASE + "formulario/denegar",
+    { id_formulario: id_formulario }
     ).subscribe( data => this.ExitoalDenegarComercio(data), err => this.MensajeError(err) );
     this.CargarDatosPaginaAux();
   }

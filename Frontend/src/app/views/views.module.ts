@@ -30,6 +30,7 @@ import { PerfilTiendaDashboardComponent } from './perfil-tienda-dashboard/perfil
 import { PerfilUsuarioDashboardComponent } from './perfil-usuario-dashboard/perfil-usuario-dashboard.component';
 import { RegistrarTiendaTerminosyCondicionesComponent } from './registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
+import { PerfilTiendaAdministrarDepartamentosComponent } from './perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuar
     PerfilUsuarioDashboardComponent,
     RegistrarTiendaTerminosyCondicionesComponent,
     RegistrarUsuarioTerminosyCondicionesComponent,
+    PerfilTiendaAdministrarDepartamentosComponent,
 
   ],
   exports: [
