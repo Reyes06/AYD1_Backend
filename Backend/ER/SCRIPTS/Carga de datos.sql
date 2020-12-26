@@ -68,6 +68,14 @@ INSERT INTO sector (nombre) VALUES ("Perfumeria");
 INSERT INTO sector (nombre) VALUES ("Carniceria");
 INSERT INTO sector (nombre) VALUES ("Tecnologia");
 
+INSERT INTO categoria (nombre) VALUES ("Gaseosa");
+INSERT INTO categoria (nombre) VALUES ("Carne");
+INSERT INTO categoria (nombre) VALUES ("Fruta");
+INSERT INTO categoria (nombre) VALUES ("Vegetal");
+INSERT INTO categoria (nombre) VALUES ("Animal");
+INSERT INTO categoria (nombre) VALUES ("Persona");
+
+
 
 delete from sector where id_sector < 3;
 
