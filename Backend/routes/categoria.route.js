@@ -3,23 +3,16 @@ var router = express.Router();
 var objectConnection = require('../dbcontroller/dbconnection');
 var mysql = require('mysql');
 
-router.get('/', async function(req, res, next) {
-    con = await mysql.createConnection(objectConnection);
+router.get('/', function(req, res, next) {
+    con = mysql.createConnection(objectConnection);
+    con.connect();
 
-    await con.connect(function(err) {
-        if (err) throw err;
-        console.log("DB Connection OK")
-    });
-    const query = "SELECT * FROM categoria";
-    console.log(query);
-    await con.query(query, function (err, result, fields) {
+    con.query("SELECT * FROM categoria", function (err, result, fields) {
+        console.log("SELECT FROM categoria");
         if (err) throw err;
         res.send( result);
+        con.end();
     })
-    con.end(function(err) {
-        if (err) throw err;
-        console.log("DB Connection FINISH")
-    });
 })
 
 module.exports = router;
