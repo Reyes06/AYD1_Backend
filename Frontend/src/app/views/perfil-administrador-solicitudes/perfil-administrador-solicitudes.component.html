@@ -18,10 +18,14 @@
                     <!--Table head-->
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
-                        <th>Nombre</th>
+                        <th>Logo</th>
+                        <th>Tienda</th>
                         <th>Direccion</th>
                         <th>Estado</th>
-                        <th>Usuario</th>
+                        <th>Propietario</th>
+                        <th>Sexo</th>
+                        <th>Nacimiento</th>
+                        <th>Correo</th>
                         <th>Decision</th>
                     </tr>
                     </thead>
@@ -30,10 +34,14 @@
                     <!--Table body-->
                     <tbody>
                     <tr *ngFor="let item of users">
-                        <td>{{item.nombre}}</td>
+                        <td><img src={{item.logo}} width="100" height="100"></td>
+                        <td>{{item.nombre_tienda}}</td>
                         <td>{{item.direccion}}</td>
                         <td>{{item.estado}}</td>
-                        <td>{{item.usuario_id_usuario}}</td>
+                        <td>{{item.usuario_nombre}} {{item.usuario_apellido}}</td>
+                        <td>{{item.usuario_sexo}}</td>
+                        <td>{{item.usuario_fecha_nacimiento}}</td>
+                        <td>{{item.usuario_correo_electronico}}</td>
                         <td *ngIf="item.estado=='PENDIENTE'">
                             <button type="button" class="btn btn-success" (click)="aprobar(item.id_formulario)">Aceptar</button>
                             <button type="button" class="btn btn-danger" (click)="rechazar(item.id_formulario)">Rechazar</button>
