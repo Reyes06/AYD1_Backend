@@ -10,7 +10,7 @@ router.get('/:id_depto', async function(req, res, next) {
     con = await mysql.createConnection(objectConnection);
 
     await con.connect();
-    const query = `SELECT id_producto, nombre, descripcion FROM producto WHERE depto_tienda_id_depto = ${id_depto}`;
+    const query = `SELECT id_producto, nombre, descripcion, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`;
     console.log(query);
     await con.query(query, function (err, result, fields) {
         if (err) throw err;
