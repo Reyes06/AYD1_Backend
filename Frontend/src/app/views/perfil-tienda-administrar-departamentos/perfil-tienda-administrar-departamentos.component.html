@@ -23,6 +23,7 @@
                         <th>Número</th>
                         <th>Departamento</th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <!--Table head-->
@@ -35,6 +36,9 @@
                         <td>
                             <button id="1" type="button" class="btn btn-danger" (click)="EliminarDepartamento(1)">Eliminar</button>
                         </td>
+                        <td>
+                            <button id="1,Hombres" type="button" class="btn btn-info" (click)="EditarProducto("1,Hombres")">Editar</button>
+                        </td>                        
                     </tr>-->
                     </tbody>
                     <!--Table body-->
@@ -126,6 +130,12 @@
                         <mdb-card-body class="mx-4">
   
                           <div class="md-form">
+                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_id_departamento" class="form-control" mdbInput readonly>
+                            <label for="form104">ID Departamento</label>
+                          </div>
+
+                          <div class="md-form">
                             <mdb-icon fas icon="clipboard" class="prefix grey-text"></mdb-icon>
                             <input type="text" id="form_nombre_departamento" class="form-control" mdbInput>
                             <label for="form104">Nombre Departamento</label>
@@ -138,6 +148,14 @@
                             <div class="col-md-12">
                               <div class="text-center">
                                 <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarDepartamento()">Agregar</button>
+                              </div>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                              <div class="text-center">
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarDepartamentoAux()">Editar</button>
                               </div>
                             </div>
                             <!--Grid column-->

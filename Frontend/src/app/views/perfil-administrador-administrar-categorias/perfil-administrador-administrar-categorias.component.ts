@@ -14,6 +14,9 @@ import { ClaseVerificarCredenciales } from '../../models/clases';
 export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit {
 
 
+  separador: String = "ôﻶ"
+
+
   constructor(private router: Router, private http: HttpClient, private constantes: ConstantesService, private VerificarCredencialesService: VerificarCredencialesService) { }
 
 
@@ -97,8 +100,8 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
       Html += "(click)=\"EliminarCategoria(" + Categorias[i].id_categoria + ")\">Eliminar</button>\n";
       Html += "</td>\n";
       Html += "<td>\n";
-      Html += "<button id=\"" + Categorias[i].id_categoria + "," + Categorias[i].nombre + "\" class=\"btn btn-info\" ";
-      Html += "(click)=\"EditarCategoria(\"" + Categorias[i].id_categoria + "," + Categorias[i].nombre + "\")\">Editar</button>\n";
+      Html += "<button id=\"" + Categorias[i].id_categoria + this.separador + Categorias[i].nombre + "\" class=\"btn btn-info\" ";
+      Html += "(click)=\"EditarCategoria(\"" + Categorias[i].id_categoria + this.separador + Categorias[i].nombre + "\")\">Editar</button>\n";
       Html += "</td>\n";
       Html += "</tr> \n\n";
       }
@@ -116,7 +119,7 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
           this.EliminarCategoria(id);
         });
         //Editar Categoría 
-        var b = <HTMLInputElement>document.getElementById(Categorias[i].id_categoria + "," + Categorias[i].nombre);
+        var b = <HTMLInputElement>document.getElementById(Categorias[i].id_categoria + this.separador + Categorias[i].nombre);
         b.addEventListener("click", (evt) => {
           const element = evt.target as HTMLInputElement;    
           var id = element.id;
@@ -139,6 +142,7 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
   ExitoalEliminarCategoria = async (Exito: any) => {//void
     console.log(Exito);
     await this.constantes.DesplegarMensajeTemporaldeExito("Categoría eliminada con éxito", 2000);
+    await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
   }
   
@@ -146,14 +150,13 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
       console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Categoría no eliminada", 3000);
   }
 
+
   //Editar Categoria-------------------------------------------------------------------------------
 
   EditarCategoria = async (id_y_nombre_categoria: any) => {//void
-    var split_id_y_nombre_categoria = id_y_nombre_categoria.split(",");
+    var split_id_y_nombre_categoria = id_y_nombre_categoria.split(this.separador);
     var id_categoria = split_id_y_nombre_categoria[0];
-    var nombre_categoria = "";
-    for(var i=1; i<split_id_y_nombre_categoria.length; i++)
-    { nombre_categoria += split_id_y_nombre_categoria[i]; }
+    var nombre_categoria = split_id_y_nombre_categoria[1];
     
     var ID_Categoria = <HTMLInputElement>document.getElementById("form_id_categoria");
     ID_Categoria.value = id_categoria;
@@ -199,6 +202,7 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
   ExitoalEditarCategoriaAuxAux = async (Exito: any) => {//void
     console.log(Exito);
     await this.constantes.DesplegarMensajePermantendeExito("Categoría editada con éxito", "");
+    await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
 
   }
@@ -246,6 +250,7 @@ export class PerfilAdministradorAdministrarCategoriasComponent implements OnInit
   ExitoalAgregarCategoriaAux = async (Exito: any) => {//void
     console.log(Exito);
     await this.constantes.DesplegarMensajePermantendeExito("Categoría agregada con éxito", "");
+    await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
   }
     

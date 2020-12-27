@@ -45,4 +45,18 @@ router.post('/borrar', function(req, res, next) {
     });
 });
 
+/*UPDATE departamento*/
+router.post('/editar', function(req, res, next) {
+    const {id_depto, nombre} = req.body;
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`UPDATE depto_tienda SET nombre = '${nombre}' WHERE id_depto = ${id_depto}`, function (err, result, fields) {
+        console.log("UPDATE depto_tienda");
+        if (err) throw err;
+        res.send( {"estado": "ok"});
+        con.end();
+    });
+});
+
 module.exports = router;
