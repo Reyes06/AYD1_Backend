@@ -108,7 +108,7 @@ router.get('/', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query( "Select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto", function (err, result, fields) {
+    con.query( "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto", function (err, result, fields) {
         if (err) throw err;
         res.send( result);
         con.end();
