@@ -4,15 +4,15 @@
         <mdb-card cascade="true" narrower="true" class="mt-5">
             <!--Card image-->
             <div class="view gradient-card-header blue darken-2">
-                <h4 class="h4-responsive text-white">Productos</h4>
+                <h4 class="h4-responsive text-white">Categorías</h4>
             </div>
             <!--/Card image-->
             <!--Card content-->
             <mdb-card-body>
 
-                <h3 class="mt-5 text-left"><strong>Eliminar Producto</strong></h3>
+                <h3 class="mt-5 text-left"><strong>Eliminar o Editar Categoría</strong></h3>
 
-                <div id="Div_Tabla_Productos" #Div_Tabla_Productos>
+                <div id="Div_Tabla_Categorias" #Div_Tabla_Categorias>
                 
                 <!--Table-->
                 <table class="table">
@@ -21,12 +21,8 @@
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th>Número</th>
-                        <th>ID Producto</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Imagen</th>
-                        <th>Inventario</th>
+                        <th>Categoría</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -36,13 +32,12 @@
                     <tbody>
                     <!--<tr>
                         <td>1</td>
-                        <td>143</td>
-                        <td>Camisa</td>
-                        <td>100% de Algodón</td>
-                        <td>Imágen</td>
-                        <td>0</td>
+                        <td>Hombres</td>
                         <td>
-                            <button id="1" type="button" class="btn btn-danger" (click)="EliminarDepartamento(1)">Eliminar</button>
+                            <button id="1" type="button" class="btn btn-danger" (click)="EliminarCategoria(1)">Eliminar</button>
+                        </td>
+                        <td>
+                            <button id="1,Hombres" type="button" class="btn btn-info" (click)="EditarCategoria("1,Hombres")">Editar</button>
                         </td>
                     </tr>-->
                     </tbody>
@@ -106,7 +101,7 @@
 
 
 
-  <div class="row">
+<div class="row">
 
     <div class="col-md-9">
   
@@ -126,7 +121,7 @@
                         <div class="header blue-gradient">
                     
                           <div class="row d-flex justify-content-center">
-                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Producto</h3>
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar o Editar Categoría</h3>
                           </div>
                     
                         </div>
@@ -135,40 +130,15 @@
                         <mdb-card-body class="mx-4">
   
                           <div class="md-form">
-                            <mdb-icon fas icon="box-open" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_nombre" class="form-nombre" mdbInput>
-                            <label for="form104">Nombre</label>
-                          </div>
-                          
-                          <div class="md-form">
-                            <mdb-icon fas icon="grip-lines" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_descripcion" class="form-descripcion" mdbInput>
-                            <label for="form105">Descripción</label>
+                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_id_categoria" class="form-control" mdbInput readonly>
+                            <label for="form104">ID Categoría</label>
                           </div>
 
                           <div class="md-form">
-                            <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
-                            <input type="number" id="form_descripcion" class="form-precio" mdbInput>
-                            <label for="form105">Precio</label>
-                          </div>                          
-  
-                          <div>
-                            <label>Departamento</label> 
-                          </div>
-  
-                          <select id="id_departamento">
-                            <!--<option value="1">Bebidas</option>
-                            <option value="2">Comida</option>-->
-                          </select>
-  
-                          <div>
-                            <label></label> 
-                          </div>
-  
-                          <div>
-                          <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Imagen Producto</label>
-                          <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
-                          <img [src]="photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="photoInput.click()">
+                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_nombre_categoria" class="form-control" mdbInput>
+                            <label for="form104">Nombre Categoría</label>
                           </div>
                         
                           <!--Grid row-->
@@ -177,11 +147,19 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                               <div class="text-center">
-                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarProducto()">Agregar Producto</button>
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarCategoria()">Agregar</button>
                               </div>
                             </div>
                             <!--Grid column-->
-                    
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                  <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarCategoriaAux()">Editar</button>
+                                </div>
+                              </div>
+                              <!--Grid column-->
+
                           </div>
                           <!--Grid row-->
                         </mdb-card-body>

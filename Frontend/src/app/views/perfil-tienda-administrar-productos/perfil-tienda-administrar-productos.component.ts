@@ -80,7 +80,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
     ExitoalCargarTienda = async (Exito: any) => {//void
       var id_tienda = Exito.tiendas[0].id_tienda;
       await this.CargarProductos(id_tienda);
-      await this.constantes.sleep(5000);
+      await this.constantes.sleep(3000);
       await this.CargarDepartamentos(id_tienda);
     }
     
@@ -115,6 +115,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       Encabezado += "<th>ID Producto</th>\n";
       Encabezado += "<th>Nombre</th>\n";
       Encabezado += "<th>Descripción</th>\n";
+      Encabezado += "<th>Precio</th>\n";
       Encabezado += "<th>Imagen</th>\n";
       Encabezado += "<th>Inventario</th>\n";
       Encabezado += "<th></th>\n";
@@ -132,6 +133,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       Html += "<td>" + Productos[i].id_producto + "</td>\n";
       Html += "<td>" + Productos[i].nombre + "</td>\n";
       Html += "<td>" + Productos[i].descripcion + "</td>\n";
+      Html += "<td>0.00</td>\n";
       Html += "<td>" + "Productos[i].imagen" + "</td>\n";
       Html += "<td>0</td>\n";
       Html += "<td>\n";
@@ -207,10 +209,11 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
   AgregarProducto = async () => {//void
     var nombre = <HTMLInputElement>document.getElementById("form_nombre");
     var descripcion = <HTMLInputElement>document.getElementById("form_descripcion");
+    var precio = <HTMLInputElement>document.getElementById("form_precio");
     var id_depto = <HTMLInputElement>document.getElementById("id_departamento");
 
     if(nombre.value!=null && nombre.value!="" && descripcion.value!=null && descripcion.value!="" 
-    && id_depto.value!=null && id_depto.value!="" && this.photoSelected!=null)
+    && precio.value!=null && precio.value!="" && id_depto.value!=null && id_depto.value!="" && this.photoSelected!=null)
     {
       var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
       if(ClaseVerificarCredenciales.CredencialesExisten==true)

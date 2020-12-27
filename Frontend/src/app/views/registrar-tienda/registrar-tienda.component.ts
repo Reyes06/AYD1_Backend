@@ -51,7 +51,11 @@ export class RegistrarTiendaComponent implements OnInit {
       { await this.router.navigate(['perfil-usuario']);  }
     }
     else
-    { await this.CargarPaises(); await this.CargarSectores(); }
+    { 
+      await this.CargarPaises();
+      await this.constantes.sleep(3000);
+      await this.CargarSectores(); 
+    }
     
   }
 

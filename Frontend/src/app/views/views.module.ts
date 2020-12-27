@@ -32,6 +32,7 @@ import { RegistrarTiendaTerminosyCondicionesComponent } from './registrar-tienda
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
 import { PerfilTiendaAdministrarProductosComponent } from './perfil-tienda-administrar-productos/perfil-tienda-administrar-productos.component';
+import { PerfilAdministradorAdministrarCategoriasComponent } from './perfil-administrador-administrar-categorias/perfil-administrador-administrar-categorias.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { PerfilTiendaAdministrarProductosComponent } from './perfil-tienda-admin
     RegistrarUsuarioTerminosyCondicionesComponent,
     PerfilTiendaAdministrarDepartamentosComponent,
     PerfilTiendaAdministrarProductosComponent,
+    PerfilAdministradorAdministrarCategoriasComponent,
 
   ],
   exports: [
