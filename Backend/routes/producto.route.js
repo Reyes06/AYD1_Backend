@@ -13,6 +13,11 @@ router.get('/:id_depto', function(req, res, next) {
     con.query(`SELECT id_producto, nombre, descripcion, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
         console.log("SELECT FROM producto")
         if (err) throw err;
+
+        for(let i = 0; i < result.length; i++){
+            result[i].imagen = result[i].imagen.toString();
+        }
+
         res.send( {"productos": result});
         con.end();
     });
@@ -90,6 +95,34 @@ router.post('/categorias/add', function(req, res, next) {
     });
 });
 
+/*GET inventario de producto*/
+router.post('/inventario', function(req, res, next) {
+    const {id_producto, nueva_cantidad} = req.body;
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`UPDATE inventario SET cantidad = ${nueva_cantidad} WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("UPDATE inventario");
+        if (err) throw err;
+        res.send( {"estado": "ok"});
+        con.end();
+    });
+});
+
+/*GET inventarios de un producto*/
+router.get('/inventario/:id_producto', function(req, res, next) {
+    const {id_producto} = req.params;
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`SELECT * FROM inventario WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("SELECT * FROM inventario");
+        if (err) throw err;
+        res.send( result);
+        con.end();
+    });
+});
+
 /*UPDATE inventario de productos*/
 router.post('/inventario', function(req, res, next) {
     const {id_producto, nueva_cantidad} = req.body;
@@ -108,7 +141,7 @@ router.get('/', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query( "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto", function (err, result, fields) {
+    con.query( "select pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, dep.nombre as departamento from producto pr, depto_tienda dep where pr.depto_tienda_id_depto = dep.id_depto", function (err, result, fields) {
         if (err) throw err;
 
         for(let i = 0; i < result.length; i++){

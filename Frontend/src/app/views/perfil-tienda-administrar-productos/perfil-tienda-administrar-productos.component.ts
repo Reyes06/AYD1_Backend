@@ -21,6 +21,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
 
   ListadeIDsDepartamentos: any = [];
   separador: String = "ôﻶ"
+  ListadeIDsProductos: any = [];
 
 
   photoSelected: any;//string | ArrayBuffer;
@@ -88,9 +89,12 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
     ExitoalCargarTienda = async (Exito: any) => {//void
       var id_tienda = Exito.tiendas[0].id_tienda;
       this.ListadeIDsDepartamentos = [];
+      this.ListadeIDsProductos = [];
       await this.CargarDepartamentos(id_tienda);
       await this.constantes.sleep(3000);
       await this.CargarProductos(this.ListadeIDsDepartamentos);
+      await this.constantes.sleep(3000);
+      await this.CargarInventariosdeProductos(this.ListadeIDsProductos);
     }
     
     ErroralCargarTienda = async (Error: any) => {//void
@@ -143,8 +147,11 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
   
     ExitoalCargarProductos = async (Exito: any, ListadeProductos: any) => {//void
       var Productos = Exito.productos; 
-      for(var i=0; i<ListadeProductos.length; i++)
-      { ListadeProductos.push(Productos[i]); }
+      for(var i=0; i<Productos.length; i++)
+      { 
+        ListadeProductos.push(Productos[i]);
+        this.ListadeIDsProductos.push(Productos[i].id_producto)
+      }
     }
     
     ErroralCargarProductos = async (Error: any) => {//void
@@ -182,9 +189,14 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       Html += "<td>" + Productos[i].nombre + "</td>\n";
       Html += "<td>" + Productos[i].descripcion + "</td>\n";
       Html += "<td>0.00</td>\n";
-      Html += "<td>" + "Productos[i].imagen" + "</td>\n";
-      Html += "<td>0</td>\n";
-
+      Html += "<td>"
+      Html += "<img\n";
+      Html += "src=\"" + Productos[i].imagen + "\"";
+      Html += "alt=\"...\"";
+      Html += "class=\"img-fluid\"";
+      Html += "/>";
+      Html += "</td>"
+      Html += "<td><input id=\"Inventario" + Productos[i].id_producto + "\" type=\"number\" min=\"1\" pattern=\"^[0-9]+\"></td>\n";
       Html += "<td>\n";
       Html += "<button id=\"" + Productos[i].id_producto + "\" class=\"btn btn-danger\" ";
       Html += "(click)=\"EliminarProducto(" + Productos[i].id_producto + ")\">Eliminar Producto</button>\n";
@@ -234,13 +246,37 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
           this.EditarProducto(id);
         });
         //Editar Inventario
-        var c = <HTMLInputElement>document.getElementById(Productos[i].id_producto + ",EditarInventario");
+        var c = <HTMLInputElement>document.getElementById(Productos[i].id_producto + this.separador + "EditarInventario");
         c.addEventListener("click", (evt) => {
           const element = evt.target as HTMLInputElement;    
           var id = element.id;
           this.EditarInventario(id);
         });
       }
+    }
+
+
+    //Inventarios de Productos-----------------------------------------------------------------------------------------
+  
+    CargarInventariosdeProductos = async (ListadeIDsProductos: any) => {//void
+      for(var i=0; i<this.ListadeIDsProductos.length; i++)
+      {
+        await this.http.get(this.constantes.URL_BASE + "producto/inventario/" + ListadeIDsProductos[i]
+        ).subscribe( data => this.ExitoalCargarInventariosdeProductos(data), err => this.ErroralCargarInventariosdeProductos(err) );
+        await this.constantes.sleep(1000);
+      }
+    }
+  
+    ExitoalCargarInventariosdeProductos = async (Exito: any) => {//void
+      if( Exito.length>0 )
+      {
+        var Inventario_Producto = <HTMLInputElement>document.getElementById("Inventario"+Exito[0].producto_id_producto);
+        Inventario_Producto.value = Exito[0].cantidad;
+      }
+    }
+    
+    ErroralCargarInventariosdeProductos = async (Error: any) => {//void
+        console.log(Error); /*await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Productos de la Tienda no cargados", 3000);*/
     }
 
 
@@ -257,6 +293,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
   ExitoalEliminarProducto = async (Exito: any) => {//void
     console.log(Exito);
     this.constantes.DesplegarMensajeTemporaldeExito("Producto eliminado con éxito", 2000);
+    await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
   }
   
@@ -302,7 +339,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       var nombre = <HTMLInputElement>document.getElementById("form_nombre");
       var descripcion = <HTMLInputElement>document.getElementById("form_descripcion");
       var id_depto = <HTMLInputElement>document.getElementById("id_departamento");
-      console.log("ya voy por agregar producto aux");
+      console.log("Voy en agregar producto aux y se los estoy agregando al depto: " + id_depto.value);
       await this.http.post(this.constantes.URL_BASE + "producto/nuevo",
       { nombre: nombre.value, descripcion: descripcion.value, id_depto: id_depto.value, imagen: this.photoSelected}
       ).subscribe( data => this.ExitoalAgregarProducto(data), err => this.ErroralAgregarProducto(err) );
@@ -312,6 +349,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
     ExitoalAgregarProducto = async (Exito: any) => {//void
       console.log(Exito);
       await this.constantes.DesplegarMensajePermantendeExito("Producto agregado con éxito", "");
+      await this.constantes.sleep(3000);
       await this.CargarDatosPagina();
     }
     
@@ -320,18 +358,124 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
     }
 
 
-    //Editar Producto-------------------------------------------------------------------------------
+  //Editar Producto-------------------------------------------------------------------------------
 
-    EditarProducto = async (id_producto: any) => {//void
-      console.log(id_producto);
+  EditarProducto = async (datos_producto: any) => {//void
+    var split_datos_producto = datos_producto.split(this.separador);
+    var id_producto = split_datos_producto[0];
+    var nombre = split_datos_producto[1];
+    var descripcion = split_datos_producto[2];
+    var precio = split_datos_producto[3];
+    var imagen = split_datos_producto[4];
+    console.log(imagen);
+    var form_id_producto = <HTMLInputElement>document.getElementById("form_id_producto");
+    form_id_producto.value = id_producto;
+    var form_nombre = <HTMLInputElement>document.getElementById("form_nombre");
+    form_nombre.value = nombre;
+    var form_descripcion = <HTMLInputElement>document.getElementById("form_descripcion");
+    form_descripcion.value = descripcion;
+    var form_precio = <HTMLInputElement>document.getElementById("form_precio");
+    form_precio.value = precio;
+    this.photoSelected = imagen;
+  }
+
+  EditarDepartamentoAux = async () => {//void
+    var id_departamento = <HTMLInputElement>document.getElementById("form_id_departamento")
+    var nombre_departamento = <HTMLInputElement>document.getElementById("form_nombre_departamento")
+    
+    if(id_departamento.value!=null && id_departamento.value!="" && nombre_departamento.value!=null && nombre_departamento.value!="")
+    {
+      var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
+      if(ClaseVerificarCredenciales.CredencialesExisten==true)
+      {
+        var tipo_usuario = localStorage.getItem('tipo_usuario')
+  
+        if(tipo_usuario==="1")//Administrador
+        { await this.router.navigate(['perfil-administrador']); }
+        else if(tipo_usuario==="2")//Tienda
+        { await this.EditarDepartamentoAuxAux(id_departamento.value, nombre_departamento.value);}
+        else if(tipo_usuario==="3")//Usuario
+        { await this.router.navigate(['perfil-usuario']);  }
+      }
+      else
+      { await this.router.navigate(['login']); }
     }
+    else
+    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 4000); }
+    
+  }
+  
+  EditarDepartamentoAuxAux = async (id_departamento: any, nombre_departamento: any) => {//void
+    await this.http.post(this.constantes.URL_BASE + "departamento/editar",
+    {
+      id_depto: id_departamento,
+      nombre: nombre_departamento
+    }
+    ).subscribe( data => this.ExitoalEditarDepartamentoAuxAux(data), err => this.ErroralEditarDepartamentoAuxAux(err) );
+  }
+  
+  ExitoalEditarDepartamentoAuxAux = async (Exito: any) => {//void
+    console.log(Exito);
+    await this.constantes.DesplegarMensajePermantendeExito("Departamento editado con éxito", "");
+    await this.constantes.sleep(3000);
+    await this.CargarDatosPagina();
+
+  }
+    
+  ErroralEditarDepartamentoAuxAux = async (Error: any) => {//void
+    console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no editado", 3000);
+  }
 
 
     //Editar Inventario-------------------------------------------------------------------------------
 
-    EditarInventario = async (id_producto: any) => {//void
-      console.log(id_producto);
+    EditarInventario = async (id_inventario_y_palabra: any) => {//void
+      var split_id_inventario_y_palabra = id_inventario_y_palabra.split(this.separador);
+      var id_inventario = split_id_inventario_y_palabra[0];
+      
+      var cantidad_inventario = <HTMLInputElement>document.getElementById("Inventario" + id_inventario);
+      
+      if(cantidad_inventario.value!=null && cantidad_inventario.value!="" && cantidad_inventario.checked==true)
+      {
+        var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
+        if(ClaseVerificarCredenciales.CredencialesExisten==true)
+        {
+          var tipo_usuario = localStorage.getItem('tipo_usuario')
+    
+          if(tipo_usuario==="1")//Administrador
+          { await this.router.navigate(['perfil-administrador']); }
+          else if(tipo_usuario==="2")//Tienda
+          { await this.EditarDepartamentoAuxAux(id_inventario, cantidad_inventario);}
+          else if(tipo_usuario==="3")//Usuario
+          { await this.router.navigate(['perfil-usuario']);  }
+        }
+        else
+        { await this.router.navigate(['login']); }
+      }
+      else
+      { this.constantes.DesplegarMensajeTemporaldeError("Inventario no válido", 4000); }
+      
     }
-
+    
+    EditarInventarioAux = async (id_inventario: any, cantidad_inventario: any) => {//void
+      await this.http.post(this.constantes.URL_BASE + "producto/inventario",
+      {
+        id_producto: id_inventario, 
+        nueva_cantidad: cantidad_inventario
+      }
+      ).subscribe( data => this.ExitoalEditarInventarioAux(data), err => this.ErroralEditarInventarioAux(err) );
+    }
+    
+    ExitoalEditarInventarioAux = async (Exito: any) => {//void
+      console.log(Exito);
+      await this.constantes.DesplegarMensajePermantendeExito("Inventario editado con éxito", "");
+      await this.constantes.sleep(3000);
+      await this.CargarDatosPagina();
+  
+    }
+      
+    ErroralEditarInventarioAux = async (Error: any) => {//void
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Inventario no editado", 3000);
+    }
 
 }
