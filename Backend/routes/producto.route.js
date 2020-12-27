@@ -110,6 +110,11 @@ router.get('/', function(req, res, next) {
 
     con.query( "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, c.nombre as categoria from producto_categoria pc, categoria c, producto pr where pc.categoria_id_categoria = c.id_categoria and pc.producto_id_producto = pr.id_producto", function (err, result, fields) {
         if (err) throw err;
+
+        for(let i = 0; i < result.length; i++){
+            result[i].imagen = result[i].imagen.toString();
+        }
+
         res.send( result);
         con.end();
     });

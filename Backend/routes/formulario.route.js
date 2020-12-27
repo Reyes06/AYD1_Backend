@@ -9,9 +9,12 @@ router.get('/', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query("SELECT * FROM formulario WHERE estado = 'PENDIENTE'", function (err, result, fields) {
+    con.query("SELECT * FROM formulario WHERE estado = 'PENDIENTE' ORDER BY id_formulario DESC", function (err, result, fields) {
         console.log("SELECT FROM formulario");
         if (err) throw err;
+        for(let i = 0; i < result.length; i++){
+            result[i].logo = result[i].logo.toString();
+        }
         res.send( result);
         con.end();
     });
