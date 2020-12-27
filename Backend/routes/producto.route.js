@@ -49,11 +49,16 @@ router.post('/borrar', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query(`DELETE FROM producto WHERE id_producto = ${id_producto}`, function (err, result, fields) {
-        console.log("DELETE FROM producto")
+    con.query(`DELETE FROM inventario WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("DELETE FROM inventario")
         if (err) throw err;
-        res.send( {"estado": "ok"});
-        con.end();
+
+        con.query(`DELETE FROM producto WHERE id_producto = ${id_producto}`, function (err, result, fields) {
+            console.log("DELETE FROM producto")
+            if (err) throw err;
+            res.send( {"estado": "ok"});
+            con.end();
+        });
     });
 });
 
