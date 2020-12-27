@@ -1,22 +1,12 @@
 
 <div class="card mb-3" style="max-width: 540px">
   <div class="row g-0" *ngFor="let items of productos">
-    <div class="col-md-4" *ngIf="items.imagen != ''">
+    <div class="col-md-4">
       <img
-        src={{items.imagen}}
+        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
         alt="..."
         class="img-fluid"
       />
-    </div>
-    <div class="col-md-4" *ngIf="items.imagen === ''">
-      <img
-        src="../../../assets/img/angular-mdb.png"
-        alt="..."
-        class="img-fluid"
-      />
-      <p class="card-text">
-        <small class="text-muted">&nbsp;&nbsp;&nbsp; 404 - Image not found</small>
-      </p>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -24,6 +14,9 @@
         <h5 class="card-title">{{items.nombre}}</h5>
         <p class="card-text">
           {{items.descripcion}}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">Last updated 3 mins ago</small>
         </p>
       </div>
     </div>

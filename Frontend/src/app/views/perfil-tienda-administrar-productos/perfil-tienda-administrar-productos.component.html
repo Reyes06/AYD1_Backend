@@ -4,15 +4,15 @@
         <mdb-card cascade="true" narrower="true" class="mt-5">
             <!--Card image-->
             <div class="view gradient-card-header blue darken-2">
-                <h4 class="h4-responsive text-white">Departamentos</h4>
+                <h4 class="h4-responsive text-white">Productos</h4>
             </div>
             <!--/Card image-->
             <!--Card content-->
             <mdb-card-body>
 
-                <h3 class="mt-5 text-left"><strong>Eliminar Departamento</strong></h3>
+                <h3 class="mt-5 text-left"><strong>Eliminar Producto</strong></h3>
 
-                <div id="Div_Tabla_Departamentos" #Div_Tabla_Departamentos>
+                <div id="Div_Tabla_Productos" #Div_Tabla_Productos>
                 
                 <!--Table-->
                 <table class="table">
@@ -21,7 +21,11 @@
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th>Número</th>
-                        <th>Departamento</th>
+                        <th>ID Producto</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
+                        <th>Inventario</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -31,7 +35,11 @@
                     <tbody>
                     <!--<tr>
                         <td>1</td>
-                        <td>Hombres</td>
+                        <td>143</td>
+                        <td>Camisa</td>
+                        <td>100% de Algodón</td>
+                        <td>Imágen</td>
+                        <td>0</td>
                         <td>
                             <button id="1" type="button" class="btn btn-danger" (click)="EliminarDepartamento(1)">Eliminar</button>
                         </td>
@@ -97,7 +105,7 @@
 
 
 
-<div class="row">
+  <div class="row">
 
     <div class="col-md-9">
   
@@ -117,7 +125,7 @@
                         <div class="header blue-gradient">
                     
                           <div class="row d-flex justify-content-center">
-                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Departamento</h3>
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Producto</h3>
                           </div>
                     
                         </div>
@@ -126,9 +134,34 @@
                         <mdb-card-body class="mx-4">
   
                           <div class="md-form">
-                            <mdb-icon fas icon="clipboard" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_nombre_departamento" class="form-control" mdbInput>
-                            <label for="form104">Nombre Departamento</label>
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_nombre" class="form-nombre" mdbInput>
+                            <label for="form104">Nombre</label>
+                          </div>
+                          
+                          <div class="md-form">
+                            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                            <input type="text" id="form_descripcion" class="form-descripcion" mdbInput>
+                            <label for="form105">Descripción</label>
+                          </div>
+  
+                          <div>
+                            <label>Departamento</label> 
+                          </div>
+  
+                          <select id="id_departamento">
+                            <!--<option value="1">Bebidas</option>
+                            <option value="2">Comida</option>-->
+                          </select>
+  
+                          <div>
+                            <label></label> 
+                          </div>
+  
+                          <div>
+                          <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Imagen Producto</label>
+                          <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                          <img [src]="photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="photoInput.click()">
                           </div>
                         
                           <!--Grid row-->
@@ -137,7 +170,7 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                               <div class="text-center">
-                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarDepartamento()">Agregar</button>
+                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarProducto()">Agregar Producto</button>
                               </div>
                             </div>
                             <!--Grid column-->

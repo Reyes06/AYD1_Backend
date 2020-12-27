@@ -16,6 +16,8 @@ export class PerfilTiendaComponent implements OnInit {
   
 
   ngOnInit() {
+    var id_usuario = localStorage.getItem('id_usuario');
+    console.log(id_usuario);
     this.CargarPagina();
   }
 

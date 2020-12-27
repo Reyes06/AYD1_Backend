@@ -104,7 +104,7 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
       Html += "<td>" + Departamentos[i].nombre + "</td>\n";
       Html += "<td>\n";
       Html += "<button id=\"" + Departamentos[i].id_depto + "\" class=\"btn btn-danger\" ";
-      Html += "(click)=\"EliminarDepartamento(" + Departamentos[i].id_dept + ")\">Eliminar Departamento</button>\n";
+      Html += "(click)=\"EliminarDepartamento(" + Departamentos[i].id_depto + ")\">Eliminar Departamento</button>\n";
       Html += "</td>\n";
       Html += "</tr> \n\n";
       }
@@ -208,7 +208,7 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
     }
     
     ErroralAgregarDepartamentoAuxAux = async (Error: any) => {//void
-        console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no agregado bbbbbb", 3000);
+        console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no agregado", 3000);
     }
 
 

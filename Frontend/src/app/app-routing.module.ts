@@ -21,6 +21,7 @@ import { PerfilUsuarioDashboardComponent } from './views/perfil-usuario-dashboar
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './views/registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 import { RegistrarTiendaTerminosyCondicionesComponent } from './views/registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './views/perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
+import { PerfilTiendaAdministrarProductosComponent } from './views/perfil-tienda-administrar-productos/perfil-tienda-administrar-productos.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'perfil-tienda', component: PerfilTiendaComponent},
   {path: 'perfil-tienda/Dashboard', component: PerfilTiendaDashboardComponent},
   {path: 'perfil-tienda/AdministrarDepartamentos', component: PerfilTiendaAdministrarDepartamentosComponent},
+  {path: 'perfil-tienda/AdministrarProductos', component: PerfilTiendaAdministrarProductosComponent},
   {path: 'perfil-usuario', component: PerfilUsuarioComponent},
   {path: 'perfil-usuario/Dashboard', component: PerfilUsuarioDashboardComponent},
   {path: 'dashboards/v1', component: Dashboard1Component},
