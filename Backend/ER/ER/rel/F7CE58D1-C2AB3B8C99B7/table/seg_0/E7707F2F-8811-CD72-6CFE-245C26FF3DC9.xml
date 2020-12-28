@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E7707F2F-8811-CD72-6CFE-245C26FF3DC9" name="compra">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 04:16:01 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_15</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_compra" id="33A15D3E-16D7-2B96-CA0A-7F7DB9FCE39C">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:05:09 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_id_usuario" id="3137F5BB-19B0-790E-7FAA-374EE7DCAC99">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:05:27 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="510B5DA4-2FE2-1BCA-83F1-888CC98383DF" referredColumn="0B88A38C-4114-DAB0-5C87-7D6584769E0A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="611402DC-D4B2-2A4D-C578-8BE040F2B76B" name="compra_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:05:34 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33A15D3E-16D7-2B96-CA0A-7F7DB9FCE39C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B720978D-EBD1-6A6F-89CB-7752F41DC21A" name="compra_usuario_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:05:27 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3137F5BB-19B0-790E-7FAA-374EE7DCAC99"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

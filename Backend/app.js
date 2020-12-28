@@ -54,8 +54,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//para mandar correos
-//const sendMail = require('./utils/mail-manager');
-//sendMail('AYD1.Grupo7@gmail.com', 'SuperSpeed52@gmail.com', 'Hola mundo', 'Té quiero const.');
-
 module.exports = app;

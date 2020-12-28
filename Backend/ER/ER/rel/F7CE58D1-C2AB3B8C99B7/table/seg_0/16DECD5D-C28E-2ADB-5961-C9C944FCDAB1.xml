@@ -50,6 +50,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="precio" id="DF224D9F-478A-5A97-D86F-583DEBE7E871">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 02:02:05 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="depto_tienda_id_depto" id="8EC298A9-3EC9-6374-AD69-97DCFC1832B1">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-21 03:38:42 UTC</createdTime>

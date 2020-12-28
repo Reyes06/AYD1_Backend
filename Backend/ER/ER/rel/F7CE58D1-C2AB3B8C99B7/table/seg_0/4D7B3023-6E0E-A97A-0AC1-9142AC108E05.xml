@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4D7B3023-6E0E-A97A-0AC1-9142AC108E05" name="detalle_compra">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:05:50 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_16</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="compra_id_compra" id="A06D01C8-2E6D-F7FF-473D-10F1B099BAE2">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:06:54 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="62F37E7A-FF21-4447-E4C0-1B6A94772ABA" referredColumn="33A15D3E-16D7-2B96-CA0A-7F7DB9FCE39C"/>
+</associations>
+</Column>
+<Column name="producto_id_producto" id="8DE3B413-B320-1988-01BC-94433A5570C8">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:06:59 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="28CDE8F9-F226-D3B4-A5AD-E5DB0170CDA1" referredColumn="EA464C97-853B-6C4A-64FD-5FB3F65E6FB3"/>
+</associations>
+</Column>
+<Column name="unidades" id="80EC87DD-7AB1-EAE0-FFFF-CCF73F0D3D87">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:06:49 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F9142FBB-FA4F-C690-0E3A-6D3746D5D399" name="detaller_compra_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:07:09 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A06D01C8-2E6D-F7FF-473D-10F1B099BAE2"/>
+<colUsage columnID="8DE3B413-B320-1988-01BC-94433A5570C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B562075-25E1-B910-0045-293558A78E44" name="detaller_compra_compra_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:06:54 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A06D01C8-2E6D-F7FF-473D-10F1B099BAE2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A9668845-86C6-B600-761F-EDD127B6A4C5" name="detaller_compra_producto_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-28 05:06:59 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DE3B413-B320-1988-01BC-94433A5570C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
