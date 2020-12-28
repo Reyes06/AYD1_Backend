@@ -55,7 +55,7 @@ router.post('/borrar', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`UPDATE TABLE carrito_compras SET cantidad = ${nueva_cantidad} WHERE usuario_id_usuario = ${id_usuario} AND producto_id_producto = ${id_producto}`, function (err, result, fields) {
+    con.query(`UPDATE carrito_compras SET cantidad = ${nueva_cantidad} WHERE usuario_id_usuario = ${id_usuario} AND producto_id_producto = ${id_producto}`, function (err, result, fields) {
         console.log("DEETE FROM carrito_compras")
         if (err) throw err;
 
