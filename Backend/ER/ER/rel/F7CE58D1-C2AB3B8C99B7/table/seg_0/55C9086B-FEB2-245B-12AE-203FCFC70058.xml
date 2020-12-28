@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="55C9086B-FEB2-245B-12AE-203FCFC70058" name="tipo_usuario">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>E6F75BFB-016C-FB7D-B4AF-9D0598D8B550</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_tipo" id="A2C76DB8-D8F9-D364-BF85-6951BE180F35">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>A3D2359F-EF19-D3C9-BAA4-8DE29742CF80</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="9D21B6F6-9C04-2521-DDB5-1A0FBDAD94C5">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>B9C22AD7-D17E-3314-530D-5A769ACF8766</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>B80116AB-C85A-38B0-8DB2-BE2F9C6900C0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D6FE6AE9-6657-550A-F480-1FA79071F548" name="tipo_usuario_pk">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>20981869-4896-EE1D-ACAB-A2EBEC2A1DA2</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A2C76DB8-D8F9-D364-BF85-6951BE180F35"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

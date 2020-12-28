@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5BA0AD41-C6D3-A8CD-FC11-994908F36679" name="formulario">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>FEEDDA05-FC36-76AD-07E7-C2AB0F2A71FF</importedID>
+<ordsAlias>tienda</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_formulario" id="FB55D497-ED54-CD0A-E060-0FED7821A3B3">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>3B4B8B1B-A7EB-FBB6-4FAB-1B51EC31B3F0</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre_tienda" id="85997EDA-7121-8251-DAB3-D9776934F809">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>16B26B69-1474-5B08-9B28-C85678B3C626</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>31435608-EF6A-CF21-D60E-0283993452E1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="logo" id="DADC3853-7825-C3B3-D5C2-6D3617B46872">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>6BF84E85-2155-2DB6-5C5F-D9FD56AFB47F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="direccion" id="B1B5C805-39FA-A04A-5347-5D13E95F53CD">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>CBBABEA8-D205-7131-74ED-4A1B2B0D5863</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D1E67467-132F-916C-E106-8F287E686A88</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_nombre" id="14184DAF-8E5A-6555-D73A-8EBB1392C205">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:05:11 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_apellido" id="935296BF-BABB-5BF7-C51F-5ED3F50D1346">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:05:11 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_fecha_nacimiento" id="F70C6A3A-054D-50AE-2999-8CCA81AFE788">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:05:11 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_correo_electronico" id="93428474-021A-656A-7461-02D7B07AAFED">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:05:11 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>75</dataTypeSize>
+<ownDataTypeParameters>75,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_sexo" id="8B2400D9-3E0C-A258-E47F-2B9479988EAB">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:05:11 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuario_password" id="AE79BF3A-26DB-B5FB-9B40-F3BEC77BB23F">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-23 00:04:24 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sector_id_sector" id="25904B7F-DB97-E745-CB45-FE4A6A9F0EAE">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>BABF8CAB-6C0F-56AB-3ED5-F56A0D1D0DE7</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50AAC45C-2427-DC38-E99F-9386A181304A" referredColumn="217E6245-290E-F400-86E4-D4E2E1973F8C"/>
+</associations>
+</Column>
+<Column name="municipio_id_municipio" id="2350A32E-3C59-F608-FD67-4E926C3F3E29">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>E356DCBD-0A65-C3A6-9BA0-B8EF9E5A89C7</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>E2052BE1-70C0-92E7-2DEE-88B43FACB6C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC16A10C-A46A-83AE-CA64-905DD7A8EBD8" referredColumn="59F820D4-F6E5-1030-3014-72F78E51BA35"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="90237EBC-FFB5-C82C-058A-4B1F747C5B1F" name="formulario_pk">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>452AA483-F848-9905-1376-5376AC079F18</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB55D497-ED54-CD0A-E060-0FED7821A3B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8A3B5E72-509F-38FC-3127-221D47AA7769" name="tienda_municipio_fk">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2350A32E-3C59-F608-FD67-4E926C3F3E29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9895B8EF-5375-3697-74FC-68669CCBCB20" name="tienda_sector_fk">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25904B7F-DB97-E745-CB45-FE4A6A9F0EAE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

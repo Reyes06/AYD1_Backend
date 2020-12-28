@@ -1,0 +1,38 @@
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col" *ngFor="let items of productos">
+    <div class="card" *ngIf="items.imagen != ''">
+      <img
+        src={{items.imagen}}
+        alt="..."
+        width="100%"
+        height="100%"
+      />
+      <div class="card-body">
+        <h6 class="pink-text pb-2 pt-1">{{items.departamento}}</h6>
+        <h5 class="card-title">{{items.nombre}}</h5>
+        <p class="card-text">
+          {{items.descripcion}}
+        </p>
+      </div>
+    </div>
+    <div class="card" *ngIf="items.imagen === ''">
+      <img
+        src="../../../assets/img/angular-mdb.png"
+        alt="..."
+        width="100%"
+        height="100%"
+      />
+      <p class="card-text">
+        <small class="text-muted">&nbsp;&nbsp;&nbsp; 404 - Image not found</small>
+      </p>
+      <div class="card-body">
+        <h6 class="pink-text pb-2 pt-1">{{items.departamento}}</h6>
+        <h5 class="card-title">{{items.nombre}}</h5>
+        <p class="card-text">
+          {{items.descripcion}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

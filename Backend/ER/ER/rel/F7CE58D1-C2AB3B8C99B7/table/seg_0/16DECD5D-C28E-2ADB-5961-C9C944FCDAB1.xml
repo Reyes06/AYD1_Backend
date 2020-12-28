@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="16DECD5D-C28E-2ADB-5961-C9C944FCDAB1" name="producto">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:56:58 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<ordsAlias>table_11</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_producto" id="EA464C97-853B-6C4A-64FD-5FB3F65E6FB3">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:10 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="C9B153A6-5F41-9CF3-31FF-C8921FCAF6BD">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:10 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="10922B2B-8EFB-BB49-32F1-8FCA82A973AD">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:10 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>75</dataTypeSize>
+<ownDataTypeParameters>75,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="imagen" id="15B825D1-0519-4033-0AFB-687264981CAE">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-26 18:01:54 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="depto_tienda_id_depto" id="8EC298A9-3EC9-6374-AD69-97DCFC1832B1">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 03:38:42 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8C020139-06EE-A427-CA2F-17D59F0D2A17" referredColumn="EE5B9EFF-C737-EAB2-E1C0-C1B10A4CCD04"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="15F88CEA-ACD1-AEC9-08E6-42CDDE5E49EA" name="producto_PK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 02:58:10 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA464C97-853B-6C4A-64FD-5FB3F65E6FB3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2707DB58-086E-5CA6-54E5-C9EC083B548F" name="producto_depto_tienda_FK">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-21 03:38:42 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8EC298A9-3EC9-6374-AD69-97DCFC1832B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
