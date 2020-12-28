@@ -10,7 +10,7 @@ router.get('/:id_depto', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`SELECT id_producto, nombre, descripcion, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
+    con.query(`SELECT id_producto, nombre, descripcion, precio, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
         console.log("SELECT FROM producto")
         if (err) throw err;
 
@@ -25,11 +25,11 @@ router.get('/:id_depto', function(req, res, next) {
 
 /*CREATE*/
 router.post('/nuevo', function(req, res, next) {
-    const {nombre, descripcion, imagen, id_depto} = req.body;
+    const {nombre, descripcion, precio, imagen, id_depto} = req.body;
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`INSERT INTO producto (nombre, descripcion, imagen, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}', '${imagen}',${id_depto})`, function (err, result, fields) {
+    con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto})`, function (err, result, fields) {
         console.log("INSERT INTO producto")
         if (err) throw err;
 
@@ -95,7 +95,7 @@ router.post('/categorias/add', function(req, res, next) {
     });
 });
 
-/*GET inventario de producto*/
+/*UPDATE inventario de producto*/
 router.post('/inventario', function(req, res, next) {
     const {id_producto, nueva_cantidad} = req.body;
     con = mysql.createConnection(objectConnection);
