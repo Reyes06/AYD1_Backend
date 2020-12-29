@@ -426,6 +426,9 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
     console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no editado", 3000);
   }
 
+  EditarProductoAux = async () => {//void
+    
+  }
 
     //Editar Inventario-------------------------------------------------------------------------------
 
