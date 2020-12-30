@@ -10,7 +10,7 @@ router.get('/:id_depto', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`SELECT id_producto, nombre, descripcion, precio, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
+    con.query(`SELECT id_producto, nombre, descripcion, precio, cantidad_inventario, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
         console.log("SELECT FROM producto")
         if (err) throw err;
 
@@ -29,22 +29,12 @@ router.post('/nuevo', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto})`, function (err, result, fields) {
+    con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto, cantidad_inventario) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto}, 0)`, function (err, result, fields) {
         console.log("INSERT INTO producto")
         if (err) throw err;
 
-        con.query(`SELECT id_producto FROM producto ORDER BY id_producto DESC LIMIT 1`, function (err, result, fields) {
-            console.log("SELECT FROM producto")
-            if (err) throw err;
-            const id_producto = result[0].id_producto;
-
-            con.query(`INSERT INTO inventario (producto_id_producto, cantidad) VALUES (${id_producto}, 0)`, function (err, result, fields) {
-                console.log("INSERT INTO inventario")
-                if (err) throw err;
-                res.send( {"estado": "ok"});
-                con.end();
-            });
-        });
+        res.send( {"estado": "ok"});
+        con.end();
     });
 });
 
@@ -54,16 +44,11 @@ router.post('/borrar', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query(`DELETE FROM inventario WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
-        console.log("DELETE FROM inventario")
+    con.query(`DELETE FROM producto WHERE id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("DELETE FROM producto")
         if (err) throw err;
-
-        con.query(`DELETE FROM producto WHERE id_producto = ${id_producto}`, function (err, result, fields) {
-            console.log("DELETE FROM producto")
-            if (err) throw err;
-            res.send( {"estado": "ok"});
-            con.end();
-        });
+        res.send( {"estado": "ok"});
+        con.end();
     });
 });
 
@@ -96,41 +81,13 @@ router.post('/categorias/add', function(req, res, next) {
 });
 
 /*UPDATE inventario de producto*/
-router.post('/inventario', function(req, res, next) {
+router.post('/inventario/update', function(req, res, next) {
     const {id_producto, nueva_cantidad} = req.body;
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query(`UPDATE inventario SET cantidad = ${nueva_cantidad} WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
-        console.log("UPDATE inventario");
-        if (err) throw err;
-        res.send( {"estado": "ok"});
-        con.end();
-    });
-});
-
-/*GET inventarios de un producto*/
-router.get('/inventario/:id_producto', function(req, res, next) {
-    const {id_producto} = req.params;
-    con = mysql.createConnection(objectConnection);
-    con.connect();
-
-    con.query(`SELECT * FROM inventario WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
-        console.log("SELECT * FROM inventario");
-        if (err) throw err;
-        res.send( result);
-        con.end();
-    });
-});
-
-/*UPDATE inventario de productos*/
-router.post('/inventario', function(req, res, next) {
-    const {id_producto, nueva_cantidad} = req.body;
-    con = mysql.createConnection(objectConnection);
-    con.connect();
-
-    con.query(`UPDATE inventario SET cantidad = ${nueva_cantidad} WHERE producto_id_producto = ${id_producto}`, function (err, result, fields) {
-        console.log("UPDATE inventario");
+    con.query(`UPDATE producto SET cantidad_inventario = ${nueva_cantidad} WHERE id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("UPDATE producto");
         if (err) throw err;
         res.send( {"estado": "ok"});
         con.end();

@@ -36,7 +36,7 @@
 <colAssociation fkAssociation="D4DBEACD-1561-9946-A25D-2FCCFABDCC2E" referredColumn="EA464C97-853B-6C4A-64FD-5FB3F65E6FB3"/>
 </associations>
 </Column>
-<Column name="unidades" id="5B59657A-1D75-0987-723A-2C10E994D3E6">
+<Column name="cantidad" id="5B59657A-1D75-0987-723A-2C10E994D3E6">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-28 04:13:20 UTC</createdTime>
 <ownerDesignName>ER</ownerDesignName>
