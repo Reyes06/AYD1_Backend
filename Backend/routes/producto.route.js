@@ -98,7 +98,7 @@ router.get('/', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query( "select pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, dep.nombre as departamento from producto pr, depto_tienda dep where pr.depto_tienda_id_depto = dep.id_depto", function (err, result, fields) {
+    con.query( "select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, pr.precio as precio, pr.cantidad_inventario as inventario, dep.nombre as departamento, fo.nombre_tienda as tienda from producto pr, depto_tienda dep, tienda ti, formulario fo where pr.depto_tienda_id_depto = dep.id_depto and dep.tienda_id_tienda = ti.id_tienda and ti.id_tienda = fo.id_formulario", function (err, result, fields) {
         if (err) throw err;
 
         for(let i = 0; i < result.length; i++){
@@ -113,6 +113,12 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 /*
+select pr.nombre as nombre, pr.descripcion as descripcion, pr.imagen as imagen, pr.precio as precio, pr.cantidad_inventario as inventario, dep.nombre as departamento, fo.nombre_tienda 
+from producto pr, depto_tienda dep, tienda ti, formulario fo
+where pr.depto_tienda_id_depto = dep.id_depto
+and dep.tienda_id_tienda = ti.id_tienda
+and ti.id_tienda = fo.id_formulario 
+
 select pr.id_producto as id_producto, pr.nombre as nombre, pr.descripcion as descripcion, c.nombre as categoria
 from producto_categoria pc, categoria c, producto pr
 where pc.categoria_id_categoria = c.id_categoria
