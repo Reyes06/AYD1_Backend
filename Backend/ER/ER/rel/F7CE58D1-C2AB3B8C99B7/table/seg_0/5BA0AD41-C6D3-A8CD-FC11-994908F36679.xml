@@ -34,6 +34,17 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="estado" id="5708CF60-DBF5-DAF2-849F-8D37A29A6912">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-31 00:13:40 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="logo" id="DADC3853-7825-C3B3-D5C2-6D3617B46872">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>

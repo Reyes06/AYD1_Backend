@@ -9,9 +9,13 @@ router.get('/:id_usuario', function(req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`SELECT pr.id_producto AS id_producto, pr.nombre AS nombre_producto, pr.descripcion AS descripcion, pr.imagen AS imagen, pr.precio AS precio, cc.cantidad, f.nombre_tienda AS tienda, dept.nombre AS nombre_depto FROM carrito_compras cc INNER JOIN producto pr ON pr.id_producto = cc.producto_id_producto INNER JOIN depto_tienda dept ON dept.id_depto = pr.depto_tienda_id_depto INNER JOIN tienda ti ON ti.id_tienda = dept.tienda_id_tienda INNER JOIN formulario f ON f.id_formulario = ti.id_tienda WHERE cc.usuario_id_usuario = ${id_usuario}`, function (err, result, fields) {
+    con.query(`SELECT pr.id_producto AS id_producto, pr.nombre AS nombre_producto, pr.descripcion AS descripcion, pr.imagen AS imagen, pr.precio AS precio, cc.cantidad, f.nombre_tienda AS nombre_tienda, dept.nombre AS nombre_depto FROM carrito_compras cc INNER JOIN producto pr ON pr.id_producto = cc.producto_id_producto INNER JOIN depto_tienda dept ON dept.id_depto = pr.depto_tienda_id_depto INNER JOIN tienda ti ON ti.id_tienda = dept.tienda_id_tienda INNER JOIN formulario f ON f.id_formulario = ti.id_tienda WHERE cc.usuario_id_usuario = ${id_usuario}`, function (err, result, fields) {
         console.log("SELECT FROM carrito_compras, producto, departamento, tienda, formulario")
         if (err) throw err;
+
+        for(let i = 0; i < result.length; i++){
+            result[i].imagen = result[i].imagen.toString();
+        }
 
         res.send( {"productos": result});
         con.end();
@@ -78,7 +82,7 @@ router.post('/borrar/all', function(req, res, next) {
 });
 
 /*UPDATE: Cambiar la cantidad de unidades un producto asociado al carrito de un usuario*/
-router.post('/update', function(req, res, next) {
+router.post('/cantidad/update', function(req, res, next) {
     const {id_usuario, id_producto, nueva_cantidad} = req.body;
     con = mysql.createConnection(objectConnection);
 
