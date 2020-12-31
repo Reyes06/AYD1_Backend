@@ -25,11 +25,11 @@ router.get('/:id_depto', function(req, res, next) {
 
 /*CREATE*/
 router.post('/nuevo', function(req, res, next) {
-    const {nombre, descripcion, precio, imagen, id_depto} = req.body;
+    const {nombre, descripcion, precio, imagen, cantidad_inventario, id_depto} = req.body;
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto, cantidad_inventario) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto}, 0)`, function (err, result, fields) {
+    con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto, cantidad_inventario) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto}, ${cantidad_inventario})`, function (err, result, fields) {
         console.log("INSERT INTO producto")
         if (err) throw err;
 
