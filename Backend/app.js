@@ -14,6 +14,7 @@ var departamentoRouter = require('./routes/departamento.route');
 var productoRouter = require('./routes/producto.route');
 var tiendaRouter = require('./routes/tienda.route');
 var carritoRouter = require('./routes/carrito.route');
+var compraRouter = require('./routes/compra.route');
 var testRouter = require('./routes/test.route');
 
 var app = express();
@@ -38,6 +39,7 @@ app.use('/departamento', departamentoRouter);
 app.use('/producto', productoRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/carrito', carritoRouter);
+app.use('/compra', compraRouter);
 app.use('/test/integracion', testRouter);
 
 // catch 404 and forward to error handler
