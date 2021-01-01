@@ -14,6 +14,15 @@ router.post('/realizarPedido', function(req, res, next) {
         console.log("SELECT FROM producto, carrito_compra")
         if (err) throw err;
 
+        if(result.length <= 0){
+            res.send({
+                "estado": "error",
+                "tipo_error": "carrito_vacio"
+            });
+            con.end();
+            return;
+        }
+
         let inventarioValidado = true;
         let carritoCompras = result;
         for(let i = 0; i < carritoCompras.length; i++){
@@ -33,14 +42,39 @@ router.post('/realizarPedido', function(req, res, next) {
                     if (err) throw err;
         
                     let id_compra = result[0].id_compra;
-        
+
+                    //Reducir la cantidad en inventario
+                    for(let i = 0; i < carritoCompras.length; i++){
+                        con.query(`UPDATE producto SET cantidad_inventario = cantidad_inventario - ${carritoCompras[i].cantidad} WHERE id_producto = ${carritoCompras[i].id_producto}`, (err, result, fields) => {
+                            console.log("UPDATE producto");
+                            if (err) throw err;
+                        });
+                    }
+
+                    //Agregar el producto a la compra realizada
+                    for(let i = 0; i < carritoCompras.length; i++){
+                        con.query(`INSERT INTO detalle_compra (compra_id_compra, producto_id_producto, unidades) VALUES (${id_compra}, ${carritoCompras[i].id_producto}, ${carritoCompras[i].cantidad})`, (err, result, fields) => {
+                            console.log("INSERT INTO detalle_compra");
+                            if (err) throw err;
+                        });
+                    }
+
+                    //Vaciar el carrito de compras
+                    con.query(`DELETE FROM carrito_compras WHERE usuario_id_usuario = ${id_usuario}`, (err, result, fields) => {
+                        console.log("DELETE FROM carrito_compras");
+                        if (err) throw err;
+                    });
+
+                    res.send({"estado": "ok"});
                     
+                    setTimeout(() => { con.end() }, 1000);                    
                 });
             });
 
         } else {
             res.send( {
-                "estatus": "error",
+                "estado": "error",
+                "tipo_error": "no_suficiente_inventario",
                 "producto": result[i].nombre,
                 "cantidad_inventario": result[i].cantidad_inventario,
                 "cantidad_solicitada": result[i].cantidad

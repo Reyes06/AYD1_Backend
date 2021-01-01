@@ -29,18 +29,6 @@
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="comentario" id="E053F8BC-EDF7-0B5B-8F74-62CDFC56C671">
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-31 00:15:26 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>150</dataTypeSize>
-<ownDataTypeParameters>150,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="usuario_id_usuario" id="3137F5BB-19B0-790E-7FAA-374EE7DCAC99">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-28 05:05:27 UTC</createdTime>

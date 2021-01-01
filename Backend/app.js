@@ -40,7 +40,7 @@ app.use('/producto', productoRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/carrito', carritoRouter);
 app.use('/compra', compraRouter);
-app.use('/test/integracion', testRouter);
+app.use('/carrito', carritoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
