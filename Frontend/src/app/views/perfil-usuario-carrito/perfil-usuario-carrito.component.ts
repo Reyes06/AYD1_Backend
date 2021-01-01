@@ -29,6 +29,7 @@ export class PerfilUsuarioCarritoComponent implements OnInit {
 
 
   productos: carrito[] = [];
+  total: string;
 
   CargarDatosPagina = async () => {//void
 
@@ -49,6 +50,13 @@ export class PerfilUsuarioCarritoComponent implements OnInit {
               (response) => {
                 this.productos = response;
                 console.log(this.productos);
+                var valorr = 0;
+                for(var i = 0; i < this.productos.length; i++){
+                  var valor = 0;
+                  valor = Number(this.productos[i].cantidad) * Number(this.productos[i].precio);
+                  valorr = valorr + valor;
+                }
+                this.total = valorr.toString();
               },
               (error) => console.log(error)
             );
@@ -67,7 +75,6 @@ export class PerfilUsuarioCarritoComponent implements OnInit {
 
     if (Number.isInteger(llevar)) {
       if (Number(llevar) > 0 && Number(llevar) <= Number(stock)) {
-        console.log('aaa->'+llevar);
         await this.actualizarCarritoAux(usuario, idProducto, llevar);
       }
       else if (Number(llevar) < 1) {
@@ -91,7 +98,6 @@ export class PerfilUsuarioCarritoComponent implements OnInit {
 
     if (Number.isInteger(llevar)) {
       if (Number(llevar) > 0 && Number(llevar) <= Number(stock)) {
-        console.log('aaa->'+llevar);
         await this.actualizarCarritoAux(usuario, idProducto, llevar);
       }
       else if (Number(llevar) < 1) {
