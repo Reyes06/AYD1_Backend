@@ -92,8 +92,6 @@ router.post('/confirmarPedido', function(req, res, next) {
     const {id_compra} = req.body;
     con = mysql.createConnection(objectConnection);
 
-    if(true){res.send({"estatus": "en desarrollo"}); return;}
-
     con.connect();
     con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
         console.log("UPDATE compra")
@@ -108,12 +106,17 @@ router.post('/confirmarPedido', function(req, res, next) {
                 console.log("SELECT FROM producto, detalle_compra")
                 if (err) throw err;
 
-                let mensaje = `Muchas gracias ${nombre.toUpperCase()} ${apellido.toUpperCase()} por comprar en el sistema de compra en linea CCV, tus productos serán enviados a la dirección ${direccion_envio}. El resumen de tu compra se detalla a continuación:\n`;
+                let mensaje = `Muchas gracias ${nombre.toUpperCase()} ${apellido.toUpperCase()} por comprar en el sistema de compra en linea CCV, tus productos serán enviados a la dirección ${direccion_envio}. El resumen de tu compra se detalla a continuación:\n\n`;
             
-                //HASTA AQUI TODO BIEN
+                let precio_total = 0;
+                for(let i = 0; i < result.length; i++){
+                    mensaje += "Producto: " + result[i].nombre_producto + "\n";
+                    mensaje += "Precio unitario: " + result[i].precio + "\n";
+                    mensaje += "Cantidad: " + result[i].unidades + "\n";
+                    mensaje += "Precio total: " + (result[i].precio * result[i].unidades) + "\n\n";
+                }
 
-                sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Confirmación de envío de productos`, `  Se ha aprobado tu solicitud y ahora posees un espacio para vender tus productos en el sistema de tienda virtual CCV. Podrás ingresar al sistema utilizando las sisguientes credenciales:\n\nUsuario: ${correo_electronico}\nPassword: ${password}`);
-                                
+                sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Confirmación de envío de productos`, mensaje);
 
                 res.send( {"estado": "ok"});
                 con.end();
