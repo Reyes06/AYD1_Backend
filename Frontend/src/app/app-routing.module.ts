@@ -18,6 +18,7 @@ import { PerfilTiendaComponent } from './views/perfil-tienda/perfil-tienda.compo
 import { PerfilTiendaDashboardComponent } from './views/perfil-tienda-dashboard/perfil-tienda-dashboard.component';
 import { PerfilUsuarioComponent } from './views/perfil-usuario/perfil-usuario.component';
 import { PerfilUsuarioDashboardComponent } from './views/perfil-usuario-dashboard/perfil-usuario-dashboard.component';
+import { PerfilUsuarioCarritoComponent } from './views/perfil-usuario-carrito/perfil-usuario-carrito.component';
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './views/registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 import { RegistrarTiendaTerminosyCondicionesComponent } from './views/registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './views/perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'perfil-tienda/AdministrarProductos', component: PerfilTiendaAdministrarProductosComponent},
   {path: 'perfil-usuario', component: PerfilUsuarioComponent},
   {path: 'perfil-usuario/Dashboard', component: PerfilUsuarioDashboardComponent},
+  {path: 'perfil-usuario/Carrito', component: PerfilUsuarioCarritoComponent},
   {path: 'dashboards/v1', component: Dashboard1Component},
   {path: 'profiles/profile1', component: Profile1Component},
   {path: 'tables/table1', component: BasicTableComponent},
