@@ -1,3 +1,67 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand">Filtrar productos por</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" (click)="CargarDatosPagina(0,0)"mdbWavesEffect>Todo</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect (click)="cargarLoc()">
+          Localidad<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <div *ngFor="let locs of localidad">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="CargarDatosPagina(1, locs.id_municipio)">{{ locs.pais }}, {{ locs.departamento }}, {{ locs.municipio }}</a>
+          </div>          
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect (click)="cargarTien()">
+          Tienda<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <div *ngFor="let tiens of tiendas">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="CargarDatosPagina(2, tiens.id_tienda)">{{ tiens.tienda }}</a>
+          </div>          
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect (click)="cargarSec()">
+          Sector<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <div *ngFor="let secs of sectores">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="CargarDatosPagina(3, secs.id_sector)">{{ secs.sector }}</a>
+          </div>          
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect (click)="cargarCat()">
+          Categoria<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <div *ngFor="let cats of categorias">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="CargarDatosPagina(4, cats.id_categoria)">{{ cats.categoria }}</a>
+          </div>          
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
 <div class="row">
   <div class="col-md-3" *ngFor="let items of productos">
     <div class="card mb-3 shadow-sm">
@@ -18,10 +82,10 @@
         
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-primary product-btn" ><mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Añadir al carrito</button>
+            <button type="button" class="btn btn-sm btn-primary product-btn" (click)="agregarCarrito( items.id_producto, items.inventario )"><mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Añadir al carrito</button>
             <button type="button" class="btn btn-sm btn-outline-secondary product-btn" data-toggle="modal"
               data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>View Details</button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4" id="{{items.id_producto}}">
           </div>
         </div>
       </div>
@@ -66,8 +130,8 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-primary product-btn" ><mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Añadir al carrito</button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4">
+              <button type="button" class="btn btn-sm btn-primary product-btn" (click)="agregarCarritoEXP( items.id_producto, items.inventario )"><mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Añadir al carrito</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4" id="exp{{items.id_producto}}">
             </div>
           </div>
         </div>
