@@ -28,6 +28,7 @@ import { PerfilAdministradorDashboardComponent } from './perfil-administrador-da
 import { PerfilAdministradorSolicitudesComponent } from './perfil-administrador-solicitudes/perfil-administrador-solicitudes.component';
 import { PerfilTiendaDashboardComponent } from './perfil-tienda-dashboard/perfil-tienda-dashboard.component';
 import { PerfilUsuarioDashboardComponent } from './perfil-usuario-dashboard/perfil-usuario-dashboard.component';
+import { PerfilUsuarioCarritoComponent } from './perfil-usuario-carrito/perfil-usuario-carrito.component';
 import { RegistrarTiendaTerminosyCondicionesComponent } from './registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
@@ -69,6 +70,7 @@ import { PerfilAdministradorAdministrarCategoriasComponent } from './perfil-admi
     PerfilAdministradorSolicitudesComponent,
     PerfilTiendaDashboardComponent,
     PerfilUsuarioDashboardComponent,
+    PerfilUsuarioCarritoComponent,
     RegistrarTiendaTerminosyCondicionesComponent,
     RegistrarUsuarioTerminosyCondicionesComponent,
     PerfilTiendaAdministrarDepartamentosComponent,
