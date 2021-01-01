@@ -2,11 +2,14 @@ var express = require('express');
 var router = express.Router();
 var objectConnection = require('../dbcontroller/dbconnection');
 var mysql = require('mysql');
+const sendMail = require('../utils/mail-manager');
 
-/*READ: Obtener todos las productos asociados al carrito de un usuario*/
+/*POST: Realizar la compra de los productos en el carrito de un usuario*/
 router.post('/realizarPedido', function(req, res, next) {
     const {id_usuario} = req.body;
     con = mysql.createConnection(objectConnection);
+
+    if(true){res.send({"estatus": "en desarrollo"}); return;}
 
     con.connect();
 
@@ -81,6 +84,40 @@ router.post('/realizarPedido', function(req, res, next) {
             });
             con.end();
         }
+    });
+});
+
+/*POST: Confirmar el envio de una compra*/
+router.post('/confirmarPedido', function(req, res, next) {
+    const {id_compra} = req.body;
+    con = mysql.createConnection(objectConnection);
+
+    con.connect();
+    con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
+        console.log("UPDATE compra")
+        if (err) throw err;
+
+        con.query(`SELECT correo_electronico, nombre, apellido, direccion_envio FROM usuario INNER JOIN compra ON compra.usuario_id_usuario = usuario.id_usuario WHERE id_compra = ${id_compra}`, (err, result, fields) => {
+            console.log("SELECT FROM usuario")
+            if (err) throw err;
+            const {correo_electronico, nombre, apellido, direccion_envio} = result[0];
+
+            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades, c.direccion_envio FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto  WHERE dc.compra_id_compra = ${id_compra}`, (err, result, fields) => {
+                console.log("SELECT FROM producto, detalle_compra")
+                if (err) throw err;
+
+                let mensaje = `Muchas gracias ${nombre.toUpperCase()} ${apellido.toUpperCase()} por comprar en el sistema de compra en linea CCV, tus productos serán enviados a la dirección ${direccion_envio}. El resumen de tu compra se detalla a continuación:\n`;
+            
+                //HASTA AQUI TODO BIEN
+
+                sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Confirmación de envío de productos`, `  Se ha aprobado tu solicitud y ahora posees un espacio para vender tus productos en el sistema de tienda virtual CCV. Podrás ingresar al sistema utilizando las sisguientes credenciales:\n\nUsuario: ${correo_electronico}\nPassword: ${password}`);
+                                
+
+                res.send( {"estado": "ok"});
+                con.end();
+
+            });            
+        });
     });
 });
 
