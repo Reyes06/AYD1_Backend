@@ -87,12 +87,26 @@ router.post('/realizarPedido', function(req, res, next) {
     });
 });
 
+router.post('/confirmarPedido', function(req, res, next) {
+    const {id_compra} = req.body;
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
+        console.log("UPDATE compra")
+        if (err) throw err;
+
+        res.send( {"estado": "ok"});
+        con.end();
+    });
+});
+
 /*POST: Confirmar el envio de una compra*/
 router.post('/confirmarPedido', function(req, res, next) {
     const {id_compra} = req.body;
     con = mysql.createConnection(objectConnection);
-
     con.connect();
+
     con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
         console.log("UPDATE compra")
         if (err) throw err;
