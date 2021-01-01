@@ -9,7 +9,7 @@ router.post('/realizarPedido', function(req, res, next) {
     const {id_usuario} = req.body;
     con = mysql.createConnection(objectConnection);
 
-    if(true){res.send({"estatus": "en desarrollo"}); return;}
+    
 
     con.connect();
 
@@ -91,6 +91,8 @@ router.post('/realizarPedido', function(req, res, next) {
 router.post('/confirmarPedido', function(req, res, next) {
     const {id_compra} = req.body;
     con = mysql.createConnection(objectConnection);
+
+    if(true){res.send({"estatus": "en desarrollo"}); return;}
 
     con.connect();
     con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
