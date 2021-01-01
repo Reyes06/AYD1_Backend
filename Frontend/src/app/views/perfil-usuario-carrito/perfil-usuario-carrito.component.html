@@ -1,0 +1,170 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand">Carrito de Compras</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect (click)="vaciarCarrito()">Vaciar el carrito</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-light" (click)="basicModal.show()" mdbWavesEffect>Proceder a la compra</a>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Ingrese sus datos para la compra</h4>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="Nombre_tarjeta" class="form-control" mdbInput required>
+            <label for="Nombre_tarjeta">Nombre del dueño de la tarjeta</label>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="credit-card" class="prefix grey-text"></mdb-icon>
+            <input type="number" id="Numero_tarjeta" class="form-control" mdbInput required>
+            <label for="Numero_tarjeta">Numero de la tarjeta</label>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
+            <input type="month" id="fecha_exp" class="form-control" mdbInput required>
+            <label for="fecha_exp">Fecha de expiracion</label>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon far icon="credit-card" class="prefix grey-text"></mdb-icon>
+            <input type="number" id="ccv_tarjeta" class="form-control" mdbInput required>
+            <label for="ccv_tarjeta">CCV de la tarjeta</label>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="address-book" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="direccion" class="form-control" mdbInput required>
+            <label for="direccion">Direccion</label>
+          </div>
+
+          <div class="md-form mb-4">
+            <mdb-icon fas icon="address-card" class="prefix grey-text"></mdb-icon>
+            <input type="number" id="codigo_postal" class="form-control" mdbInput required>
+            <label for="codigo_postal">Codigo Postal</label>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+          <button type="button" mdbBtn color="success" class="relative waves-light" mdbWavesEffect>Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</mdb-navbar>
+<!--/.Navbar-->
+<div class="row">
+  <div class="col-md-3" *ngFor="let items of productos">
+    <div class="card mb-3 shadow-sm">
+
+      <div *ngIf="items.imagen != ''">
+        <img class="bd-placeholder-img card-img-top p-2" width="100%" height="300" src={{items.imagen}} />
+      </div>
+      <div *ngIf="items.imagen === ''">
+        <img class="bd-placeholder-img card-img-top p-2" width="100%" height="300"
+          src="../../../assets/img/angular-mdb.png" />
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Q {{ items.precio }}</strong>
+        </p>
+        <p class="card-text">{{ items.descripcion | slice: 0:20 }}...</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-primary product-btn"
+              (click)="actualizarCarrito( items.id_producto, items.inventario )">
+              <mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Actualizar carrito
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary product-btn" data-toggle="modal"
+              data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>View Details</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4" id="{{items.id_producto}}">
+          </div>
+        </div>
+      </div>
+      <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">
+                <mdb-icon fas icon="store"></mdb-icon>&nbsp;{{ items.nombre_tienda }}
+              </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+
+              <div class="md-form mb-5" *ngIf="items.imagen != ''">
+                <img class="bd-placeholder-img card-img-top p-2" height="300" width="300" src={{items.imagen}} />
+              </div>
+
+              <div class="md-form mb-5" *ngIf="items.imagen === ''">
+                <img class="bd-placeholder-img card-img-top p-2" height="300" width="300"
+                  src="../../../assets/img/angular-mdb.png" />
+              </div>
+
+              <div class="md-form mb-5">
+                <p>
+                  <strong>{{ items.nombre_depto }}</strong><br>
+                  <strong>Nombre del producto: </strong>{{ items.nombre_producto }}<br>
+                  <strong>Descripcion del producto: </strong>{{ items.descripcion }}
+                </p>
+              </div>
+
+              <div class="justify-content-center">
+                <h4>
+                  <strong>Q {{ items.precio }}</strong><br>
+                  <strong>Has pedido {{ items.cantidad }}</strong><br>
+                  <strong>{{ items.inventario }} en stock</strong><br>
+                </h4>
+              </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-sm btn-danger product-btn"
+                (click)="quitardelCarritoEXP( items.id_producto )">
+                <mdb-icon fas icon="cart-arrow-down"></mdb-icon>&nbsp;Quitar del carrito
+              </button>
+              <button type="button" class="btn btn-sm btn-primary product-btn"
+                (click)="actualizarCarritoEXP( items.id_producto, items.inventario )">
+                <mdb-icon fas icon="cart-plus"></mdb-icon>&nbsp;Actualizar carrito
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4" id="exp{{items.id_producto}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
