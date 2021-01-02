@@ -6,7 +6,7 @@ const sendMail = require('../utils/mail-manager');
 
 /*POST: Realizar la compra de los productos en el carrito de un usuario*/
 router.post('/realizarPedido', function(req, res, next) {
-    const {id_usuario} = req.body;
+    const {id_usuario, direccion_envio} = req.body;
     con = mysql.createConnection(objectConnection);
 
     
@@ -36,7 +36,7 @@ router.post('/realizarPedido', function(req, res, next) {
         }
 
         if(inventarioValidado){
-            con.query(`INSERT INTO compra (estado, usuario_id_usuario) VALUES ('PENDIENTE', ${id_usuario})`, (err, result, fields) => {
+            con.query(`INSERT INTO compra (estado, direccion_envio, usuario_id_usuario) VALUES ('PENDIENTE', '${direccion_envio}', ${id_usuario})`, (err, result, fields) => {
                 console.log("INSERT INTO compra")
                 if (err) throw err;
         
@@ -87,49 +87,40 @@ router.post('/realizarPedido', function(req, res, next) {
     });
 });
 
-router.post('/confirmarPedido', function(req, res, next) {
-    const {id_compra} = req.body;
-    con = mysql.createConnection(objectConnection);
-    con.connect();
-
-    con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
-        console.log("UPDATE compra")
-        if (err) throw err;
-
-        res.send( {"estado": "ok"});
-        con.end();
-    });
-});
-
 /*POST: Confirmar el envio de una compra*/
 router.post('/confirmarPedido', function(req, res, next) {
     const {id_compra} = req.body;
     con = mysql.createConnection(objectConnection);
     con.connect();
 
-    con.query(`UPDATE compra SET estado = 'CONFIRMADO'`, (err, result, fields) => {
+    con.query(`UPDATE compra SET estado = 'CONFIRMADO' WHERE id_compra = ${id_compra}`, (err, result, fields) => {
         console.log("UPDATE compra")
         if (err) throw err;
 
         con.query(`SELECT correo_electronico, nombre, apellido, direccion_envio FROM usuario INNER JOIN compra ON compra.usuario_id_usuario = usuario.id_usuario WHERE id_compra = ${id_compra}`, (err, result, fields) => {
             console.log("SELECT FROM usuario")
             if (err) throw err;
-            const {correo_electronico, nombre, apellido, direccion_envio} = result[0];
+            let {correo_electronico, nombre, apellido, direccion_envio} = result[0];
 
-            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades, c.direccion_envio FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto  WHERE dc.compra_id_compra = ${id_compra}`, (err, result, fields) => {
+            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades, c.direccion_envio FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${id_compra}`, (err, result, fields) => {
                 console.log("SELECT FROM producto, detalle_compra")
                 if (err) throw err;
 
-                let mensaje = `Muchas gracias ${nombre.toUpperCase()} ${apellido.toUpperCase()} por comprar en el sistema de compra en linea CCV, tus productos serán enviados a la dirección ${direccion_envio}. El resumen de tu compra se detalla a continuación:\n\n`;
+                let mensaje = `Apreciado ${nombre.toUpperCase()} ${apellido.toUpperCase()}, muchas gracias por comprar en el sistema de compra en linea CCV, le informamos que se ha aprobado el envío de sus productos y estos ya se encuentran en camino. El pedido solicitado será entregado a la dirección: ${direccion_envio}. El detalle de su compra se presenta a continuación:\n\n`;
             
                 let precio_total = 0;
                 for(let i = 0; i < result.length; i++){
                     mensaje += "Producto: " + result[i].nombre_producto + "\n";
-                    mensaje += "Precio unitario: " + result[i].precio + "\n";
                     mensaje += "Cantidad: " + result[i].unidades + "\n";
+                    mensaje += "Precio unitario: " + result[i].precio + "\n";
                     mensaje += "Precio total: " + (result[i].precio * result[i].unidades) + "\n\n";
+                    precio_total += result[i].precio * result[i].unidades;
                 }
 
+                mensaje += "Precio total a pagar: " + precio_total + "\n\n";
+                mensaje += "Cualquier duda o consulta quedamos a la orden.\nSaludos"
+
+                console.log(typeof correo_electronico)
                 sendMail('AYD1.Grupo7@gmail.com', correo_electronico, `Confirmación de envío de productos`, mensaje);
 
                 res.send( {"estado": "ok"});

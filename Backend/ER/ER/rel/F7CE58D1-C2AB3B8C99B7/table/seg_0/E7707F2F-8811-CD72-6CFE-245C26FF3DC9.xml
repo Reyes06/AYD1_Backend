@@ -29,6 +29,17 @@
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="direccion_envio" id="5815EBBC-80A7-4C78-6CC5-3617C4D3F8F3">
+<createdBy>eddy</createdBy>
+<createdTime>2021-01-01 00:51:09 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>250</dataTypeSize>
+<ownDataTypeParameters>250,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="usuario_id_usuario" id="3137F5BB-19B0-790E-7FAA-374EE7DCAC99">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-28 05:05:27 UTC</createdTime>
