@@ -97,15 +97,20 @@ router.get('/pendientes', function(req, res, next) {
         let listaDeCompras = [];
         let id_compra, direccion_envio, compra;
 
+        const direcciones = result;
+
         const cantidadCompras = result.length;
         for(let i = 0; i < result.length; i++){
-            id_compra = result[i].id_compra;
-            direccion_envio = result[i].direccion_envio
+            
         
-            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${id_compra}`, (err, result, fields) => {
+            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${result[i].id_compra}`, (err, result, fields) => {
                 console.log("SELECT FROM producto, detalle_compra")
                 if (err) throw err;
 
+                id_compra = direcciones[i].id_compra;
+                direccion_envio = direcciones[i].direccion_envio;
+                console.log(id_compra)
+            
                 compra = {
                     id_compra,
                     direccion_envio,
