@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { VerificarCredencialesService } from '../../services/verificar-credenciales.service';
-import { ClaseVerificarCredenciales } from '../../models/clases';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +16,7 @@ export class NavigationComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private router: Router, private VerificarCredencialesService: VerificarCredencialesService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
@@ -34,30 +32,29 @@ export class NavigationComponent implements OnInit {
 
 
   CargarDatosPagina = async () => {//void
-    var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
-    if(ClaseVerificarCredenciales.CredencialesExisten==true)
+    var authPerfilSinConectarmealServidor: Boolean = this.authService.AuthPerfilSinConectarmealServidor();
+    if(authPerfilSinConectarmealServidor==true)
     { this.isLoggedIn=true; }
-    else if(ClaseVerificarCredenciales.CredencialesExisten==false)
+    else /*if(authPerfilSinConectarmealServidor==false)*/
     { this.isLoggedIn=false; }
   }
 
 
   cerrar=() => {
-    localStorage.removeItem('id_usuario');
-    localStorage.removeItem('correo_usuario');
-    localStorage.removeItem('tipo_usuario');
+    this.authService.LimpiarAuth();
     this.isLoggedIn=false;
     this.router.navigate(['login']);
   }
 
 
-  setClicked(val: boolean): void {
-    this.clicked = val;
+  getTipoUsuario=() => {
+    var tipo_usuario = localStorage.getItem('tipo_usuario')
+    return tipo_usuario;
   }
 
 
-  readLocalStorageValue(key: string) {
-    return localStorage.getItem(key);
+  setClicked(val: boolean): void {
+    this.clicked = val;
   }
 
 
