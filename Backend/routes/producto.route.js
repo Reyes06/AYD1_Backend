@@ -10,7 +10,26 @@ router.get('/:id_depto', function (req, res, next) {
     con = mysql.createConnection(objectConnection);
 
     con.connect();
-    con.query(`SELECT id_producto, nombre, descripcion, precio, cantidad_inventario, imagen FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
+    con.query(`SELECT id_producto, nombre, descripcion, precio, cantidad_inventario, imagen, depto_tienda_id_depto FROM producto WHERE depto_tienda_id_depto = ${id_depto}`, function (err, result, fields) {
+        console.log("SELECT FROM producto")
+        if (err) throw err;
+
+        for (let i = 0; i < result.length; i++) {
+            result[i].imagen = result[i].imagen.toString();
+        }
+
+        res.send({ "productos": result });
+        con.end();
+    });
+});
+
+/*READ*/
+router.get('/usuario/:id_usuario', function (req, res, next) {
+    const { id_usuario } = req.params;
+    con = mysql.createConnection(objectConnection);
+
+    con.connect();
+    con.query(`SELECT id_producto, nombre, descripcion, precio, cantidad_inventario, imagen, depto_tienda_id_depto as id_departamento, (SELECT nombre FROM depto_tienda WHERE id_depto = depto_tienda_id_depto LIMIT 1) as nombre_departamento FROM producto WHERE depto_tienda_id_depto in (SELECT id_depto FROM depto_tienda WHERE tienda_id_tienda in (SELECT id_tienda FROM tienda WHERE usuario_id_usuario in (SELECT id_usuario FROM usuario WHERE id_usuario = ${id_usuario}))) ORDER BY nombre ASC`, function (err, result, fields) {
         console.log("SELECT FROM producto")
         if (err) throw err;
 
@@ -32,7 +51,6 @@ router.post('/nuevo', function (req, res, next) {
     con.query(`INSERT INTO producto (nombre, descripcion, precio, imagen, depto_tienda_id_depto, cantidad_inventario) VALUES ('${nombre}','${descripcion}', '${precio}', '${imagen}',${id_depto}, ${cantidad_inventario})`, function (err, result, fields) {
         console.log("INSERT INTO producto")
         if (err) throw err;
-
         res.send({ "estado": "ok" });
         con.end();
     });
@@ -74,6 +92,20 @@ router.post('/categorias/add', function (req, res, next) {
 
     con.query(`INSERT INTO producto_categoria (producto_id_producto, categoria_id_categoria) VALUES (${id_producto}, ${id_categoria})`, function (err, result, fields) {
         console.log("INSERT INTO producto")
+        if (err) throw err;
+        res.send({ "estado": "ok" });
+        con.end();
+    });
+});
+
+/*UPDATE producto*/
+router.post('/update', function (req, res, next) {
+    const { nombre, descripcion, precio, imagen, cantidad_inventario, id_depto, id_producto } = req.body;
+    con = mysql.createConnection(objectConnection);
+    
+    con.connect();
+    con.query(`UPDATE producto SET nombre = '${nombre}', descripcion = '${descripcion}', precio = ${precio}, imagen = '${imagen}', cantidad_inventario = ${cantidad_inventario}, depto_tienda_id_depto = ${id_depto} WHERE id_producto = ${id_producto}`, function (err, result, fields) {
+        console.log("UPDATE producto");
         if (err) throw err;
         res.send({ "estado": "ok" });
         con.end();

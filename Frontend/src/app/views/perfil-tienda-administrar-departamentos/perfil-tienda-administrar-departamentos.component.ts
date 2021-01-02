@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ConstantesService } from 'src/app/services/constantes.service';
+import { Departamento } from './Departamento';
 
 @Component({
   selector: 'app-perfil-tienda-administrar-departamentos',
@@ -13,8 +14,11 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
 
   Separador_: String = "●▲";
   NuevoNombreDepartamento_: String = "NuevoNombreDepartamento";
-  EliminarDepartamento_: String = "EliminarDepartamento";
   EditarDepartamento_: String = "EditarDepartamento";
+  EliminarDepartamento_: String = "EliminarDepartamento";
+
+
+  ListadeDepartamentos: Departamento[] = [];
 
 
   constructor(private http: HttpClient, private constantes: ConstantesService) { }
@@ -31,47 +35,38 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
 
 
   CargarDatosPagina = async () => {//void
-    await this.CargarTienda();
+    //Obtener Departamentos de la Tienda
+    await this.ObtenerDepartamentosdelaTienda();
+    await this.constantes.sleep(3000);
+    //Cargar Departamentos de la Tienda
+    await this.CargarDepartamentosdelaTienda(this.ListadeDepartamentos);
   }
   
   
-  //Tienda-----------------------------------------------------------------------------------------
+  //Obtener Departamentos de la Tienda-----------------------------------------------------------------------------------------
   
-  CargarTienda = async () => {//void
+  ObtenerDepartamentosdelaTienda = async () => {//void
+    this.ListadeDepartamentos = [];
     var id_usuario = localStorage.getItem('id_usuario');
-    await this.http.get(this.constantes.URL_BASE + "tienda/" + id_usuario
-    ).subscribe( data => this.ExitoalCargarTienda(data), err => this.ErroralCargarTienda(err) );
+    await this.http.get(this.constantes.URL_BASE + "departamento/usuario/" + id_usuario
+    ).subscribe( data => this.ExitoalObtenerDepartamentosdelaTienda(data), err => this.ErroralObtenerDepartamentosdelaTienda(err) );
   }
   
-  ExitoalCargarTienda = async (Exito: any) => {//void
-    var id_tienda = Exito.tiendas[0].id_tienda;
-    await this.CargarDepartamentos(id_tienda);
-  }
-    
-  ErroralCargarTienda = async (Error: any) => {//void
-    console.log(Error);
-    await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, datos de la Tienda no cargados", 3000);
-  }
-
-
-  //Departamentos-----------------------------------------------------------------------------------------
-  
-  CargarDepartamentos = async (id_tienda: any) => {//void
-    await this.http.get(this.constantes.URL_BASE + "departamento/" + id_tienda
-    ).subscribe( data => this.ExitoalCargarDepartamentos(data), err => this.ErroralCargarDepartamentos(err) );
-  }
-  
-  ExitoalCargarDepartamentos = async (Exito: any) => {//void
+  ExitoalObtenerDepartamentosdelaTienda = async (Exito: any) => {//void
     var Departamentos = Exito.departamentos;
-    await this.CargarDepartamentosAux(Departamentos);
+    for(var i=0; i<Departamentos.length; i++)
+    { this.ListadeDepartamentos.push( new Departamento(Departamentos[i].id_depto, Departamentos[i].nombre, Departamentos[i].tienda_id_tienda) ); }
   }
-    
-  ErroralCargarDepartamentos = async (Error: any) => {//void
+      
+  ErroralObtenerDepartamentosdelaTienda = async (Error: any) => {//void
     console.log(Error);
     await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamentos de la Tienda no cargados", 3000);
   }
 
-  CargarDepartamentosAux = async (Departamentos: any) => {//void
+
+  //Cargar Departamentos de la Tienda-----------------------------------------------------------------------------------------
+  
+  CargarDepartamentosdelaTienda = async (ListadeDepartamentos_: Departamento[]) => {//void
     var Html = "";
   
     var Encabezado = "\n\n<table class=\"table\">\n\n";
@@ -88,38 +83,38 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
     
     var Pie = "</tbody>\n\n";
     Pie += "</table>\n\n";
-    
-    for(var i=0; i<Departamentos.length; i++)
+
+    for(var i=0; i<ListadeDepartamentos_.length; i++)
     {
       Html += "<tr> \n";    
       Html += "<td>" + (i+1) + "</td>\n";
-      Html += "<td>" + Departamentos[i].nombre + "</td>\n";
-      Html += "<td><input id=\"" + this.NuevoNombreDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" type=\"text\" placeholder=\"Nuevo Nombre\"></td>\n";
+      Html += "<td>" + ListadeDepartamentos_[i].nombre + "</td>\n";
+      Html += "<td><input id=\"" + this.NuevoNombreDepartamento_ + this.Separador_ + ListadeDepartamentos_[i].id_depto + "\" type=\"text\" placeholder=\"Nuevo Nombre\"></td>\n";
       Html += "<td>\n";
-      Html += "<button id=\"" + this.EditarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" class=\"btn btn-info\" ";
-      Html += "(click)=\"EditarDepartamento(\"" + this.EditarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\")\">Editar</button>\n";
+      Html += "<button id=\"" + this.EditarDepartamento_ + this.Separador_ + ListadeDepartamentos_[i].id_depto + "\" class=\"btn btn-info\" ";
+      Html += "(click)=\"EditarDepartamento(\"" + this.EditarDepartamento_ + this.Separador_ + ListadeDepartamentos_[i].id_depto + "\")\">Editar</button>\n";
       Html += "</td>\n";
       Html += "<td>\n";
-      Html += "<button id=\"" + this.EliminarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" class=\"btn btn-danger\" ";
-      Html += "(click)=\"EliminarDepartamento(\"" + this.EliminarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\")\">Eliminar</button>\n";
+      Html += "<button id=\"" + this.EliminarDepartamento_ + this.Separador_ + ListadeDepartamentos_[i].id_depto + "\" class=\"btn btn-danger\" ";
+      Html += "(click)=\"EliminarDepartamento(\"" + this.EliminarDepartamento_ + this.Separador_ + ListadeDepartamentos_[i].id_depto + "\")\">Eliminar</button>\n";
       Html += "</td>\n";
       Html += "</tr> \n\n";
     }
-    
+
     var Div_Tabla_Departamentos = <HTMLInputElement>document.getElementById("Div_Tabla_Departamentos");
-    Div_Tabla_Departamentos.innerHTML = Encabezado + Html + Pie;
-      
-    for(var i=0; i<Departamentos.length; i++)
+    Div_Tabla_Departamentos.innerHTML = Encabezado + Html + Pie; 
+    
+    for(var i=0; i<ListadeDepartamentos_.length; i++)
     {
       //Editar Departamento
-      var a = <HTMLInputElement>document.getElementById(String(this.EditarDepartamento_) + String(this.Separador_) + String(Departamentos[i].id_depto));
+      var a = <HTMLInputElement>document.getElementById(String(this.EditarDepartamento_) + String(this.Separador_) + String(ListadeDepartamentos_[i].id_depto));
       a.addEventListener("click", (evt) => {
         const element = evt.target as HTMLInputElement;    
         var id = element.id;
         this.EditarDepartamento(id);
       });
       //Eliminar Departamento
-      var a = <HTMLInputElement>document.getElementById(String(this.EliminarDepartamento_) + String(this.Separador_) + String(Departamentos[i].id_depto));
+      var a = <HTMLInputElement>document.getElementById(String(this.EliminarDepartamento_) + String(this.Separador_) + String(ListadeDepartamentos_[i].id_depto));
       a.addEventListener("click", (evt) => {
         const element = evt.target as HTMLInputElement;    
         var id = element.id;
