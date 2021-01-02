@@ -17,6 +17,7 @@ import { RegistrarTiendaTerminosyCondicionesComponent } from './views/registrar-
 import { PerfilAdministradorSolicitudesComponent } from './views/perfil-administrador-solicitudes/perfil-administrador-solicitudes.component';
 import { PerfilAdministradorDashboardComponent } from './views/perfil-administrador-dashboard/perfil-administrador-dashboard.component';
 import { PerfilAdministradorAdministrarCategoriasComponent } from './views/perfil-administrador-administrar-categorias/perfil-administrador-administrar-categorias.component';
+import { PerfilAdministradorPedidosComponent } from './views/perfil-administrador-pedidos/perfil-administrador-pedidos.component';
 
 //Perfil Tienda
 import { PerfilTiendaDashboardComponent } from './views/perfil-tienda-dashboard/perfil-tienda-dashboard.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path: 'perfil-administrador/Dashboard', component: PerfilAdministradorDashboardComponent, canActivate: [AuthPerfilAdministradorGuard]},
   {path: 'perfil-administrador/Solicitudes', component: PerfilAdministradorSolicitudesComponent, canActivate: [AuthPerfilAdministradorGuard]},
   {path: 'perfil-administrador/AdministrarCategorias', component: PerfilAdministradorAdministrarCategoriasComponent, canActivate: [AuthPerfilAdministradorGuard]},
+  {path: 'perfil-administrador/Pedidos', component: PerfilAdministradorPedidosComponent, canActivate: [AuthPerfilAdministradorGuard]},
   
   //Perfil Tienda
   {path: 'perfil-tienda', component: PerfilTiendaDashboardComponent, canActivate: [AuthPerfilTiendaGuard]},

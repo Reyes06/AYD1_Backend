@@ -32,7 +32,7 @@ import { PerfilTiendaAdministrarDepartamentosComponent } from './perfil-tienda-a
 import { PerfilTiendaAdministrarProductosComponent } from './perfil-tienda-administrar-productos/perfil-tienda-administrar-productos.component';
 import { PerfilAdministradorAdministrarCategoriasComponent } from './perfil-administrador-administrar-categorias/perfil-administrador-administrar-categorias.component';
 import { PerfilTiendaAdministrarCategoriasProductosComponent } from './perfil-tienda-administrar-categorias-productos/perfil-tienda-administrar-categorias-productos.component';
-
+import { PerfilAdministradorPedidosComponent } from './perfil-administrador-pedidos/perfil-administrador-pedidos.component';
 
 @NgModule({
   imports: [
@@ -72,7 +72,7 @@ import { PerfilTiendaAdministrarCategoriasProductosComponent } from './perfil-ti
     PerfilTiendaAdministrarProductosComponent,
     PerfilAdministradorAdministrarCategoriasComponent,
     PerfilTiendaAdministrarCategoriasProductosComponent,
-
+    PerfilAdministradorPedidosComponent,
   ],
   exports: [
     FooterComponent,
