@@ -143,9 +143,6 @@ export class RegistrarTiendaComponent implements OnInit {
       await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
   }
 
-  on_id_municipio = async () => {//void
-    
-  }
 
   //Sectores---------------------------------------------------------------------------------------
 
