@@ -11,7 +11,10 @@ import { ConstantesService } from 'src/app/services/constantes.service';
 export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
 
 
-  separador: String = "ôﻶ"
+  Separador_: String = "●▲";
+  NuevoNombreDepartamento_: String = "NuevoNombreDepartamento";
+  EliminarDepartamento_: String = "EliminarDepartamento";
+  EditarDepartamento_: String = "EditarDepartamento";
 
 
   constructor(private http: HttpClient, private constantes: ConstantesService) { }
@@ -78,6 +81,7 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
     Encabezado += "<th>Departamento</th>\n";
     Encabezado += "<th></th>\n";
     Encabezado += "<th></th>\n";
+    Encabezado += "<th></th>\n";
     Encabezado += "</tr>\n";
     Encabezado += "</thead>\n\n"; 
     Encabezado += "<tbody> \n\n";
@@ -90,13 +94,14 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
       Html += "<tr> \n";    
       Html += "<td>" + (i+1) + "</td>\n";
       Html += "<td>" + Departamentos[i].nombre + "</td>\n";
+      Html += "<td><input id=\"" + this.NuevoNombreDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" type=\"text\" placeholder=\"Nuevo Nombre\"></td>\n";
       Html += "<td>\n";
-      Html += "<button id=\"" + Departamentos[i].id_depto + "\" class=\"btn btn-danger\" ";
-      Html += "(click)=\"EliminarDepartamento(" + Departamentos[i].id_depto + ")\">Eliminar</button>\n";
+      Html += "<button id=\"" + this.EditarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" class=\"btn btn-info\" ";
+      Html += "(click)=\"EditarDepartamento(\"" + this.EditarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\")\">Editar</button>\n";
       Html += "</td>\n";
       Html += "<td>\n";
-      Html += "<button id=\"" + Departamentos[i].id_depto + this.separador + Departamentos[i].nombre + "\" class=\"btn btn-info\" ";
-      Html += "(click)=\"EditarDepartamento(\"" + Departamentos[i].id_depto + this.separador + Departamentos[i].nombre + "\")\">Editar</button>\n";
+      Html += "<button id=\"" + this.EliminarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\" class=\"btn btn-danger\" ";
+      Html += "(click)=\"EliminarDepartamento(\"" + this.EliminarDepartamento_ + this.Separador_ + Departamentos[i].id_depto + "\")\">Eliminar</button>\n";
       Html += "</td>\n";
       Html += "</tr> \n\n";
     }
@@ -106,27 +111,65 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
       
     for(var i=0; i<Departamentos.length; i++)
     {
+      //Editar Departamento
+      var a = <HTMLInputElement>document.getElementById(String(this.EditarDepartamento_) + String(this.Separador_) + String(Departamentos[i].id_depto));
+      a.addEventListener("click", (evt) => {
+        const element = evt.target as HTMLInputElement;    
+        var id = element.id;
+        this.EditarDepartamento(id);
+      });
       //Eliminar Departamento
-      var a = <HTMLInputElement>document.getElementById(Departamentos[i].id_depto);
+      var a = <HTMLInputElement>document.getElementById(String(this.EliminarDepartamento_) + String(this.Separador_) + String(Departamentos[i].id_depto));
       a.addEventListener("click", (evt) => {
         const element = evt.target as HTMLInputElement;    
         var id = element.id;
         this.EliminarDepartamento(id);
       });
-      //Editar Departamento
-      var b = <HTMLInputElement>document.getElementById(Departamentos[i].id_depto + this.separador + Departamentos[i].nombre);
-      b.addEventListener("click", (evt) => {
-        const element = evt.target as HTMLInputElement;    
-        var id = element.id;
-        this.EditarDepartamento(id);
-      });
     }
   }
 
 
+  //Editar Departamento-------------------------------------------------------------------------------
+
+  EditarDepartamento = async (EditarDepartamento_e_id: any) => {//void
+    var split_EditarDepartamento_e_id = EditarDepartamento_e_id.split(this.Separador_);
+    var id_departamento = split_EditarDepartamento_e_id[1];
+    
+    var nuevo_nombre_departamento = <HTMLInputElement>document.getElementById(String(this.NuevoNombreDepartamento_) + String(this.Separador_) + String(id_departamento));
+
+    if(nuevo_nombre_departamento.value!=null && nuevo_nombre_departamento.value!="")
+    {
+      await this.http.post(this.constantes.URL_BASE + "departamento/editar",
+      {
+        id_depto: id_departamento,
+        nombre: nuevo_nombre_departamento.value
+      }
+      ).subscribe( data => this.ExitoalEditarDepartamentoAux(data), err => this.ErroralEditarDepartamentoAux(err) );
+    }
+    else
+    { this.constantes.DesplegarMensajeTemporaldeError("El campo Nuevo Nombre Departamento no puede quedar vacío", 3000); }
+  }
+  
+  ExitoalEditarDepartamentoAux = async (Exito: any) => {//void
+    console.log(Exito);
+    await this.constantes.DesplegarMensajeTemporaldeExito("Departamento editado con éxito", 3000);
+    await this.constantes.sleep(3000);
+    await this.CargarDatosPagina();
+  }
+    
+  ErroralEditarDepartamentoAux = async (Error: any) => {//void
+    console.log(Error);
+    await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no editado", 3000);
+  }
+
+
+
   //Eliminar Departamento-------------------------------------------------------------------------------
 
-  EliminarDepartamento = async (id_departamento: any) => {//void
+  EliminarDepartamento = async (EliminarDepartamento_e_id: any) => {//void
+    var split_EliminarDepartamento_e_id = EliminarDepartamento_e_id.split(this.Separador_);
+    var id_departamento = split_EliminarDepartamento_e_id[1];
+
     await this.http.post(this.constantes.URL_BASE + "departamento/borrar",
     {
       id_depto: id_departamento
@@ -147,64 +190,17 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
   }
 
 
-  //Editar Departamento-------------------------------------------------------------------------------
-
-  EditarDepartamento = async (id_y_nombre_departamento: any) => {//void
-    var split_id_y_nombre_departamento = id_y_nombre_departamento.split(this.separador);
-    var id_departamento = split_id_y_nombre_departamento[0];
-    var nombre_departamento = split_id_y_nombre_departamento[1];
-    
-    var ID_Categoria = <HTMLInputElement>document.getElementById("form_id_departamento");
-    ID_Categoria.value = id_departamento;
-    var Nombre_Categoria = <HTMLInputElement>document.getElementById("form_nombre_departamento");
-    Nombre_Categoria.value = nombre_departamento;
-  }
-
-  EditarDepartamentoAux = async () => {//void
-    var id_departamento = <HTMLInputElement>document.getElementById("form_id_departamento")
-    var nombre_departamento = <HTMLInputElement>document.getElementById("form_nombre_departamento")
-    
-    if(id_departamento.value!=null && id_departamento.value!="" && nombre_departamento.value!=null && nombre_departamento.value!="")
-    {
-      await this.EditarDepartamentoAuxAux(id_departamento.value, nombre_departamento.value);
-    }
-    else
-    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 4000); }  
-  }
-  
-  EditarDepartamentoAuxAux = async (id_departamento: any, nombre_departamento: any) => {//void
-    await this.http.post(this.constantes.URL_BASE + "departamento/editar",
-    {
-      id_depto: id_departamento,
-      nombre: nombre_departamento
-    }
-    ).subscribe( data => this.ExitoalEditarDepartamentoAuxAux(data), err => this.ErroralEditarDepartamentoAuxAux(err) );
-  }
-  
-  ExitoalEditarDepartamentoAuxAux = async (Exito: any) => {//void
-    console.log(Exito);
-    await this.constantes.DesplegarMensajePermantendeExito("Departamento editado con éxito", "");
-    await this.constantes.sleep(3000);
-    await this.CargarDatosPagina();
-  }
-    
-  ErroralEditarDepartamentoAuxAux = async (Error: any) => {//void
-    console.log(Error);
-    await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no editado", 3000);
-  }
-
-
   //Agregar Departamento-------------------------------------------------------------------------------
 
   AgregarDepartamento = async () => {//void
-    var nombre_departamento = <HTMLInputElement>document.getElementById("form_nombre_departamento")
+    var nombre_departamento = <HTMLInputElement>document.getElementById("form_nombre_departamento");
 
     if(nombre_departamento.value!=null && nombre_departamento.value!="")
     {
       await this.AgregarDepartamentoAux();
     }
     else
-    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 4000); }
+    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 3000); }
     
   }
     
@@ -240,7 +236,9 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
   
   ExitoalAgregarDepartamentoAuxAux = async (Exito: any) => {//void
     console.log(Exito);
-    await this.constantes.DesplegarMensajePermantendeExito("Departamento agregado con éxito", "");
+    var nombre_departamento = <HTMLInputElement>document.getElementById("form_nombre_departamento");
+    nombre_departamento.value = "";
+    await this.constantes.DesplegarMensajeTemporaldeExito("Departamento agregado con éxito", 3000);
     await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
   }

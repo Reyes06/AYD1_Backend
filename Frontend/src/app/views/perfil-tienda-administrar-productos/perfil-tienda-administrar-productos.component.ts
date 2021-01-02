@@ -297,7 +297,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       await this.AgregarProductoAux();
     }
     else
-    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 4000); } 
+    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 3000); } 
   }
 
   //Agregar Producto, Último Paso-----------------------------------------------------------------------------------------
@@ -354,7 +354,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       await this.EditarDepartamentoAuxAux(id_departamento.value, nombre_departamento.value);
     }
     else
-    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 4000); }  
+    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 3000); }  
   }
   
   EditarDepartamentoAuxAux = async (id_departamento: any, nombre_departamento: any) => {//void
@@ -392,7 +392,7 @@ export class PerfilTiendaAdministrarProductosComponent implements OnInit {
       await this.EditarDepartamentoAuxAux(id_inventario, cantidad_inventario);
     }
     else
-    { this.constantes.DesplegarMensajeTemporaldeError("Inventario no válido", 4000); }    
+    { this.constantes.DesplegarMensajeTemporaldeError("Inventario no válido", 3000); }    
   }
     
   EditarInventarioAux = async (id_inventario: any, cantidad_inventario: any) => {//void

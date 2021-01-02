@@ -10,7 +10,7 @@
             <!--Card content-->
             <mdb-card-body>
 
-                <h3 class="mt-5 text-left"><strong>Eliminar Departamento</strong></h3>
+                <h3 class="mt-5 text-left"><strong>Editar y Eliminar Departamento</strong></h3>
 
                 <div id="Div_Tabla_Departamentos" #Div_Tabla_Departamentos>
                 
@@ -24,6 +24,7 @@
                         <th>Departamento</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <!--Table head-->
@@ -31,14 +32,15 @@
                     <!--Table body-->
                     <tbody>
                     <!--<tr>
-                        <td>1</td>
+                        <td>254</td>
                         <td>Hombres</td>
+                        <td><input id="NuevoNombreDepartamento●▲254" type="text" placeholder="Nuevo Nombre"></td>
                         <td>
-                            <button id="1" type="button" class="btn btn-danger" (click)="EliminarDepartamento(1)">Eliminar</button>
-                        </td>
-                        <td>
-                            <button id="1,Hombres" type="button" class="btn btn-info" (click)="EditarProducto("1,Hombres")">Editar</button>
+                            <button id="EditarDepartamento●▲254" type="button" class="btn btn-info" (click)="EditarDepartamento("EditarDepartamento●▲254")">Editar</button>
                         </td>                        
+                        <td>
+                            <button id="EliminarDepartamento●▲254" type="button" class="btn btn-danger" (click)="EliminarDepartamento("EliminarDepartamento●▲254")">Eliminar</button>
+                        </td>                       
                     </tr>-->
                     </tbody>
                     <!--Table body-->
@@ -128,12 +130,6 @@
                         <!--Header-->
                     
                         <mdb-card-body class="mx-4">
-  
-                          <div class="md-form">
-                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_id_departamento" class="form-control" mdbInput readonly>
-                            <label for="form104">ID Departamento</label>
-                          </div>
 
                           <div class="md-form">
                             <mdb-icon fas icon="clipboard" class="prefix grey-text"></mdb-icon>
@@ -152,14 +148,6 @@
                             </div>
                             <!--Grid column-->
 
-                            <!--Grid column-->
-                            <div class="col-md-12">
-                              <div class="text-center">
-                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarDepartamentoAux()">Editar</button>
-                              </div>
-                            </div>
-                            <!--Grid column-->
-                    
                           </div>
                           <!--Grid row-->
                         </mdb-card-body>
