@@ -139,20 +139,20 @@ export class PerfilTiendaAdministrarDepartamentosComponent implements OnInit {
         id_depto: id_departamento,
         nombre: nuevo_nombre_departamento.value
       }
-      ).subscribe( data => this.ExitoalEditarDepartamentoAux(data), err => this.ErroralEditarDepartamentoAux(err) );
+      ).subscribe( data => this.ExitoalEditarDepartamento(data), err => this.ErroralEditarDepartamento(err) );
     }
     else
-    { this.constantes.DesplegarMensajeTemporaldeError("El campo Nuevo Nombre Departamento no puede quedar vacío", 3000); }
+    { this.constantes.DesplegarMensajeTemporaldeError("El campo Nuevo Nombre no puede quedar vacío", 3000); }
   }
   
-  ExitoalEditarDepartamentoAux = async (Exito: any) => {//void
+  ExitoalEditarDepartamento = async (Exito: any) => {//void
     console.log(Exito);
     await this.constantes.DesplegarMensajeTemporaldeExito("Departamento editado con éxito", 3000);
     await this.constantes.sleep(3000);
     await this.CargarDatosPagina();
   }
     
-  ErroralEditarDepartamentoAux = async (Error: any) => {//void
+  ErroralEditarDepartamento = async (Error: any) => {//void
     console.log(Error);
     await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, Departamento no editado", 3000);
   }
