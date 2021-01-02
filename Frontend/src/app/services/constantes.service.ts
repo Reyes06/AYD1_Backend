@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 export class ConstantesService {
 
 
-  public URL_BASE = "https://ayd1-back-main.azurewebsites.net/";
+  public URL_BASE = "https://ayd1-back-dev.azurewebsites.net/";
 
 
   constructor() { }

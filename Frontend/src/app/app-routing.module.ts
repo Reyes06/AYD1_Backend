@@ -17,12 +17,12 @@ import { RegistrarTiendaTerminosyCondicionesComponent } from './views/registrar-
 import { PerfilAdministradorSolicitudesComponent } from './views/perfil-administrador-solicitudes/perfil-administrador-solicitudes.component';
 import { PerfilAdministradorDashboardComponent } from './views/perfil-administrador-dashboard/perfil-administrador-dashboard.component';
 import { PerfilAdministradorAdministrarCategoriasComponent } from './views/perfil-administrador-administrar-categorias/perfil-administrador-administrar-categorias.component';
-import { PerfilAdministradorPedidosComponent } from './views/perfil-administrador-pedidos/perfil-administrador-pedidos.component';
 
 //Perfil Tienda
 import { PerfilTiendaDashboardComponent } from './views/perfil-tienda-dashboard/perfil-tienda-dashboard.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './views/perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
 import { PerfilTiendaAdministrarProductosComponent } from './views/perfil-tienda-administrar-productos/perfil-tienda-administrar-productos.component';
+import { PerfilTiendaAdministrarCategoriasProductosComponent } from './views/perfil-tienda-administrar-categorias-productos/perfil-tienda-administrar-categorias-productos.component';
 
 //Perfil Usuario
 import { PerfilUsuarioDashboardComponent } from './views/perfil-usuario-dashboard/perfil-usuario-dashboard.component';
@@ -57,13 +57,13 @@ const routes: Routes = [
   {path: 'perfil-administrador/Dashboard', component: PerfilAdministradorDashboardComponent, canActivate: [AuthPerfilAdministradorGuard]},
   {path: 'perfil-administrador/Solicitudes', component: PerfilAdministradorSolicitudesComponent, canActivate: [AuthPerfilAdministradorGuard]},
   {path: 'perfil-administrador/AdministrarCategorias', component: PerfilAdministradorAdministrarCategoriasComponent, canActivate: [AuthPerfilAdministradorGuard]},
-  {path: 'perfil-administrador/Pedidos', component: PerfilAdministradorPedidosComponent, canActivate: [AuthPerfilAdministradorGuard]},
   
   //Perfil Tienda
   {path: 'perfil-tienda', component: PerfilTiendaDashboardComponent, canActivate: [AuthPerfilTiendaGuard]},
   {path: 'perfil-tienda/Dashboard', component: PerfilTiendaDashboardComponent, canActivate: [AuthPerfilTiendaGuard]},
   {path: 'perfil-tienda/AdministrarDepartamentos', component: PerfilTiendaAdministrarDepartamentosComponent, canActivate: [AuthPerfilTiendaGuard]},
   {path: 'perfil-tienda/AdministrarProductos', component: PerfilTiendaAdministrarProductosComponent, canActivate: [AuthPerfilTiendaGuard]},
+  {path: 'perfil-tienda/AdministrarCategoriasProductos', component: PerfilTiendaAdministrarCategoriasProductosComponent, canActivate: [AuthPerfilTiendaGuard]},
   
   //Perfil Usuario
   {path: 'perfil-usuario', component: PerfilUsuarioDashboardComponent, canActivate: [AuthPerfilUsuarioGuard]},
