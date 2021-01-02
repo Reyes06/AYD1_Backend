@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { ConstantesService } from 'src/app/services/constantes.service';
-import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
-import { ClaseVerificarCredenciales } from '../../models/clases';
 import { formularios } from './formularios';
 
 @Component({
@@ -15,7 +12,7 @@ import { formularios } from './formularios';
 export class PerfilAdministradorSolicitudesComponent implements OnInit {
 
 
-  constructor(private router: Router, private http: HttpClient, private constantes: ConstantesService, private VerificarCredencialesService: VerificarCredencialesService) { }
+  constructor(private http: HttpClient, private constantes: ConstantesService) { }
 
 
   ngOnInit() {
@@ -29,22 +26,7 @@ export class PerfilAdministradorSolicitudesComponent implements OnInit {
 
 
   CargarDatosPagina = async () => {//void
-
-    var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
-    if(ClaseVerificarCredenciales.CredencialesExisten==true)
-    {
-      var tipo_usuario = localStorage.getItem('tipo_usuario')
-
-      if(tipo_usuario==="1")//Administrador
-      { await this.CargarDatosPaginaAux(); }
-      else if(tipo_usuario==="2")//Tienda
-      { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="3")//Usuario
-      { await this.router.navigate(['perfil-usuario']);  }
-    }
-    else
-    { await this.router.navigate(['login']); }
-    
+    await this.CargarDatosPaginaAux();
   }
 
 
@@ -79,17 +61,18 @@ export class PerfilAdministradorSolicitudesComponent implements OnInit {
   }
 
   ExitoalAceptarComercio = async (Exito: any) => {//void
-    console.log(Exito); await this.constantes.DesplegarMensajePermantendeExito("Se otorgo acceso con Éxito", "Las credenciales han sido enviadas");  
-    
+    console.log(Exito);
+    await this.constantes.DesplegarMensajePermantendeExito("Se otorgo acceso con Éxito", "Las credenciales han sido enviadas");
   }
   
   ExitoalDenegarComercio = async (Exito: any) => {//void
-    console.log(Exito); await this.constantes.DesplegarMensajePermantendeExito("Se denego acceso con Éxito", "Has rechazado la solicitud");  
-    
+    console.log(Exito);
+    await this.constantes.DesplegarMensajePermantendeExito("Se denego acceso con Éxito", "Has rechazado la solicitud");    
   }
 
   MensajeError = async (Error: any) => {//void
-    console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000);
+    console.log(Error);
+    await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 3000);
   }
 
 }

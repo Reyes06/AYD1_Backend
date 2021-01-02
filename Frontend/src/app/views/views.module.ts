@@ -19,20 +19,19 @@ import { Dashboard1Component } from './dashboards/dashboard1/dashboard1.componen
 import { Profile1Component } from './profile/profile1/profile1.component';
 import { HelpComponent } from './help/help.component';
 import { LoginComponent } from './login/login.component';
-import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
-import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
-import { PerfilTiendaComponent } from './perfil-tienda/perfil-tienda.component';
 import { RegistrarTiendaComponent } from './registrar-tienda/registrar-tienda.component';
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 import { PerfilAdministradorDashboardComponent } from './perfil-administrador-dashboard/perfil-administrador-dashboard.component';
 import { PerfilAdministradorSolicitudesComponent } from './perfil-administrador-solicitudes/perfil-administrador-solicitudes.component';
 import { PerfilTiendaDashboardComponent } from './perfil-tienda-dashboard/perfil-tienda-dashboard.component';
 import { PerfilUsuarioDashboardComponent } from './perfil-usuario-dashboard/perfil-usuario-dashboard.component';
+import { PerfilUsuarioCarritoComponent } from './perfil-usuario-carrito/perfil-usuario-carrito.component';
 import { RegistrarTiendaTerminosyCondicionesComponent } from './registrar-tienda-terminosy-condiciones/registrar-tienda-terminosy-condiciones.component';
 import { RegistrarUsuarioTerminosyCondicionesComponent } from './registrar-usuario-terminosy-condiciones/registrar-usuario-terminosy-condiciones.component';
 import { PerfilTiendaAdministrarDepartamentosComponent } from './perfil-tienda-administrar-departamentos/perfil-tienda-administrar-departamentos.component';
 import { PerfilTiendaAdministrarProductosComponent } from './perfil-tienda-administrar-productos/perfil-tienda-administrar-productos.component';
 import { PerfilAdministradorAdministrarCategoriasComponent } from './perfil-administrador-administrar-categorias/perfil-administrador-administrar-categorias.component';
+import { PerfilAdministradorPedidosComponent } from './perfil-administrador-pedidos/perfil-administrador-pedidos.component';
 
 
 @NgModule({
@@ -60,20 +59,19 @@ import { PerfilAdministradorAdministrarCategoriasComponent } from './perfil-admi
     Profile1Component,
     HelpComponent,
     LoginComponent,
-    PerfilAdministradorComponent,
-    PerfilUsuarioComponent,
-    PerfilTiendaComponent,
     RegistrarTiendaComponent,
     RegistrarUsuarioComponent,
     PerfilAdministradorDashboardComponent,
     PerfilAdministradorSolicitudesComponent,
     PerfilTiendaDashboardComponent,
     PerfilUsuarioDashboardComponent,
+    PerfilUsuarioCarritoComponent,
     RegistrarTiendaTerminosyCondicionesComponent,
     RegistrarUsuarioTerminosyCondicionesComponent,
     PerfilTiendaAdministrarDepartamentosComponent,
     PerfilTiendaAdministrarProductosComponent,
     PerfilAdministradorAdministrarCategoriasComponent,
+    PerfilAdministradorPedidosComponent,
 
   ],
   exports: [

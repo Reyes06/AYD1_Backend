@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { ConstantesService } from 'src/app/services/constantes.service';
-import { VerificarCredencialesService } from 'src/app/services/verificar-credenciales.service';
-import { ClaseVerificarCredenciales } from '../../models/clases';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
@@ -23,7 +21,7 @@ export class RegistrarTiendaComponent implements OnInit {
   file: File;
 
 
-  constructor(private router: Router, private http: HttpClient, private constantes: ConstantesService, private VerificarCredencialesService: VerificarCredencialesService) 
+  constructor(private router: Router, private http: HttpClient, private constantes: ConstantesService) 
   { }
 
 
@@ -37,26 +35,9 @@ export class RegistrarTiendaComponent implements OnInit {
   }
 
   CargarDatosPagina = async () => {//void
-
-    var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
-    if(ClaseVerificarCredenciales.CredencialesExisten==true)
-    {
-      var tipo_usuario = localStorage.getItem('tipo_usuario')
-
-      if(tipo_usuario==="1")//Administrador
-      { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="2")//Tienda
-      { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="3")//Usuario
-      { await this.router.navigate(['perfil-usuario']);  }
-    }
-    else
-    { 
-      await this.CargarPaises();
-      await this.constantes.sleep(3000);
-      await this.CargarSectores(); 
-    }
-    
+    await this.CargarPaises();
+    await this.constantes.sleep(3000);
+    await this.CargarSectores();
   }
 
 
@@ -89,7 +70,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarPaises = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Países no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Países no cargada", 3000);
   }
 
   on_id_pais = async () => {//void
@@ -125,7 +107,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarDepartamentos = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Departamentos no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Departamentos no cargada", 3000);
   }
 
   on_id_departamento = async () => {//void
@@ -156,7 +139,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarMunicipios = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
   }
 
   on_id_municipio = async () => {//void
@@ -179,7 +163,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarSectores = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Sectores no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Sectores no cargada", 3000);
   }
 
 
@@ -199,68 +184,39 @@ export class RegistrarTiendaComponent implements OnInit {
   //Registrar Tienda-------------------------------------------------------------------------------
 
   RegistrarTienda = async () => {//void
-    var ClaseVerificarCredenciales: ClaseVerificarCredenciales = await this.VerificarCredencialesService.VerificarCredenciales();
+    var nombre = <HTMLInputElement>document.getElementById("form_nombre");
+    var apellido = <HTMLInputElement>document.getElementById("form_apellido");
+    var fecha_de_nacimiento = <HTMLInputElement>document.getElementById("form_fecha_de_nacimiento");
+    var correo = <HTMLInputElement>document.getElementById("form_correo_electronico");
+    var contrasena = <HTMLInputElement>document.getElementById("form_contrasena");
+    var nombre_tienda = <HTMLInputElement>document.getElementById("form_nombre_tienda");
+    var id_pais = <HTMLInputElement>document.getElementById("id_pais");
+    var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
+    var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
+    var direccion = <HTMLInputElement>document.getElementById("form_direccion");
+    var id_sector = <HTMLInputElement>document.getElementById("id_sector");
+    var TerminosyCondiciones = <HTMLInputElement>document.getElementById("TerminosyCondiciones");
 
-    if(ClaseVerificarCredenciales.CredencialesExisten==true)
-    { 
-      await this.constantes.DesplegarMensajeTemporaldeError("Sesión ya Iniciada", 2000);
-
-      var tipo_usuario = localStorage.getItem('tipo_usuario')
-        
-      if(tipo_usuario==="1")//Administrador
-      { await this.router.navigate(['perfil-administrador']);  }
-      else if(tipo_usuario==="2")//Tienda
-      { await this.router.navigate(['perfil-tienda']);  }
-      else if(tipo_usuario==="3")//Usuario
-      { await this.router.navigate(['perfil-usuario']);  }
-      else
-      { this.constantes.DesplegarMensajeTemporaldeError("Algo ha salido mal. Vuelve a Intentarlo", 2000); }
-    }
-    else 
+    if(nombre.value!=null && nombre.value!="" && apellido.value!=null && apellido.value!="" 
+    && fecha_de_nacimiento.value!=null && fecha_de_nacimiento.value!=""
+    && correo.value!=null && correo.value!="" && contrasena.value!=null && contrasena.value!="" 
+    && nombre_tienda.value!=null && nombre_tienda.value!="" && id_pais.value!=null && id_pais.value!="" 
+    && id_departamento.value!=null && id_departamento.value!="" 
+    && id_municipio.value!=null && id_municipio.value!="" && direccion.value!=null && direccion.value!="" 
+    && id_sector.value!=null && id_sector.value!="" && this.photoSelected!=null)
     {
-      var nombre = <HTMLInputElement>document.getElementById("form_nombre");
-      var apellido = <HTMLInputElement>document.getElementById("form_apellido");
-      var fecha_de_nacimiento = <HTMLInputElement>document.getElementById("form_fecha_de_nacimiento");
-      var correo = <HTMLInputElement>document.getElementById("form_correo_electronico");
-      var sexoFemenino = <HTMLInputElement>document.getElementById("form_sexo_femenino");
-      var sexoMasculino = <HTMLInputElement>document.getElementById("form_sexo_masculino");
-      var sexo = null;
-      if(sexoFemenino.checked){
-        sexo = "F";
-      }
-      else if(sexoMasculino.checked){
-        sexo = "M";
-      }
-      var contrasena = <HTMLInputElement>document.getElementById("form_contrasena");
-      var nombre_tienda = <HTMLInputElement>document.getElementById("form_nombre_tienda");
-      var id_pais = <HTMLInputElement>document.getElementById("id_pais");
-      var id_departamento = <HTMLInputElement>document.getElementById("id_departamento");
-      var id_municipio = <HTMLInputElement>document.getElementById("id_municipio");
-      var direccion = <HTMLInputElement>document.getElementById("form_direccion");
-      var id_sector = <HTMLInputElement>document.getElementById("id_sector");
-      var TerminosyCondiciones = <HTMLInputElement>document.getElementById("TerminosyCondiciones");
-
-      if(nombre.value!=null && nombre.value!="" && apellido.value!=null && apellido.value!="" 
-      && fecha_de_nacimiento.value!=null && fecha_de_nacimiento.value!=""
-      && correo.value!=null && correo.value!="" && (sexoFemenino.checked!=true || sexoFemenino.checked==true) 
-      && sexo!=null && sexo!="" && contrasena.value!=null && contrasena.value!="" 
-      && nombre_tienda.value!=null && nombre_tienda.value!="" && id_pais.value!=null && id_pais.value!="" 
-      && id_departamento.value!=null && id_departamento.value!="" 
-      && id_municipio.value!=null && id_municipio.value!="" && direccion.value!=null && direccion.value!="" 
-      && id_sector.value!=null && id_sector.value!="" && this.photoSelected!=null)
+      if(TerminosyCondiciones.checked == true)
       {
-        if(TerminosyCondiciones.checked == true)
-        {
-          await this.http.post(this.constantes.URL_BASE + "formulario/nuevo",
-          { usuario_nombre: nombre.value, usuario_apellido: apellido.value, usuario_fecha_nacimiento: fecha_de_nacimiento.value, usuario_correo_electronico: correo.value, usuario_sexo: sexo, usuario_password: contrasena.value, nombre_tienda: nombre_tienda.value, id_municipio: id_municipio.value, direccion: direccion.value, id_sector: id_sector.value, logo: this.photoSelected}
-          ).subscribe( data => this.ExitoalRegistrarTienda(data), err => this.ErroralRegistrarTienda(err) );
-        }
-        else
-        { this.constantes.DesplegarMensajeTemporaldeError("Para registrarse debe de aceptar los términos y condiciones", 4000); }
+        await this.http.post(this.constantes.URL_BASE + "formulario/nuevo",
+        { usuario_nombre: nombre.value, usuario_apellido: apellido.value, usuario_fecha_nacimiento: fecha_de_nacimiento.value, usuario_correo_electronico: correo.value, usuario_password: contrasena.value, nombre_tienda: nombre_tienda.value, id_municipio: id_municipio.value, direccion: direccion.value, id_sector: id_sector.value, logo: this.photoSelected}
+        ).subscribe( data => this.ExitoalRegistrarTienda(data), err => this.ErroralRegistrarTienda(err) );
       }
       else
-      { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 2000); }
+      { this.constantes.DesplegarMensajeTemporaldeError("Para registrarse debe de aceptar los términos y condiciones", 4000); }
     }
+    else
+    { this.constantes.DesplegarMensajeTemporaldeError("Ningún campo puede quedar vacío", 3000); }
+  
     return false;
   }  
 
@@ -271,7 +227,7 @@ export class RegistrarTiendaComponent implements OnInit {
   }
     
   ErroralRegistrarTienda = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 2000);
+      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión", 3000);
   }
 
 

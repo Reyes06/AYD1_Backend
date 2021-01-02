@@ -34,6 +34,17 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="estado" id="5708CF60-DBF5-DAF2-849F-8D37A29A6912">
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-31 00:13:40 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="logo" id="DADC3853-7825-C3B3-D5C2-6D3617B46872">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
@@ -81,16 +92,6 @@
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="usuario_fecha_nacimiento" id="F70C6A3A-054D-50AE-2999-8CCA81AFE788">
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-21 02:05:11 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="usuario_correo_electronico" id="93428474-021A-656A-7461-02D7B07AAFED">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-21 02:05:11 UTC</createdTime>
@@ -102,22 +103,10 @@
 <ownDataTypeParameters>75,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="usuario_sexo" id="8B2400D9-3E0C-A258-E47F-2B9479988EAB">
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-21 02:05:11 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>1</dataTypeSize>
-<ownDataTypeParameters>1,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="usuario_password" id="AE79BF3A-26DB-B5FB-9B40-F3BEC77BB23F">
 <createdBy>eddy</createdBy>
 <createdTime>2020-12-23 00:04:24 UTC</createdTime>
 <ownerDesignName>ER</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>

@@ -22,17 +22,17 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/nuevo', function(req, res, next) {
-    const {nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, id_sector, id_municipio } = req.body;
+    const {nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_correo_electronico, usuario_password, id_sector, id_municipio } = req.body;
     const con = mysql.createConnection(objectConnection);
     con.connect();
 
     let query;
     if(logo != null){
-        query = `INSERT INTO formulario (nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre_tienda}', '${logo}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        query = `INSERT INTO formulario (nombre_tienda, logo, direccion, usuario_nombre, usuario_apellido, usuario_correo_electronico, usuario_password, municipio_id_municipio, sector_id_sector, estado)
+                       VALUES ('${nombre_tienda}', '${logo}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_correo_electronico}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     } else {
-        query = `INSERT INTO formulario (nombre_tienda, direccion, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password, municipio_id_municipio, sector_id_sector, estado)
-                       VALUES ('${nombre_tienda}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
+        query = `INSERT INTO formulario (nombre_tienda, direccion, usuario_nombre, usuario_apellido, usuario_correo_electronico, usuario_password, municipio_id_municipio, sector_id_sector, estado)
+                       VALUES ('${nombre_tienda}', '${direccion}', '${usuario_nombre}', '${usuario_apellido}', '${usuario_correo_electronico}', '${usuario_password}', ${id_municipio}, ${id_sector}, 'PENDIENTE')`;
     }
     con.query(query, function (err, result, fields) {
         if (err) throw err;
@@ -63,18 +63,17 @@ router.post('/aprobar', function(req, res, next) {
     const {id_formulario} = req.body;
     con = mysql.createConnection(objectConnection);
     con.connect();
-    let id_usuario, usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password;
-    
+
     con.query(`UPDATE formulario SET estado = 'APROBADO' WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
         console.log("UPDATE formulario");
         if (err) throw err;
 
-        con.query(`SELECT usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password FROM formulario WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
+        con.query(`SELECT usuario_nombre, usuario_apellido, usuario_correo_electronico, usuario_password FROM formulario WHERE id_formulario = ${id_formulario}`, function (err, result, fields) {
             console.log("SELECT FROM formulario");
             if (err) throw err; 
-            let {usuario_nombre, usuario_apellido, usuario_fecha_nacimiento, usuario_correo_electronico, usuario_sexo, usuario_password} = result[0];
+            let {usuario_nombre, usuario_apellido, usuario_correo_electronico, usuario_password} = result[0];
 
-            con.query(`INSERT INTO usuario (nombre, apellido, fecha_nacimiento, correo_electronico, sexo, password, tipo_usuario_id_tipo) VALUES ('${usuario_nombre}', '${usuario_apellido}', '${usuario_fecha_nacimiento}', '${usuario_correo_electronico}', '${usuario_sexo}', '${usuario_password}', 2)`, function (err, result, fields) {
+            con.query(`INSERT INTO usuario (nombre, apellido, correo_electronico, password, tipo_usuario_id_tipo) VALUES ('${usuario_nombre}', '${usuario_apellido}', '${usuario_correo_electronico}', '${usuario_password}', 2)`, function (err, result, fields) {
                 console.log("INSERT INTO usuario");
                 if (err) throw err;  
 

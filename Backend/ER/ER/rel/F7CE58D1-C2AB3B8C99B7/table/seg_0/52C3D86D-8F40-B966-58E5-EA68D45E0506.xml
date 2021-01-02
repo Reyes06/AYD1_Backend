@@ -45,18 +45,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="fecha_nacimiento" id="AFE132FD-C3BE-D0C3-B5A8-53969E09F5DF">
-<sourceDDLFile>ER.sql</sourceDDLFile>
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-16 00:10:36 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<importedID>B37B4884-9124-8053-6FA0-40E3E77BD0BF</importedID>
-<use>0</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<domain>B43EBADC-A7EF-B5A4-645F-3EF1B5B279EB</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="correo_electronico" id="85EF5169-ABF6-7274-C51A-949D018F13E7">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
@@ -69,18 +57,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="sexo" id="29E69726-72D9-FCAB-8268-1C9793A9CD71">
-<sourceDDLFile>ER.sql</sourceDDLFile>
-<createdBy>eddy</createdBy>
-<createdTime>2020-12-16 00:10:36 UTC</createdTime>
-<ownerDesignName>ER</ownerDesignName>
-<importedID>A359ED7F-70A4-507C-AA41-5CEA5E66D90E</importedID>
-<use>0</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<domain>E6BFAA97-159C-7827-D296-31B69F151F86</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="password" id="8C56D05B-D278-849B-22CC-59112BAEF0EF">
 <sourceDDLFile>ER.sql</sourceDDLFile>
 <createdBy>eddy</createdBy>
@@ -90,6 +66,32 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>51384C49-FF58-29C6-3D3E-FDF0A6094D69</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_nacimiento" id="AFE132FD-C3BE-D0C3-B5A8-53969E09F5DF">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>B37B4884-9124-8053-6FA0-40E3E77BD0BF</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>B43EBADC-A7EF-B5A4-645F-3EF1B5B279EB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sexo" id="29E69726-72D9-FCAB-8268-1C9793A9CD71">
+<sourceDDLFile>ER.sql</sourceDDLFile>
+<createdBy>eddy</createdBy>
+<createdTime>2020-12-16 00:10:36 UTC</createdTime>
+<ownerDesignName>ER</ownerDesignName>
+<importedID>A359ED7F-70A4-507C-AA41-5CEA5E66D90E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>E6BFAA97-159C-7827-D296-31B69F151F86</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

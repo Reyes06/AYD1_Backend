@@ -5,10 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
-const bodyParser = require('body-parser');
-
-
-
 var loginRouter = require('./routes/usuario.route');
 var direccionRouter = require('./routes/direccion.route');
 var formularioRouter = require('./routes/formulario.route');
@@ -17,6 +13,8 @@ var categoriaRouter = require('./routes/categoria.route');
 var departamentoRouter = require('./routes/departamento.route');
 var productoRouter = require('./routes/producto.route');
 var tiendaRouter = require('./routes/tienda.route');
+var carritoRouter = require('./routes/carrito.route');
+var compraRouter = require('./routes/compra.route');
 var testRouter = require('./routes/test.route');
 
 var app = express();
@@ -32,9 +30,6 @@ app.use(express.urlencoded({limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Tell the bodyparser middleware to accept more data
-
-
 app.use('/usuario', loginRouter);
 app.use('/direccion', direccionRouter);
 app.use('/formulario', formularioRouter);
@@ -43,7 +38,9 @@ app.use('/categoria', categoriaRouter);
 app.use('/departamento', departamentoRouter);
 app.use('/producto', productoRouter);
 app.use('/tienda', tiendaRouter);
-app.use('/test/integracion', testRouter);
+app.use('/carrito', carritoRouter);
+app.use('/compra', compraRouter);
+app.use('/carrito', carritoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,9 +57,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-//para mandar correos
-//const sendMail = require('./utils/mail-manager');
-//sendMail('AYD1.Grupo7@gmail.com', 'SuperSpeed52@gmail.com', 'Hola mundo', 'Té quiero const.');
 
 module.exports = app;

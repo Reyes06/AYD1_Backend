@@ -1,70 +1,253 @@
 <div class="row mt-5">
-    <div class="col-md-12">
-        <!--Card-->
-        <mdb-card cascade="true" narrower="true" class="mt-5">
-            <!--Card image-->
-            <div class="view gradient-card-header blue darken-2">
-                <h4 class="h4-responsive text-white">Productos</h4>
-            </div>
-            <!--/Card image-->
-            <!--Card content-->
-            <mdb-card-body>
+  <div class="col-md-12">
+      <!--Card-->
+      <mdb-card cascade="true" narrower="true" class="mt-5">
+          <!--Card image-->
+          <div class="view gradient-card-header blue darken-2">
+              <h4 class="h4-responsive text-white">Productos</h4>
+          </div>
+          <!--/Card image-->
+          <!--Card content-->
+          <mdb-card-body>
 
-                <h3 class="mt-5 text-left"><strong>Eliminar Producto</strong></h3>
+              <h3 class="mt-5 text-left"><strong>Editar o Eliminar Producto</strong></h3>
 
-                <div id="Div_Tabla_Productos" #Div_Tabla_Productos>
+
+
+
+
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
+              <div id="Div_Tabla_Productos" #Div_Tabla_Productos>
+              
+              <!--Table-->
+              <table class="table">
+
+                  <!--Table head-->
+                  <thead class="mdb-color darken-3">
+                  <tr class="text-white">
+                      <th>Número</th>
+                      <th>Nombre</th>
+                      <th>Descripción</th>
+                      <th>Precio</th>
+                      <th>Cantidad Inventario</th>
+                      <th>Departamento</th>
+                      <th>Imagen</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+                  </thead>
+                  <!--Table head-->
+
+                  <!--Table body-->
+                  <tbody>
+                  <!--<tr>
+                      <td>1</td>
+                      <td>Camisa</td>
+                      <td>100% de Algodón</td>
+                      <td>103.00</td>
+                      <td>28</td>
+                      <td>Hombre</td>
+                      <td>
+                      <img
+                      src="Imagen en Base 64";
+                      alt="..."
+                      class="img-fluid"
+                      style="width: auto; height: auto; max-height: 100px"
+                      />
+                      </td>
+                      <td>
+                          <button id="EditarProducto●▲143" type="button" class="btn btn-info" (click)="EditarProducto("EditarProducto●▲143")">Editar</button>
+                      </td>                        
+                      <td>
+                          <button id="EliminarProducto●▲143" type="button" class="btn btn-danger" (click)="EliminarProducto("EliminarProducto●▲143")">Eliminar</button>
+                      </td>                       
+                  </tr>-->
+                  </tbody>
+                  <!--Table body-->
+              </table>
+              <!--Table-->                
+              
+              </div>
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
+              <div id="Div_Editar_Producto" style="display:none" #Div_Editar_Producto>
+              
+                <div class="row">
+
+                  <div class="col-md-9">
                 
+                      <!--Projects section v.2-->
+                      <section class="section text-justify pb-3">
+                
+                          <!--Grid row-->
+                          <div class="row d-flex justify-content-center">
+                
+                              <!--Grid column-->
+                              <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+                
+                                  <!--Card-->
+                                  <mdb-card>
+                
+                                      <!--Header-->
+                                      <div class="header blue-gradient">
+                                  
+                                        <div class="row d-flex justify-content-center">
+                                          <h3 class="white-text mb-0 py-5 font-weight-bold">Editar Producto</h3>
+                                        </div>
+                                  
+                                      </div>
+                                      <!--Header-->
+                                  
+                                      <mdb-card-body class="mx-4">
+                
+                                        <div class="md-form">
+                                          <mdb-icon fas icon="box-open" class="prefix grey-text"></mdb-icon>
+                                          <input type="text" id="EditarProducto_form_nombre" class="form-nombre" mdbInput>
+                                          <label for="form104">Nombre</label>
+                                        </div>
+                                        
+                                        <div class="md-form">
+                                          <mdb-icon fas icon="grip-lines" class="prefix grey-text"></mdb-icon>
+                                          <input type="text" id="EditarProducto_form_descripcion" class="form-descripcion" mdbInput>
+                                          <label for="form105">Descripción</label>
+                                        </div>
+                
+                                        <div class="md-form">
+                                          <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
+                                          <input type="number" id="EditarProducto_form_precio" class="form-precio" mdbInput>
+                                          <label for="form105">Precio</label>
+                                        </div>
+                
+                                        <div class="md-form">
+                                          <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
+                                          <input type="number" id="EditarProducto_form_cantidad_inventario" class="form-precio" mdbInput>
+                                          <label for="form105">Cantidad Inventario</label>
+                                        </div>
+                
+                                        <div>
+                                          <label>Departamento</label> 
+                                        </div>
+                
+                                        <select id="EditarProducto_form_id_departamento">
+                                          <!--<option value="1">Bebidas</option>
+                                          <option value="2">Comida</option>-->
+                                        </select>
+                
+                                        <div>
+                                          <label></label> 
+                                        </div>
+                
+                                        <div>
+                                        <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Imagen</label>
+                                        <input type="file" class="d-none" (change)="EditarProducto_onPhotoSelected($event)" #EditarProducto_photoInput>
+                                        <img [src]="EditarProducto_photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="EditarProducto_photoInput.click()">
+                                        </div>
+                                      
+                                        <!--Grid row-->
+                                        <div class="row d-flex align-items-center mb-3 mt-4">
+                
+                                          <!--Grid column-->
+                                          <div class="col-md-12">
+                                              <div class="text-center">
+                                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarProductoAux()">Editar</button>
+                                              </div>
+                                          </div>
+                                          <!--Grid column-->
+                                  
+                                        </div>
+                                        <!--Grid row-->
+                                      </mdb-card-body>
+                                  
+                                    </mdb-card>
+                                  <!--/.Card-->
+                
+                              </div>
+                              <!--Grid column-->
+                              
+                          </div>
+                          <!--Grid row-->
+                
+                      </section>
+                      <!--/Projects section v.2-->
+                  </div>
+
+                </div>
+
+              </div>
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
+              <div id="Div_Tabla_Productos_Dos" #Div_Tabla_Productos_Dos>
+              
                 <!--Table-->
                 <table class="table">
-
+  
                     <!--Table head-->
-                    <thead class="mdb-color darken-3">
+                    <!--<thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th>Número</th>
-                        <th>ID Producto</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Precio</th>
+                        <th>Cantidad Inventario</th>
+                        <th>Departamento</th>
                         <th>Imagen</th>
-                        <th>Inventario</th>
-                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
-                    </thead>
+                    </thead>-->
                     <!--Table head-->
-
+  
                     <!--Table body-->
                     <tbody>
                     <!--<tr>
                         <td>1</td>
-                        <td>143</td>
                         <td>Camisa</td>
                         <td>100% de Algodón</td>
-                        <td>Imágen</td>
-                        <td><input id="Inventario1" type="number" min="1" pattern="^[0-9]+"></td>
+                        <td>103.00</td>
+                        <td>28</td>
+                        <td>Hombre</td>
                         <td>
-                            <button id="1" type="button" class="btn btn-danger" (click)="EliminarProducto(1)">Eliminar</button>
+                        <img
+                        src="Imagen en Base 64";
+                        alt="..."
+                        class="img-fluid"
+                        style="width: auto; height: auto; max-height: 100px"
+                        />
                         </td>
                         <td>
-                            <button id="1,Hombres..." type="button" class="btn btn-info" (click)="EditarProducto("1,Hombres...")">Editar</button>
-                        </td>
+                            <button id="EditarProducto●▲143" type="button" class="btn btn-info" (click)="EditarProducto("EditarProducto●▲143")">Editar</button>
+                        </td>                        
                         <td>
-                            <button id="1" type="button" class="btn btn-light" (click)="EditarInventario("1")">Editar</button>
-                        </td>
+                            <button id="EliminarProducto●▲143" type="button" class="btn btn-danger" (click)="EliminarProducto("EliminarProducto●▲143")">Eliminar</button>
+                        </td>                       
                     </tr>-->
                     </tbody>
                     <!--Table body-->
                 </table>
                 <!--Table-->                
                 
-                </div>
+              </div>
+              <!-------------------------------------------------------------------------------------------------------------------------------------->
 
-            </mdb-card-body>
-            <!--/.Card content-->
-        </mdb-card>
-        <!--/.Card-->
-    </div>
+
+
+
+
+          </mdb-card-body>
+          <!--/.Card content-->
+      </mdb-card>
+      <!--/.Card-->
+  </div>
 </div>
 
 
@@ -74,152 +257,144 @@
 <div class="row">  
 
 
-    <div class="col-md-9">
-  
-        <!--Projects section v.2-->
-        <section class="section text-justify pb-3">
-  
-            <!--Grid row-->
-            <div class="row d-flex justify-content-center">
-  
-                <!--Grid column-->
-                <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
-  
-                    <!--Card-->
-                    <mdb-card>
-  
-                        <!--Header-->
-                        <div class="header blue-gradient">
-                    
-                        </div>
-                        <!--Header-->
-                    
-                      </mdb-card>
-                    <!--/.Card-->
-  
-                </div>
-                <!--Grid column-->
-                
-            </div>
-            <!--Grid row-->
-  
-        </section>
-        <!--/Projects section v.2-->
-    </div>
-  
-  
+  <div class="col-md-9">
+
+      <!--Projects section v.2-->
+      <section class="section text-justify pb-3">
+
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+
+              <!--Grid column-->
+              <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+
+                  <!--Card-->
+                  <mdb-card>
+
+                      <!--Header-->
+                      <div class="header blue-gradient">
+                  
+                      </div>
+                      <!--Header-->
+                  
+                    </mdb-card>
+                  <!--/.Card-->
+
+              </div>
+              <!--Grid column-->
+              
+          </div>
+          <!--Grid row-->
+
+      </section>
+      <!--/Projects section v.2-->
   </div>
 
 
+</div>
 
 
 
-  <div class="row">
 
-    <div class="col-md-9">
-  
-        <!--Projects section v.2-->
-        <section class="section text-justify pb-3">
-  
-            <!--Grid row-->
-            <div class="row d-flex justify-content-center">
-  
-                <!--Grid column-->
-                <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
-  
-                    <!--Card-->
-                    <mdb-card>
-  
-                        <!--Header-->
-                        <div class="header blue-gradient">
-                    
-                          <div class="row d-flex justify-content-center">
-                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Producto</h3>
-                          </div>
-                    
+
+<div class="row">
+
+  <div class="col-md-9">
+
+      <!--Projects section v.2-->
+      <section class="section text-justify pb-3">
+
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+
+              <!--Grid column-->
+              <div class="col-lg-6 col-xl-5 mb-3" style="left:175px">
+
+                  <!--Card-->
+                  <mdb-card>
+
+                      <!--Header-->
+                      <div class="header blue-gradient">
+                  
+                        <div class="row d-flex justify-content-center">
+                          <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Producto</h3>
                         </div>
-                        <!--Header-->
-                    
-                        <mdb-card-body class="mx-4">
-  
-                          <div class="md-form">
-                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_id_producto" class="form-control" mdbInput readonly>
-                            <label for="form104">ID Producto</label>
-                          </div>
+                  
+                      </div>
+                      <!--Header-->
+                  
+                      <mdb-card-body class="mx-4">
 
-                          <div class="md-form">
-                            <mdb-icon fas icon="box-open" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_nombre" class="form-nombre" mdbInput>
-                            <label for="form104">Nombre</label>
-                          </div>
-                          
-                          <div class="md-form">
-                            <mdb-icon fas icon="grip-lines" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_descripcion" class="form-descripcion" mdbInput>
-                            <label for="form105">Descripción</label>
-                          </div>
-
-                          <div class="md-form">
-                            <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
-                            <input type="number" id="form_precio" class="form-precio" mdbInput>
-                            <label for="form105">Precio</label>
-                          </div>                          
-  
-                          <div>
-                            <label>Departamento</label> 
-                          </div>
-  
-                          <select id="id_departamento">
-                            <!--<option value="1">Bebidas</option>
-                            <option value="2">Comida</option>-->
-                          </select>
-  
-                          <div>
-                            <label></label> 
-                          </div>
-  
-                          <div>
-                          <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Imagen Producto</label>
-                          <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
-                          <img [src]="photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="photoInput.click()">
-                          </div>
+                        <div class="md-form">
+                          <mdb-icon fas icon="box-open" class="prefix grey-text"></mdb-icon>
+                          <input type="text" id="form_nombre" class="form-nombre" mdbInput>
+                          <label for="form104">Nombre</label>
+                        </div>
                         
-                          <!--Grid row-->
-                          <div class="row d-flex align-items-center mb-3 mt-4">
+                        <div class="md-form">
+                          <mdb-icon fas icon="grip-lines" class="prefix grey-text"></mdb-icon>
+                          <input type="text" id="form_descripcion" class="form-descripcion" mdbInput>
+                          <label for="form105">Descripción</label>
+                        </div>
 
-                            <!--Grid column-->
-                            <div class="col-md-12">
-                              <div class="text-center">
-                                <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarProducto()">Agregar</button>
-                              </div>
-                            </div>
-                            <!--Grid column-->
+                        <div class="md-form">
+                          <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
+                          <input type="number" id="form_precio" class="form-precio" mdbInput>
+                          <label for="form105">Precio</label>
+                        </div>
 
-                            <!--Grid column-->
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                  <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarProductoAux()">Editar</button>
-                                </div>
+                        <div class="md-form">
+                          <mdb-icon fas icon="money-bill-wave" class="prefix grey-text"></mdb-icon>
+                          <input type="number" id="form_cantidad_inventario" class="form-precio" mdbInput>
+                          <label for="form105">Cantidad Inventario</label>
+                        </div>
+
+                        <div>
+                          <label>Departamento</label> 
+                        </div>
+
+                        <select id="form_id_departamento">
+                          <!--<option value="1">Bebidas</option>
+                          <option value="2">Comida</option>-->
+                        </select>
+
+                        <div>
+                          <label></label> 
+                        </div>
+
+                        <div>
+                        <label for="image-form1-44" class="form-control-label mbr-fonts-style display-5">Imagen</label>
+                        <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                        <img [src]="photoSelected || 'assets/img/no-image.png'" class="img-fluid" alt="No image" (click)="photoInput.click()">
+                        </div>
+                      
+                        <!--Grid row-->
+                        <div class="row d-flex align-items-center mb-3 mt-4">
+
+                          <!--Grid column-->
+                          <div class="col-md-12">
+                            <div class="text-center">
+                              <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="AgregarProducto()">Agregar</button>
                             </div>
-                            <!--Grid column-->
-                    
                           </div>
-                          <!--Grid row-->
-                        </mdb-card-body>
-                    
-                      </mdb-card>
-                    <!--/.Card-->
-  
-                </div>
-                <!--Grid column-->
-                
-            </div>
-            <!--Grid row-->
-  
-        </section>
-        <!--/Projects section v.2-->
-    </div>
-  
-  
+                          <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+                      </mdb-card-body>
+                  
+                    </mdb-card>
+                  <!--/.Card-->
+
+              </div>
+              <!--Grid column-->
+              
+          </div>
+          <!--Grid row-->
+
+      </section>
+      <!--/Projects section v.2-->
   </div>
+
+
+</div>
