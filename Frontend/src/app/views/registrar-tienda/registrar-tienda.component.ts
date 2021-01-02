@@ -35,9 +35,9 @@ export class RegistrarTiendaComponent implements OnInit {
   }
 
   CargarDatosPagina = async () => {//void
-      await this.CargarPaises();
-      await this.constantes.sleep(3000);
-      await this.CargarSectores();
+    await this.CargarPaises();
+    await this.constantes.sleep(3000);
+    await this.CargarSectores();
   }
 
 
@@ -70,7 +70,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarPaises = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Países no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Países no cargada", 3000);
   }
 
   on_id_pais = async () => {//void
@@ -106,7 +107,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarDepartamentos = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Departamentos no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Departamentos no cargada", 3000);
   }
 
   on_id_departamento = async () => {//void
@@ -137,7 +139,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarMunicipios = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Municipios no cargada", 3000);
   }
 
 
@@ -157,7 +160,8 @@ export class RegistrarTiendaComponent implements OnInit {
   }
   
   ErroralCargarSectores = async (Error: any) => {//void
-      console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Sectores no cargada", 3000);
+      console.log(Error);
+      await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, lista de Sectores no cargada", 3000);
   }
 
 
