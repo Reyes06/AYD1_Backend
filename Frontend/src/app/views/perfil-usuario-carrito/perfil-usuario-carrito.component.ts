@@ -154,4 +154,28 @@ export class PerfilUsuarioCarritoComponent implements OnInit {
     await this.CargarDatosPagina();
 
   }
+
+  efectuarCompra = async () => {
+    var usuario = localStorage.getItem("id_usuario");
+    var direccion = <HTMLInputElement>document.getElementById("direccion");
+
+    await this.http.post(this.constantes.URL_BASE + "compra/realizarPedido",
+      {
+        id_usuario: usuario,
+        direccion_envio: direccion.value
+      }
+    ).subscribe(data => this.ExitoAlHacerPedido(data), err => this.ErrorAlHacerPedido(err));
+  }
+
+  ExitoAlHacerPedido = async (Exito: any) => {//void
+    console.log(Exito);
+    await this.constantes.DesplegarMensajePermantendeExito("Se ha efectuado su compra", "");
+    await this.constantes.sleep(3000);
+    await this.CargarDatosPagina();
+
+  }
+
+  ErrorAlHacerPedido = async (Error: any) => {//void
+    console.log(Error); await this.constantes.DesplegarMensajeTemporaldeError("Sin Conexión, No se ha podido efectuar su compra", 3000);
+  }
 }
