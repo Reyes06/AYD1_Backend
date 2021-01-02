@@ -10,7 +10,7 @@
             <!--Card content-->
             <mdb-card-body>
 
-                <h3 class="mt-5 text-left"><strong>Eliminar o Editar Categoría</strong></h3>
+                <h3 class="mt-5 text-left"><strong>Editar o Eliminar Categoría</strong></h3>
 
                 <div id="Div_Tabla_Categorias" #Div_Tabla_Categorias>
                 
@@ -24,6 +24,7 @@
                         <th>Categoría</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <!--Table head-->
@@ -32,13 +33,14 @@
                     <tbody>
                     <!--<tr>
                         <td>1</td>
-                        <td>Hombres</td>
+                        <td>Deportes</td>
+                        <td><input id="NuevoNombreCategoria●▲364" type="text" placeholder="Nuevo Nombre"></td>
                         <td>
-                            <button id="1" type="button" class="btn btn-danger" (click)="EliminarCategoria(1)">Eliminar</button>
-                        </td>
+                            <button id="EditarCategoria●▲364" type="button" class="btn btn-info" (click)="EditarCategoria("EditarCategoria●▲364")">Editar</button>
+                        </td>                        
                         <td>
-                            <button id="1,Hombres" type="button" class="btn btn-info" (click)="EditarCategoria("1,Hombres")">Editar</button>
-                        </td>
+                            <button id="EliminarCategoria●▲364" type="button" class="btn btn-danger" (click)="EliminarCategoria("EliminarCategoria●▲364")">Eliminar</button>
+                        </td> 
                     </tr>-->
                     </tbody>
                     <!--Table body-->
@@ -121,19 +123,13 @@
                         <div class="header blue-gradient">
                     
                           <div class="row d-flex justify-content-center">
-                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar o Editar Categoría</h3>
+                            <h3 class="white-text mb-0 py-5 font-weight-bold">Agregar Categoría</h3>
                           </div>
                     
                         </div>
                         <!--Header-->
                     
                         <mdb-card-body class="mx-4">
-  
-                          <div class="md-form">
-                            <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
-                            <input type="text" id="form_id_categoria" class="form-control" mdbInput readonly>
-                            <label for="form104">ID Categoría</label>
-                          </div>
 
                           <div class="md-form">
                             <mdb-icon fas icon="list" class="prefix grey-text"></mdb-icon>
@@ -151,14 +147,6 @@
                               </div>
                             </div>
                             <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                  <button type="button" mdbBtn color="blue" rounded="true" class="z-depth-1a" (click)="EditarCategoriaAux()">Editar</button>
-                                </div>
-                              </div>
-                              <!--Grid column-->
 
                           </div>
                           <!--Grid row-->
