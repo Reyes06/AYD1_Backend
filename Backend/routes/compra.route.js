@@ -123,7 +123,7 @@ router.get('/pendientes', function(req, res, next) {
 });
 
 /*GET: Obtener todaos los pedidos de compra que estan pendientes de confirmar */
-router.get('/pendiente', function(req, res, next) {
+router.get('/pendiente', function(req, res, next) { 
     con = mysql.createConnection(objectConnection);
     con.connect();
 

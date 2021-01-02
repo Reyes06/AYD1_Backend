@@ -8,9 +8,9 @@ describe('PerfilAdministradorPedidosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PerfilAdministradorPedidosComponent ]
+      declarations: [PerfilAdministradorPedidosComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -17,23 +17,24 @@
 
                     <!--Table head-->
                     <thead class="mdb-color darken-3">
-                    <tr class="text-white">
-                        <th></th>
-                        <th>Direccion de Envio</th>
-                        <th>Confirmacion</th>
-                    </tr>
+                        <tr class="text-white">
+                            <th></th>
+                            <th>Direccion de Envio</th>
+                            <th>Confirmacion</th>
+                        </tr>
                     </thead>
                     <!--Table head-->
 
                     <!--Table body-->
                     <tbody>
-                    <tr *ngFor="let item of pedido;let indexOfelement=index;">
-                        <td>{{ indexOfelement+1 }}</td>
-                        <td>{{ item.direccion_envio }}</td>
-                        <td>
-                            <button type="button" class="btn btn-success" (click)="aprobar(item.id_compra)">Aceptar</button>
-                        </td>
-                    </tr>
+                        <tr *ngFor="let item of pedido;let indexOfelement=index;">
+                            <td>{{ indexOfelement+1 }}</td>
+                            <td>{{ item.direccion_envio }}</td>
+                            <td>
+                                <button type="button" class="btn btn-success"
+                                    (click)="aprobar(item.id_compra)">Aceptar</button>
+                            </td>
+                        </tr>
                     </tbody>
                     <!--Table body-->
                 </table>

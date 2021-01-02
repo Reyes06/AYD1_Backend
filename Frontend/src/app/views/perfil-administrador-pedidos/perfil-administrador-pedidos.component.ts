@@ -29,24 +29,23 @@ export class PerfilAdministradorPedidosComponent implements OnInit {
   }
 
 
-  pedido : pedidos[] = [];
+  pedido: pedidos[] = [];
 
   CargarDatosPaginaAux = async () => {//void
     await this.http.get<pedidos[]>(this.constantes.URL_BASE + "compra/pendientes").subscribe
-    ( 
-      (response)=>
-      {
-        this.pedido = response;
-        console.log(this.pedido);
-      },
-      (error) => console.log(error)
-    );
+      (
+        (response) => {
+          this.pedido = response;
+          console.log(this.pedido);
+        },
+        (error) => console.log(error)
+      );
   }
 
-  aprobar = async (id_compra:any) => {//void
+  aprobar = async (id_compra: any) => {//void
     this.http.post(this.constantes.URL_BASE + "compra/confirmarPedido",
-    { id_compra: id_compra }
-    ).subscribe( data => this.ExitoEnvio(data), err => this.MensajeError(err) );
+      { id_compra: id_compra }
+    ).subscribe(data => this.ExitoEnvio(data), err => this.MensajeError(err));
     await this.constantes.sleep(3000);
     this.CargarDatosPaginaAux();
   }
