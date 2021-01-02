@@ -21,7 +21,7 @@
         </div>
 
         <!--Administrador-->
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') === '1'">
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && getTipoUsuario() === '1'">
 
             <a routerLink="perfil-administrador/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
@@ -33,7 +33,7 @@
         </div>
 
         <!--Tienda-->
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') === '2'">
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && getTipoUsuario() === '2'">
 
             <a routerLink="perfil-tienda/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
@@ -45,7 +45,7 @@
         </div>
 
         <!--Usuario-->
-        <div class="list-group list-group-flush" *ngIf="isLoggedIn && readLocalStorageValue('tipo_usuario') == '3'">
+        <div class="list-group list-group-flush" *ngIf="isLoggedIn && getTipoUsuario() === '3'">
 
             <a routerLink="perfil-usuario/Dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard</a>
