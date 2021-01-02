@@ -9,8 +9,6 @@ router.post('/realizarPedido', function(req, res, next) {
     const {id_usuario, direccion_envio} = req.body;
     con = mysql.createConnection(objectConnection);
 
-    
-
     con.connect();
 
     con.query(`SELECT id_producto, nombre, cantidad, cantidad_inventario FROM producto pr INNER JOIN carrito_compras cc ON cc.producto_id_producto = pr.id_producto WHERE usuario_id_usuario = ${id_usuario}`, (err, result, fields) => {
@@ -87,6 +85,56 @@ router.post('/realizarPedido', function(req, res, next) {
     });
 });
 
+/*GET: Obtener todaos los pedidos de compra que estan pendientes de confirmar */
+router.get('/pendientes', function(req, res, next) {
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`SELECT id_compra, direccion_envio FROM compra WHERE estado = 'PENDIENTE'`, (err, result, fields) => {
+        console.log("UPDATE compra")
+        if (err) throw err;
+
+        let listaDeCompras = [];
+        let id_compra, direccion_envio, compra;
+
+        const cantidadCompras = result.length;
+        for(let i = 0; i < result.length; i++){
+            id_compra = result[i].id_compra;
+            direccion_envio = result[i].direccion_envio
+        
+            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${id_compra}`, (err, result, fields) => {
+                console.log("SELECT FROM producto, detalle_compra")
+                if (err) throw err;
+
+                compra = {
+                    id_compra,
+                    direccion_envio,
+                    "productos": result
+                }
+
+                listaDeCompras.push(compra);
+                if(i === (cantidadCompras- 1)){
+                    res.send(listaDeCompras);
+                    con.end();
+                }
+            });
+        }
+    });
+});
+
+/*GET: Obtener todaos los pedidos de compra que estan pendientes de confirmar */
+router.get('/pendientes', function(req, res, next) {
+    con = mysql.createConnection(objectConnection);
+    con.connect();
+
+    con.query(`SELECT id_compra FROM compra WHERE estado = 'PENDIENTE'`, (err, result, fields) => {
+        console.log("UPDATE compra")
+        if (err) throw err;
+        res.send({"compras": result});
+        con.end();
+    });
+});
+
 /*POST: Confirmar el envio de una compra*/
 router.post('/confirmarPedido', function(req, res, next) {
     const {id_compra} = req.body;
@@ -102,7 +150,7 @@ router.post('/confirmarPedido', function(req, res, next) {
             if (err) throw err;
             let {correo_electronico, nombre, apellido, direccion_envio} = result[0];
 
-            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades, c.direccion_envio FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${id_compra}`, (err, result, fields) => {
+            con.query(`SELECT pr.nombre AS nombre_producto, pr.precio AS precio, dc.unidades AS unidades FROM producto pr INNER JOIN detalle_compra dc ON dc.producto_id_producto = pr.id_producto INNER JOIN compra c ON c.id_compra = dc.compra_id_compra WHERE c.id_compra = ${id_compra}`, (err, result, fields) => {
                 console.log("SELECT FROM producto, detalle_compra")
                 if (err) throw err;
 
